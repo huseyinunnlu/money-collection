@@ -6,18 +6,30 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use Sluggable;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'fullName'
+            ]
+        ];
+    }
+
     protected $fillable = [
-        'name',
+        'fullName',
         'email',
         'password',
     ];
@@ -48,25 +60,4 @@ class User extends Authenticatable
     }
 }
 
-/*
-use Cviebrock\EloquentSluggable\Sluggable;
 
-class Post extends Model
-{
-    use Sluggable;
-
-
-     * Return the sluggable configuration array for this model.
-     *
-     * @return array
-
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
-    }
-}
- */

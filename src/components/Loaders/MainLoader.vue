@@ -1,5 +1,8 @@
 <template>
-    <div class="loader"></div>
+  <div class="d-flex justify-content-center align-items-center flex-column my-5">
+    <div class="loader text-center mb-2"></div>
+    <h3>Loading..</h3>
+  </div>
 </template>
 <style scoped>
 .loader {
@@ -12,8 +15,11 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
-
 </style>
