@@ -1,19 +1,41 @@
 <template>
-  <MainLoader v-if="isLoading"/>
-  <router-view v-else/>
-  <notifications :ignoreDuplicates="true" position="top right"/>
+  <MainLoader v-if="isLoading" />
+  <router-view v-else />
+  <notifications :ignoreDuplicates="true" position="top right" />
 </template>
 <script>
-import MainLoader from "@/components/Loaders/MainLoader.vue"
+import MainLoader from "@/components/Loaders/MainLoader.vue";
 export default {
-  components:{
+  components: {
     MainLoader,
   },
-  data(){
+  data() {
     return {
-      isLoading:false
-    }
-  }
-}
+      isLoading: false,
+    };
+  },
+  created() {
+    this.getUser();
+  },
+  methods: {
+    getUser() {
+      this.isLoading = true;
+      this.$appAxios
+        .get("user")
+        .then((res) => {
+          this.$store.state.User.user = res.data;
+          this.$store.state.User.isAuth = true;
+          localStorage.setItem("role", res.data.role);
+        })
+        .catch(() => {
+          this.$router.push({ name: "Login" });
+          localStorage.removeItem("token");
+          localStorage.removeItem("role");
+        })
+        .finally(() => {
+          this.isLoading = false;
+        });
+    },
+  },
+};
 </script>
-
