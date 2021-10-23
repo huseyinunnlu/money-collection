@@ -16,13 +16,13 @@
           data-accordion="false"
         >
 
-          <div class="admin-pages" v-if="$store.getters._User.type == '1'">
+          <div class="admin-pages" v-if="$store.getters._User.role == '1'">
             <li class="nav-header">Admin Pages</li>
             <li class="nav-item">
-              <router-link :to="{ name: 'Index' }" class="nav-link">
+              <router-link :to="{ name: 'AdminpanelUsers' }" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>
                 <p>
-                  Money Operations
+                  Users
                 </p>
               </router-link>
             </li>

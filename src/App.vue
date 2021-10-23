@@ -1,6 +1,6 @@
 <template>
   <MainLoader v-if="isLoading" />
-  <router-view v-else />
+  <router-view v-else :key="$route.fullPath"/>
   <notifications :ignoreDuplicates="true" position="top right" />
 </template>
 <script>

@@ -2,7 +2,7 @@
   <body class="hold-transition login-page">
     <div class="login-box my-3">
       <div class="login-logo">
-        <a href="../../index2.html"><b>Mod</b>Hub</a>
+        <b>Logo</b>
       </div>
       <!-- /.login-logo -->
       <div class="card">
@@ -11,7 +11,6 @@
 
             <LoginForm />
           
-          <!-- /.social-auth-links -->
 
           <p class="mb-1">
             <a href="forgot-password.html">I forgot my password</a>

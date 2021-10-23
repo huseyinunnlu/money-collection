@@ -19,6 +19,7 @@ export default {
           this.$store.state.User.isAuth = false;
           localStorage.removeItem("token");
           localStorage.removeItem("role");
+          window.location.reload()
           this.$router.push({ name: "Login" });
           this.$notify({
             type: "success",

@@ -8,7 +8,7 @@
       />
     </div>
     <div class="info d-flex flex-column">
-      <router-link :to="{name:'Index'}" class="d-block">{{_User.fullName}}</router-link>
+      <router-link :to="{name:'Profile',params:{slug:_User.slug}}" class="d-block">{{_User.fullName}}</router-link>
       <Logout />
     </div>
   </div>

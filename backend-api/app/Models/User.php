@@ -23,8 +23,9 @@ class User extends Authenticatable
     {
         return [
             'slug' => [
-                'source' => 'fullName'
-            ]
+                'source' => ['fullName'],
+                'onUpdate' => true,
+            ],
         ];
     }
 
@@ -32,6 +33,7 @@ class User extends Authenticatable
         'fullName',
         'email',
         'password',
+        'profilePhoto'
     ];
 
     /**
@@ -59,5 +61,3 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\OAuthAccessToken');
     }
 }
-
-
