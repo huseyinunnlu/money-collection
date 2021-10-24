@@ -18,6 +18,7 @@
 
           <div class="admin-pages" v-if="$store.getters._User.role == '1'">
             <li class="nav-header">Admin Pages</li>
+            
             <li class="nav-item">
               <router-link :to="{ name: 'AdminpanelUsers' }" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>
@@ -26,6 +27,15 @@
                 </p>
               </router-link>
             </li>
+
+            <li class="nav-item menu-open">
+            <router-link :to="{name:'AdminMoneyOperations'}" class="nav-link">
+              <i class="nav-icon fas fa-lira-sign"></i>
+              <p>
+                Money Operations
+              </p>
+            </router-link>
+          </li>
           </div>
 
           <div class="admin-pages">
