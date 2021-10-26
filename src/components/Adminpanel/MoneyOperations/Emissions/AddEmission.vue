@@ -102,7 +102,7 @@ export default {
         })
         .then((res) => {
           this.form.title = null;
-          this.form.status = 1;
+          this.form.status = '1';
           this.$store.state.Opr.emissions.unshift(res.data.data);
           this.$notify({
             type: "success",

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@kyvg/vue3-notification": "^2.3.4",
+    "@vueform/multiselect": "^2.2.0",
     "axios": "^0.23.0",
     "core-js": "^3.6.5",
     "crypto-js": "^4.1.1",

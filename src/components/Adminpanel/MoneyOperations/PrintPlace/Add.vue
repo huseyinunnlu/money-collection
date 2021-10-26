@@ -68,7 +68,7 @@
             class="btn btn-primary"
             :disabled="!form.status || !form.title"
             v-if="!isLoading"
-            @click="add"
+            @click="add()"
           >
             Add Print Place
           </button>
@@ -102,8 +102,8 @@ export default {
         })
         .then((res) => {
           this.form.title = null;
-          this.form.status = 1;
-          this.$store.state.Opr.printPlace.unshift(res.data.data);
+          this.form.status = '1';
+          this.$store.state.Opr.printPlaces.unshift(res.data.data);
           this.$notify({
             type: "success",
             title: "Print Place successfully added.",

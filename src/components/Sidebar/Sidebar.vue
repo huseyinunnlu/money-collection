@@ -41,12 +41,12 @@
           <div class="admin-pages">
             <li class="nav-header">Public Pages</li>
             <li class="nav-item">
-              <a href="../widgets.html" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
+              <router-link :to="{name:'Money'}" class="nav-link">
+                <i class="nav-icon fas fa-money-bill"></i>
                 <p>
                   Moneys
                 </p>
-              </a>
+              </router-link>
             </li>
           </div>
         </ul>

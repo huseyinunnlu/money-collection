@@ -154,6 +154,29 @@ const routes = [
   },
 
   //Finish
+
+  //Money
+
+  //List 
+  
+  {
+    path: "/money",
+    name: "Money",
+    component: () => import("../views/Moneys/List.vue"),
+  },
+
+  {
+    path: "/money/:id/edit",
+    name: "AdminMoneyEdit",
+    component: () => import("../views/Moneys/Edit.vue"),
+  },
+  {
+    path: "/money/:id/details",
+    name: "AdminMoneyShow",
+    component: () => import("../views/Moneys/Show.vue"),
+  },
+
+  //finish
 ];
 
 const router = createRouter({
@@ -166,8 +189,8 @@ router.beforeEach((to, _, next) => {
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role")
   const notAuthRoutes = ["Register", "Login"];
-  const authReqRoutes = ["Index",'Profile','ProfileSettings','ChangePassword']
-  const adminRoutes = ["AdminpanelUsers","AdminpanelEditUser","AdminMoneyOperations","AdminEmissions","AdminEditEmission","AdminSCWPM","AdminEditSCWPM","AdminKuphur","AdminEditKuphur","AdminPrintPlace","AdminEditPrintPlace","AdminTertip","AdminEditTertip","AdminEditSerie","AdminSerie","AdminEditSignature","AdminSignature"]
+  const authReqRoutes = ["Index",'Profile','ProfileSettings','ChangePassword',"Money"]
+  const adminRoutes = ["AdminpanelUsers","AdminpanelEditUser","AdminMoneyOperations","AdminEmissions","AdminEditEmission","AdminSCWPM","AdminEditSCWPM","AdminKuphur","AdminEditKuphur","AdminPrintPlace","AdminEditPrintPlace","AdminTertip","AdminEditTertip","AdminEditSerie","AdminSerie","AdminEditSignature","AdminSignature","AdminMoneyEdit"]
   if (!to.matched.length) {
     router.push({ name: "404" });
   } else if (notAuthRoutes.indexOf(to.name) > -1 && token) {
