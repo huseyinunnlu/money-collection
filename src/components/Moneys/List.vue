@@ -302,11 +302,11 @@ export default {
         .get("moneys/get", {
           params: {
             page: this.page,
-            emission: this.emission,
-            scwpm: this.scwpm,
-            kuphur: this.kuphur,
-            serie: this.serie,
-            tertip: this.tertip,
+            emission_id: this.emission,
+            scwpm_id: this.scwpm,
+            kuphur_id: this.kuphur,
+            serie_id: this.serie,
+            tertip_id: this.tertip,
             status: this.status,
             count: this.count,
             sort: this.sort,
@@ -332,15 +332,23 @@ export default {
         });
     },
     filterItems(data) {
+      let iscollect = null;
+      if (this.isCollection) {
+        iscollect = 1;
+      } else {
+        iscollect = 0;
+      }
       this.$appAxios
         .get("/moneyfilter", {
           params: {
             column: data.column,
             data: data.data,
+            status: this.status,
             emission_id: data.emission_id,
             scwpm_id: data.scwpm_id,
             kuphur_id: data.kuphur_id,
             serie_id: data.serie_id,
+            isCollected: iscollect,
           },
         })
         .then((res) => {
