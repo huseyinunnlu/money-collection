@@ -8,7 +8,7 @@
           <div class="col-10 offset-1">
             <ContentHeader :title="'Edit Money'" />
             <h2 v-if="isLoading" class="text-center">Loading...</h2>
-            <Show :money="money" v-if="!isLoading" />
+            <Show :money="money" v-else />
           </div>
         </div>
       </div>
@@ -56,6 +56,7 @@ export default {
         .get("/money/" + this.$route.params.id + "/get")
         .then((res) => {
           this.money = res.data.data;
+          this.isLoading = false;
         })
         .catch(() => {
           this.$notify({
@@ -65,7 +66,9 @@ export default {
           this.$router.push({ name: "Money" });
         })
         .finally(() => {
-          this.isLoading = false;
+          this.setTimeout(() => {
+            this.isLoading = false;
+          }, 2000);
         });
     },
   },

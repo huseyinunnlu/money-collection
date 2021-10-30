@@ -19,55 +19,113 @@
                   Add Money
                 </button>
               </h3>
-              {{ datas.emission }}
               <div class="card-tools">
                 <div class="input-group input-group-sm" style="width: auto;">
-                  <select class="form-control" v-model="emission">
+                  <select
+                    @change="
+                      filterItems({
+                        column: 'scwpm_id',
+                        data: 'scwpm',
+                        emission_id: emission,
+                        scwpm_id: null,
+                        kuphur_id: null,
+                        serie_id: null,
+                      })
+                    "
+                    class="form-control"
+                    v-model="emission"
+                  >
                     <option :value="null">Select Emission</option>
                     <option
-                      v-for="ems in datas.emissions"
-                      :key="ems.id"
-                      :value="ems.id"
-                      >{{ ems.title }}</option
+                      v-for="ems in datas.emission"
+                      :key="ems.emission_id.id"
+                      :value="ems.emission_id.id"
+                      >{{ ems.emission_id.title }}</option
                     >
                   </select>
-                  <select class="form-control" v-model="scwpm">
+                  <select
+                    @change="
+                      filterItems({
+                        column: 'kuphur_id',
+                        data: 'kuphur',
+                        emission_id: emission,
+                        scwpm_id: scwpm,
+                        kuphur_id: null,
+                        serie_id: null,
+                      })
+                    "
+                    :disabled="datas.scwpm.length < 1"
+                    class="form-control"
+                    v-model="scwpm"
+                  >
                     <option :value="null">Select Scwpm</option>
                     <option
                       v-for="scwpm in datas.scwpm"
-                      :key="scwpm.id"
-                      :value="scwpm.id"
-                      >{{ scwpm.title }}</option
+                      :key="scwpm.scwpm_id.id"
+                      :value="scwpm.scwpm_id.id"
+                      >{{ scwpm.scwpm_id.title }}</option
                     >
                   </select>
-                  <select class="form-control" v-model="kuphur">
+                  <select
+                    @change="
+                      filterItems({
+                        column: 'serie_id',
+                        data: 'serie',
+                        emission_id: emission,
+                        scwpm_id: scwpm,
+                        kuphur_id: kuphur,
+                        serie_id: null,
+                      })
+                    "
+                    :disabled="datas.kuphur.length < 1"
+                    class="form-control"
+                    v-model="kuphur"
+                  >
                     <option :value="null">Select Kuphür</option>
 
                     <option
                       v-for="kuphur in datas.kuphur"
-                      :key="kuphur.id"
-                      :value="kuphur.id"
-                      >{{ kuphur.title }}</option
+                      :key="kuphur.kuphur_id.id"
+                      :value="kuphur.kuphur_id.id"
+                      >{{ kuphur.kuphur_id.title }}</option
                     >
                   </select>
-                  <select class="form-control" v-model="serie">
+                  <select
+                    @change="
+                      filterItems({
+                        column: 'tertip_id',
+                        data: 'tertip',
+                        emission_id: emission,
+                        scwpm_id: scwpm,
+                        kuphur_id: kuphur,
+                        serie_id: serie,
+                      })
+                    "
+                    class="form-control"
+                    :disabled="datas.serie.length < 1"
+                    v-model="serie"
+                  >
                     <option :value="null">Select Serie</option>
 
                     <option
                       v-for="serie in datas.serie"
-                      :key="serie.id"
-                      :value="serie.id"
-                      >{{ serie.title }}</option
+                      :key="serie.serie_id.id"
+                      :value="serie.serie_id.id"
+                      >{{ serie.serie_id.title }}</option
                     >
                   </select>
-                  <select class="form-control" v-model="tertip">
+                  <select
+                    class="form-control"
+                    :disabled="datas.tertip.length < 1"
+                    v-model="tertip"
+                  >
                     <option :value="null">Select Tertip</option>
 
                     <option
                       v-for="tertip in datas.tertip"
-                      :key="tertip.id"
-                      :value="tertip.id"
-                      >{{ tertip.title }}</option
+                      :key="tertip.tertip_id.id"
+                      :value="tertip.tertip_id.id"
+                      >{{ tertip.tertip_id.title }}</option
                     >
                   </select>
                   <select
@@ -185,9 +243,9 @@ export default {
       isLoading: true,
       page: 1,
       dataCount: 0,
-      isCollection:false,
+      isCollection: false,
       datas: {
-        emissions: [],
+        emission: [],
         scwpm: [],
         kuphur: [],
         serie: [],
@@ -197,7 +255,14 @@ export default {
   },
   created() {
     this.get();
-    this.getData();
+    this.filterItems({
+      column: "emission_id",
+      data: "emission",
+      emission_id: null,
+      scwpm_id: null,
+      kuphur_id: null,
+      serie: null,
+    });
   },
   methods: {
     reset() {
@@ -211,14 +276,27 @@ export default {
       this.sort = "desc";
       this.isLoading = true;
       this.page = 1;
+      this.datas.emission = [];
+      this.datas.scwpm = [];
+      this.datas.kuphur = [];
+      this.datas.serie = [];
+      this.datas.tertip = [];
+      this.filterItems({
+        column: "emission_id",
+        data: "emission",
+        emission_id: null,
+        scwpm_id: null,
+        kuphur_id: null,
+        serie: null,
+      });
     },
     get() {
       this.isLoading = true;
       let iscollect = null;
-      if(this.isCollection){
-        iscollect = 1
-      }else{
-        iscollect = 0
+      if (this.isCollection) {
+        iscollect = 1;
+      } else {
+        iscollect = 0;
       }
       this.$appAxios
         .get("moneys/get", {
@@ -232,7 +310,7 @@ export default {
             status: this.status,
             count: this.count,
             sort: this.sort,
-            isCollected: iscollect
+            isCollected: iscollect,
           },
         })
         .then((res) => {
@@ -253,26 +331,32 @@ export default {
           this.isLoading = false;
         });
     },
-
-    getData() {
+    filterItems(data) {
       this.$appAxios
-        .get("/getdata")
+        .get("/moneyfilter", {
+          params: {
+            column: data.column,
+            data: data.data,
+            emission_id: data.emission_id,
+            scwpm_id: data.scwpm_id,
+            kuphur_id: data.kuphur_id,
+            serie_id: data.serie_id,
+          },
+        })
         .then((res) => {
-          this.datas.emissions = res.data.data.emission;
-          this.datas.scwpm = res.data.data.scwpm;
-          this.datas.kuphur = res.data.data.kuphur;
-          this.datas.serie = res.data.data.serie;
-          this.datas.tertip = res.data.data.tertip;
-        })
-        .catch(() => {
-          this.datas.emissions = [];
-          this.datas.scwpm = [];
-          this.datas.kuphur = [];
-          this.datas.serie = [];
-          this.datas.tertip = [];
-        })
-        .finally(() => {
-          this.isLoading = false;
+          const data = res.data.data;
+          const array = res.data.arrdata;
+          if (array == "emission") {
+            this.datas.emission = data;
+          } else if (array == "scwpm") {
+            this.datas.scwpm = data;
+          } else if (array == "kuphur") {
+            this.datas.kuphur = data;
+          } else if (array == "serie") {
+            this.datas.serie = data;
+          } else if (array == "tertip") {
+            this.datas.tertip = data;
+          }
         });
     },
   },

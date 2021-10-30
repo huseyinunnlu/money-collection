@@ -34,6 +34,7 @@ Route::middleware(['auth:api'])->group(function () {
     Route::middleware('auth:api')->get('/user', function (Request $request) {
         return $request->user();
     });
+    Route::get('getdata', [MoneyController::class, 'getdata']);
     Route::post('/logout', [LoginController::class, 'logout']);
     Route::post('/updatepp', [ProfileController::class, 'updatepp']);
     Route::post('/updateprofile', [ProfileController::class, 'updateProfile']);
@@ -43,6 +44,7 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('/moneys/get', [MoneyController::class, 'get']);
     Route::post('/collection/add', [CollectionController::class, 'add']);
     Route::post('/collection/delete', [CollectionController::class, 'delete']);
+    Route::get('/moneyfilter', [MoneyController::class, 'getFilters']);
 
     Route::middleware(['isAdmin'])->group(function () {
         //Admin user
@@ -74,11 +76,9 @@ Route::middleware(['auth:api'])->group(function () {
         //signature
         Route::apiResource('/signature', SignatureController::class);
         //Admin money
-        Route::get('getdata', [MoneyController::class, 'getdata']);
         Route::post('/money/add', [MoneyController::class, 'add']);
         Route::delete('/money/{id}/delete', [MoneyController::class, 'delete']);
         Route::get('/money/{id}/get', [MoneyController::class, 'getMoney']);
         Route::post('/money/{id}/update', [MoneyController::class, 'update']);
     });
-
 });

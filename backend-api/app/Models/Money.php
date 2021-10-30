@@ -9,7 +9,7 @@ class Money extends Model
 {
     use HasFactory;
     protected $table = 'money';
-    protected $fillable = ['emissionId','scwpmId','kuphurId','serieId','tertipId','printPlace','value','cilValue','tValue','size','tedavulDate','lastDate','zortedDate','timeoutDate','expiryDate','frontColor','backColor','frontImage','backImage','link','desc','status','emissionId','scwpmId','kuphurId','serieId','tertipId','printPlace'];
+    protected $fillable = ['emission_id','scwpm_id','kuphur_id','serie_id','tertip_id','print_place_id','value','cilValue','tValue','size','tedavulDate','lastDate','zortedDate','timeoutDate','expiryDate','frontColor','backColor','frontImage','backImage','link','desc','status'];
 
     protected $appends = ['isCollected'];
 
@@ -31,28 +31,28 @@ class Money extends Model
         return $this->hasMany('App\Models\MoneySignatures'::class, 'moneyId');
     }
 
-    public function emission(){
-        return $this->belongsTo(Emission::class, 'emissionId');
+    public function emission_id(){
+        return $this->belongsTo('App\Models\Emission'::class, 'emission_id');
     }
 
-    public function scwpm(){
-        return $this->belongsTo('App\Models\Scwpm'::class, 'scwpmId');
+    public function scwpm_id(){
+        return $this->belongsTo('App\Models\Scwpm'::class, 'scwpm_id');
     }
 
-    public function kuphur(){
-        return $this->belongsTo('App\Models\Kuphur'::class, 'kuphurId');
+    public function kuphur_id(){
+        return $this->belongsTo('App\Models\Kuphur'::class, 'kuphur_id');
     }
 
-    public function serie(){
-        return $this->belongsTo('App\Models\Serie'::class, 'serieId');
+    public function serie_id(){
+        return $this->belongsTo('App\Models\Serie'::class, 'serie_id');
     }
 
-    public function tertip(){
-        return $this->belongsTo('App\Models\Tertip'::class, 'tertipId');
+    public function tertip_id(){
+        return $this->belongsTo('App\Models\Tertip'::class, 'tertip_id');
     }
 
-    public function printPlace(){
-        return $this->belongsTo('App\Models\PrintPlace'::class, 'printPlace');
+    public function print_place_id(){
+        return $this->belongsTo('App\Models\PrintPlace'::class, 'print_place_id');
     }
 
     public function collection()

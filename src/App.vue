@@ -1,7 +1,7 @@
 <template>
   <MainLoader v-if="isLoading" />
   <router-view v-else :key="$route.fullPath"/>
-  <notifications :ignoreDuplicates="true" position="top right" />
+  <notifications :ignoreDuplicates="true" position="top right" class="my-2 ml-2" />
 </template>
 <script>
 import MainLoader from "@/components/Loaders/MainLoader.vue";

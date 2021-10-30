@@ -44,6 +44,45 @@ class MoneyController extends Controller
         ], 200);
     }
 
+    public function getFilters(Request $request)
+    {
+        $request->validate([
+            'column' => 'required',
+        ]);
+        $status = [];
+        if (Auth::user()->role != 1){
+            $status = ['1'];
+        }else{
+            $status = ['0','1'];
+        }
+
+        $filter = Money::whereIn('status', $status)
+        ->where(function($query) use ($request) {
+            if ($request->emission_id) {
+                $query->where('emission_id', $request->emission_id);
+            }
+            if ($request->scwpm_id) {
+                $query->where('scwpm_id', $request->scwpm_id);
+            }
+            if ($request->kuphur_id) {
+                $query->where('kuphur_id', $request->kuphur_id);
+            }
+            if ($request->serie_id) {
+                $query->where('emission_id', $request->emission_id);
+            }
+        })
+        ->with($request->column)
+        ->select($request->column)
+        ->groupBy($request->column)
+        ->get();
+        return response()->json([
+            "status" => "ok",
+            "column" => $request->column,
+            "arrdata" => $request->data,
+            "data" => $filter,
+        ], 200);
+    }
+
     public function add(Request $request)
     {
 
@@ -94,17 +133,17 @@ class MoneyController extends Controller
         }
 
         $moneyData = Money::create([
-            "emissionId" => $request->emissionId,
-            "scwpmId" => $request->scwpmId,
-            "kuphurId" => $request->kuphurId,
+            "emission_id" => $request->emissionId,
+            "scwpm_id" => $request->scwpmId,
+            "kuphur_id" => $request->kuphurId,
             "value" => $request->value,
-            "serieId" => $request->serieId,
+            "serie_id" => $request->serieId,
             "cilValue" => $request->cilValue,
             "ctValue" => $request->ctValue,
             "tValue" => $request->tValue,
-            "tertipId" => $request->tertipId,
+            "tertip_id" => $request->tertipId,
             "size" => $request->size,
-            "printPlace" => $request->printPlace,
+            "print_place_id" => $request->printPlace,
             "tedavulDate" => $request->tedavulDate,
             "lastDate" => $request->lastDate,
             "zortedDate" => $request->zortedDate,
@@ -127,7 +166,7 @@ class MoneyController extends Controller
                     "signatureId" => $sign,
                 ]);
             }
-            $data = Money::with('emission', 'scwpm', 'kuphur', 'serie', 'tertip', 'printPlace', 'signature.name')->latest()->first();
+            $data = Money::with('emission_id', 'scwpm_id', 'kuphur_id', 'serie_id', 'tertip_id', 'print_place_id', 'signature.name')->latest()->first();
             return response()->json([
                 "status" => "ok",
                 "data" => $data,
@@ -150,36 +189,36 @@ class MoneyController extends Controller
         }
         if ($request->emission && $request->scwpm && $request->kuphur && $request->serie && $request->tertip) {
             if ($request->isCollected == 1) {
-                $data = Money::with('collection', 'emission', 'scwpm', 'kuphur', 'serie', 'tertip', 'printPlace', 'signature.name')
+                $data = Money::with('collection', 'emission_id', 'scwpm_id', 'kuphur_id', 'serie_id', 'tertip_id', 'print_place_id', 'signature.name')
                     ->whereIn('id', $collectedMoneys)
-                    ->where('emissionId', $request->emission)
-                    ->where('scwpmId', $request->scwpm)
-                    ->where('kuphurId', $request->kuphur)
-                    ->where('serieId', $request->serie)
-                    ->where('tertipId', $request->tertip)
+                    ->where('emission_id', $request->emission)
+                    ->where('scwpm_id', $request->scwpm)
+                    ->where('kuphur_id', $request->kuphur)
+                    ->where('serie_id', $request->serie)
+                    ->where('tertip_id', $request->tertip)
                     ->where('status', $request->status)
                     ->orderBy('created_at', $request->sort)
                     ->paginate($request->count);
             } else {
-                $data = Money::with('collection', 'emission', 'scwpm', 'kuphur', 'serie', 'tertip', 'printPlace', 'signature.name')
-                    ->where('emissionId', $request->emission)
-                    ->where('scwpmId', $request->scwpm)
-                    ->where('kuphurId', $request->kuphur)
-                    ->where('serieId', $request->serie)
-                    ->where('tertipId', $request->tertip)
+                $data = Money::with('collection', 'emission_id', 'scwpm_id', 'kuphur_id', 'serie_id', 'tertip_id', 'print_place_id', 'signature.name')
+                    ->where('emission_id', $request->emission)
+                    ->where('scwpm_id', $request->scwpm)
+                    ->where('kuphur_id', $request->kuphur)
+                    ->where('serie_id', $request->serie)
+                    ->where('tertip_id', $request->tertip)
                     ->where('status', $request->status)
                     ->orderBy('created_at', $request->sort)
                     ->paginate($request->count);
             }
         } else {
             if ($request->isCollected == 1) {
-                $data = Money::with('collection', 'emission', 'scwpm', 'kuphur', 'serie', 'tertip', 'printPlace', 'signature.name')
+                $data = Money::with('collection', 'emission_id', 'serie_id', 'scwpm_id','tertip_id', 'kuphur_id', 'kuphur_id', 'kuphur_id', 'print_place_id', 'signature.name')
                     ->whereIn('id', $collectedMoneys)
                     ->where('status', $request->status)
                     ->orderBy('created_at', $request->sort)
                     ->paginate($request->count);
             } else {
-                $data = Money::with('collection', 'emission', 'scwpm', 'kuphur', 'serie', 'tertip', 'printPlace', 'signature.name')
+                $data = Money::with('collection', 'emission_id', 'serie_id', 'tertip_id', 'scwpm_id', 'kuphur_id', 'kuphur_id', 'kuphur_id', 'print_place_id', 'signature.name')
                     ->where('status', $request->status)
                     ->orderBy('created_at', $request->sort)
                     ->paginate($request->count);
@@ -214,7 +253,7 @@ class MoneyController extends Controller
 
     public function getMoney($id)
     {
-        $data = Money::with('emission', 'scwpm', 'kuphur', 'serie', 'tertip', 'printPlace', 'signature.name')->whereId($id)->first();
+        $data = Money::with('emission_id', 'scwpm_id', 'kuphur_id', 'serie_id', 'tertip_id', 'print_place_id', 'signature.name')->whereId($id)->first();
         if ($data) {
             $signs = [];
             foreach ($data['signature'] as $sign) {
@@ -292,17 +331,17 @@ class MoneyController extends Controller
         }
 
         $moneyData = Money::whereId($id)->first()->update([
-            "emissionId" => $request->emissionId,
-            "scwpmId" => $request->scwpmId,
-            "kuphurId" => $request->kuphurId,
+            "emission_id" => $request->emissionId,
+            "scwpm_id" => $request->scwpmId,
+            "kuphur_id" => $request->kuphurId,
             "value" => $request->value,
-            "serieId" => $request->serieId,
+            "serie_id" => $request->serieId,
             "cilValue" => $request->cilValue,
             "ctValue" => $request->ctValue,
             "tValue" => $request->tValue,
-            "tertipId" => $request->tertipId,
+            "tertip_id" => $request->tertipId,
             "size" => $request->size,
-            "printPlace" => $request->printPlace,
+            "print_place_id" => $request->printPlace,
             "tedavulDate" => $request->tedavulDate,
             "lastDate" => $request->lastDate,
             "zortedDate" => $request->zortedDate,

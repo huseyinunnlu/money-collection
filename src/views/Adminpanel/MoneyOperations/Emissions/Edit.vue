@@ -8,7 +8,7 @@
           <div class="col-10 offset-1">
             <ContentHeader :title="'Edit Emission'" />
             <h2 v-if="isLoading" class="text-center">Loading...</h2>
-            <EmissionEdit :ems="emission" v-if="!isLoading" />
+            <EmissionEdit v-else :ems="emission" />
           </div>
         </div>
       </div>
@@ -38,10 +38,10 @@ export default {
     };
   },
   created() {
-    this.getUser();
+    this.get();
   },
   methods: {
-    getUser() {
+    get() {
       this.isLoading = true;
       this.$appAxios
         .get("/emission/" + this.$route.params.id + "/get")
@@ -49,6 +49,7 @@ export default {
           this.emission = res.data.data;
         })
         .catch(() => {
+          this.emission = []
           this.$notify({
             type: "error",
             title: "Emission not found",
@@ -56,7 +57,9 @@ export default {
           this.$router.push({ name: "AdminEmissions" });
         })
         .finally(() => {
-          this.isLoading = false;
+          setTimeout(() => {
+            this.isLoading = false
+          }, 2000);
         });
     },
   },

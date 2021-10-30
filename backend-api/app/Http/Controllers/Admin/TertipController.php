@@ -67,7 +67,7 @@ class TertipController extends Controller
         return response()->json([
             "status" => "false",
             "message" => "Tertip not found."
-        ]);
+        ] ,500);
     }
 
     /**

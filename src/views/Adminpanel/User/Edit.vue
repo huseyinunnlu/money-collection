@@ -8,7 +8,7 @@
           <div class="col-10 offset-1">
             <ContentHeader :title="'Edit User'" />
             <h2 v-if="isLoading" class="text-center">Loading...</h2>
-            <UserEditForm :user="user" v-if="!isLoading" />
+            <UserEditForm v-else :user="user"/>
           </div>
         </div>
       </div>
@@ -56,7 +56,9 @@ export default {
           this.$router.push({ name: "AdminpanelUsers" });
         })
         .finally(() => {
-          this.isLoading = false;
+          setTimeout(() => {
+            this.isLoading = false
+          }, 1000);
         });
     },
   },

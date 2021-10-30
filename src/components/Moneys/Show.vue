@@ -11,42 +11,42 @@
           <td>
             <strong>Emission</strong>
           </td>
-          <td>{{money.emission.title}}</td>
+          <td>{{money.emission_id.title}}</td>
         </tr>
         
         <tr>
           <td>
             <strong>SCWPM</strong>
           </td>
-          <td>{{money.scwpm.title}}</td>
+          <td>{{money.scwpm_id.title}}</td>
         </tr>
         
         <tr>
           <td>
             <strong>Kuphür</strong>
           </td>
-          <td>{{money.kuphur.title}}</td>
+          <td>{{money.kuphur_id.title}}</td>
         </tr>
         
         <tr>
           <td>
             <strong>Serie</strong>
           </td>
-          <td>{{money.serie.title}}</td>
+          <td>{{money.serie_id.title}}</td>
         </tr>
 
         <tr>
           <td>
             <strong>Tertip</strong>
           </td>
-          <td>{{money.tertip.title}}</td>
+          <td>{{money.tertip_id.title}}</td>
         </tr>
 
         <tr>
           <td>
             <strong>Print Place</strong>
           </td>
-          <td>{{money.printPlace.title}}</td>
+          <td>{{money.print_place_id.title}}</td>
         </tr>
         
         <tr>
@@ -149,6 +149,13 @@
 </template>
 <script>
 export default {
-  props:['money']
+  props:{
+    money:{
+      type:Array,
+      default(){
+        return []
+      }
+    }
+  }
 }
 </script>

@@ -67,7 +67,7 @@ class SCWPMController extends Controller
         return response()->json([
             "status" => "false",
             "message" => "Scwpm not found."
-        ]);
+        ], 500);
     }
 
     /**

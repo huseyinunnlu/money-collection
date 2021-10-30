@@ -1,14 +1,14 @@
 <template>
   <tr v-if="!isDeleted">
     <td>{{ money.id }}</td>
-    <td>{{ money.emission.title }}</td>
-    <td>{{ money.scwpm.title }}</td>
-    <td>{{ money.kuphur.title }}</td>
+    <td>{{ money.emission_id.title }}</td>
+    <td>{{ money.scwpm_id.title }}</td>
+    <td>{{ money.kuphur_id.title }}</td>
     <td>{{ money.value }}</td>
-    <td>{{ money.serie.title }}</td>
+    <td>{{ money.serie_id.title }}</td>
     <td>{{ money.cilValue }}</td>
-    <td>{{ money.tertip.title }}</td>
-    <td>{{ money.print_place.title }}</td>
+    <td>{{ money.tertip_id.title }}</td>
+    <td>{{ money.print_place_id.title }}</td>
     <td>
       <span class="badge badge-success" v-if="money.status == '1'">Active</span>
       <span class="badge badge-danger" v-else>Inactive</span>

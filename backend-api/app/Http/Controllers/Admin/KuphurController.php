@@ -67,7 +67,7 @@ class KuphurController extends Controller
         return response()->json([
             "status" => "false",
             "message" => "Kuphür not found."
-        ]);
+        ], 500);
     }
 
     /**

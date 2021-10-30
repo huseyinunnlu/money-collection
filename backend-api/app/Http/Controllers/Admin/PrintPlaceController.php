@@ -67,7 +67,7 @@ class PrintPlaceController extends Controller
         return response()->json([
             "status" => "false",
             "message" => "Print place not found."
-        ]);
+        ], 500);
     }
 
     /**

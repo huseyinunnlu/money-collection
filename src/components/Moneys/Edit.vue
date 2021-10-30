@@ -422,17 +422,17 @@ export default {
     };
   },
   created() {
-    this.form.emissionId = this.money.emissionId;
-    this.form.scwpmId = this.money.scwpmId;
-    this.form.kuphurId = this.money.kuphurId;
+    this.form.emissionId = this.money.emission_id.id;
+    this.form.scwpmId = this.money.scwpm_id.id;
+    this.form.kuphurId = this.money.kuphur_id.id;
     this.form.value = this.money.value;
-    this.form.serieId = this.money.serieId;
+    this.form.serieId = this.money.serie_id.id;
     this.form.cilValue = this.money.cilValue;
     this.form.ctValue = this.money.ctValue;
     this.form.tValue = this.money.tValue;
-    this.form.tertipId = this.money.tertipId;
+    this.form.tertipId = this.money.tertip_id.id;
     this.form.size = this.money.size;
-    this.form.printPlace = this.money.printPlace;
+    this.form.printPlace = this.money.print_place_id.id;
     this.form.signatures == this.money.selectedSign;
     this.form.tedavulDate = this.money.tedavulDate;
     this.form.lastDate = this.money.lastDate;

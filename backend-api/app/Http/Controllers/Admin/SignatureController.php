@@ -67,7 +67,7 @@ class SignatureController extends Controller
         return response()->json([
             "status" => "false",
             "message" => "Serie not found."
-        ]);
+        ], 500);
     }
 
     /**

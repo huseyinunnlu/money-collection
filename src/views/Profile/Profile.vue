@@ -80,7 +80,9 @@ export default {
           this.$router.push({ name: "404" });
         })
         .finally(() => {
-          this.isLoading = false;
+          setTimeout(() => {
+            this.isLoading = false;
+          }, 2000);
         });
     },
   },

@@ -80,7 +80,7 @@ class UserController extends Controller
         return response()->json([
             "status" => "false",
             "message" => "User not found."
-        ]);
+        ],500);
     }
 
     public function updateUser(Request $request,$id)

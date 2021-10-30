@@ -15,12 +15,12 @@ class CreateMoneyTable extends Migration
     {
         Schema::create('money', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('emissionId');
-            $table->unsignedBigInteger('scwpmId');
-            $table->unsignedBigInteger('kuphurId');
-            $table->unsignedBigInteger('serieId');
-            $table->unsignedBigInteger('tertipId');
-            $table->unsignedBigInteger('printPlace');
+            $table->unsignedBigInteger('emission_id');
+            $table->unsignedBigInteger('scwpm_id');
+            $table->unsignedBigInteger('kuphur_id');
+            $table->unsignedBigInteger('serie_id');
+            $table->unsignedBigInteger('tertip_id');
+            $table->unsignedBigInteger('print_place_id');
             $table->string('value');
             $table->string('cilValue');
             $table->string('tValue');
@@ -38,12 +38,12 @@ class CreateMoneyTable extends Migration
             $table->string('desc')->nullable();
             $table->enum('status',[0,1])->default(0);
             $table->timestamps();
-            $table->foreign('emissionId')->references('id')->on('emissions')->onDelete('cascade');
-            $table->foreign('scwpmId')->references('id')->on('scwpms')->onDelete('cascade');
-            $table->foreign('kuphurId')->references('id')->on('kuphurs')->onDelete('cascade');
-            $table->foreign('serieId')->references('id')->on('series')->onDelete('cascade');
-            $table->foreign('tertipId')->references('id')->on('tertips')->onDelete('cascade');
-            $table->foreign('printPlace')->references('id')->on('print_places')->onDelete('cascade');
+            $table->foreign('emission_id')->references('id')->on('emissions')->onDelete('cascade');
+            $table->foreign('scwpm_id')->references('id')->on('scwpms')->onDelete('cascade');
+            $table->foreign('kuphur_id')->references('id')->on('kuphurs')->onDelete('cascade');
+            $table->foreign('serie_id')->references('id')->on('series')->onDelete('cascade');
+            $table->foreign('tertip_id')->references('id')->on('tertips')->onDelete('cascade');
+            $table->foreign('print_place_id')->references('id')->on('print_places')->onDelete('cascade');
         });
     }
 

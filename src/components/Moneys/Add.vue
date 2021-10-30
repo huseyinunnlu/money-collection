@@ -1,3 +1,169 @@
+<script>
+export default {
+  data() {
+    return {
+      form: {
+        emissionId: null,
+        scwpmId: null,
+        kuphurId: null,
+        value: null,
+        serieId: null,
+        cilValue: null,
+        ctValue: null,
+        tValue: null,
+        tertipId: null,
+        size: null,
+        printPlace: null,
+        signatures: [],
+        tedavulDate: null,
+        lastDate: null,
+        zortedDate: null,
+        timeoutDate: null,
+        expiryDate: null,
+        frontColor: null,
+        backColor: null,
+        link: null,
+        desc: null,
+        status: '1',
+      },
+      image: {
+        frontImage: null,
+        backImage: null,
+        fpPreview: null,
+        bpPreview: null,
+      },
+      datas: {
+        emission: [],
+        scwpm: [],
+        kuphur: [],
+        serie: [],
+        tertip: [],
+        printPlace: [],
+        signatures: [],
+      },
+      isLoading: false,
+      errors: [],
+    };
+  },
+  created() {
+    this.getData();
+  },
+  methods: {
+    onUpdatefp(e) {
+      let image = e.target.files[0];
+      this.image.fpPreview = URL.createObjectURL(image);
+      this.image.frontImage = image;
+    },
+    onUpdatebp(e) {
+      let image = e.target.files[0];
+      this.image.bpPreview = URL.createObjectURL(image);
+      this.image.backImage = image;
+    },
+    getData() {
+      this.$appAxios
+        .get("getdata")
+        .then((res) => {
+          this.datas.emission = res.data.data.emission;
+          this.datas.scwpm = res.data.data.scwpm;
+          this.datas.kuphur = res.data.data.kuphur;
+          this.datas.serie = res.data.data.serie;
+          this.datas.tertip = res.data.data.tertip;
+          this.datas.printPlace = res.data.data.printPlace;
+          this.datas.signatures = res.data.data.signatures;
+        })
+        .catch(() => {
+          this.datas.emission = [];
+          this.datas.scwpm = [];
+          this.datas.kuphur = [];
+          this.datas.serie = [];
+          this.datas.tertip = [];
+          this.datas.printPlace = [];
+          this.datas.signatures = [];
+        });
+    },
+    add() {
+      this.isLoading = true;
+      let formData = new FormData();
+      if (this.image.frontImage) {
+        formData.append("frontImage", this.image.frontImage);
+      }
+      if (this.image.backImage) {
+        formData.append("backImage", this.image.backImage);
+      }
+
+      formData.append("emissionId", this.form.emissionId);
+      formData.append("scwpmId", this.form.scwpmId);
+      formData.append("kuphurId", this.form.kuphurId);
+      formData.append("value", this.form.value);
+      formData.append("serieId", this.form.serieId);
+      formData.append("cilValue", this.form.cilValue);
+      formData.append("ctValue", this.form.ctValue);
+      formData.append("tValue", this.form.tValue);
+      formData.append("tertipId", this.form.tertipId);
+      formData.append("size", this.form.size);
+      formData.append("printPlace", this.form.printPlace);
+      formData.append("signatures", this.form.signatures);
+      formData.append("tedavulDate", this.form.tedavulDate);
+      formData.append("lastDate", this.form.lastDate);
+      formData.append("zortedDate", this.form.zortedDate);
+      formData.append("timeoutDate", this.form.timeoutDate);
+      formData.append("expiryDate", this.form.expiryDate);
+      formData.append("frontColor", this.form.frontColor);
+      formData.append("backColor", this.form.backColor);
+      formData.append("link", this.form.link);
+      formData.append("desc", this.form.desc);
+      formData.append("status", this.form.status);
+
+      this.$appAxios
+        .post("/money/add", formData)
+        .then((res) => {
+          this.$store.state.Money.moneys.unshift(res.data.data)
+          this.$notify({
+            type: "success",
+            message: "Money added successfuly.",
+          });
+          this.form.emissionId = null;
+          this.form.scwpmId = null;
+          this.form.kuphurId = null;
+          this.form.value = null;
+          this.form.serieId = null;
+          this.form.cilValue = null;
+          this.form.ctValue = null;
+          this.form.tValue = null;
+          this.form.tertipId = null;
+          this.form.size = null;
+          this.form.printPlace = null;
+          this.form.signatures = [];
+          this.form.tedavulDate = null;
+          this.form.lastDate = null;
+          this.form.zortedDate = null;
+          this.form.timeoutDate = null;
+          this.form.expiryDate = null;
+          this.form.frontColor = null;
+          this.form.backColor = null;
+          this.image.frontImage = null;
+          this.image.backImage = null;
+          this.form.link = null;
+          this.form.desc = null;
+          this.form.status = '1';
+          this.image.fpPreview = null;
+          this.image.bpPreview = null;
+        })
+        .catch((err) => {
+          this.errors = err.response.data.errors;
+          this.$notify({
+            type: "error",
+            title: "Money didn't added.",
+          });
+        })
+        .finally(() => {
+          this.isLoading = false;
+        });
+    },
+  },
+};
+</script>
+
 <template>
   <!-- Modal -->
   <div
@@ -442,169 +608,4 @@
     </div>
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      form: {
-        emissionId: null,
-        scwpmId: null,
-        kuphurId: null,
-        value: null,
-        serieId: null,
-        cilValue: null,
-        ctValue: null,
-        tValue: null,
-        tertipId: null,
-        size: null,
-        printPlace: null,
-        signatures: [],
-        tedavulDate: null,
-        lastDate: null,
-        zortedDate: null,
-        timeoutDate: null,
-        expiryDate: null,
-        frontColor: null,
-        backColor: null,
-        link: null,
-        desc: null,
-        status: '1',
-      },
-      image: {
-        frontImage: null,
-        backImage: null,
-        fpPreview: null,
-        bpPreview: null,
-      },
-      datas: {
-        emission: [],
-        scwpm: [],
-        kuphur: [],
-        serie: [],
-        tertip: [],
-        printPlace: [],
-        signatures: [],
-      },
-      isLoading: false,
-      errors: [],
-    };
-  },
-  created() {
-    this.getData();
-  },
-  methods: {
-    onUpdatefp(e) {
-      let image = e.target.files[0];
-      this.image.fpPreview = URL.createObjectURL(image);
-      this.image.frontImage = image;
-    },
-    onUpdatebp(e) {
-      let image = e.target.files[0];
-      this.image.bpPreview = URL.createObjectURL(image);
-      this.image.backImage = image;
-    },
-    getData() {
-      this.$appAxios
-        .get("getdata")
-        .then((res) => {
-          this.datas.emission = res.data.data.emission;
-          this.datas.scwpm = res.data.data.scwpm;
-          this.datas.kuphur = res.data.data.kuphur;
-          this.datas.serie = res.data.data.serie;
-          this.datas.tertip = res.data.data.tertip;
-          this.datas.printPlace = res.data.data.printPlace;
-          this.datas.signatures = res.data.data.signatures;
-        })
-        .catch(() => {
-          this.datas.emission = [];
-          this.datas.scwpm = [];
-          this.datas.kuphur = [];
-          this.datas.serie = [];
-          this.datas.tertip = [];
-          this.datas.printPlace = [];
-          this.datas.signatures = [];
-        });
-    },
-    add() {
-      this.isLoading = true;
-      let formData = new FormData();
-      if (this.image.frontImage) {
-        formData.append("frontImage", this.image.frontImage);
-      }
-      if (this.image.backImage) {
-        formData.append("backImage", this.image.backImage);
-      }
-
-      formData.append("emissionId", this.form.emissionId);
-      formData.append("scwpmId", this.form.scwpmId);
-      formData.append("kuphurId", this.form.kuphurId);
-      formData.append("value", this.form.value);
-      formData.append("serieId", this.form.serieId);
-      formData.append("cilValue", this.form.cilValue);
-      formData.append("ctValue", this.form.ctValue);
-      formData.append("tValue", this.form.tValue);
-      formData.append("tertipId", this.form.tertipId);
-      formData.append("size", this.form.size);
-      formData.append("printPlace", this.form.printPlace);
-      formData.append("signatures", this.form.signatures);
-      formData.append("tedavulDate", this.form.tedavulDate);
-      formData.append("lastDate", this.form.lastDate);
-      formData.append("zortedDate", this.form.zortedDate);
-      formData.append("timeoutDate", this.form.timeoutDate);
-      formData.append("expiryDate", this.form.expiryDate);
-      formData.append("frontColor", this.form.frontColor);
-      formData.append("backColor", this.form.backColor);
-      formData.append("link", this.form.link);
-      formData.append("desc", this.form.desc);
-      formData.append("status", this.form.status);
-
-      this.$appAxios
-        .post("/money/add", formData)
-        .then((res) => {
-          this.$store.state.Money.moneys.unshift(res.data.data)
-          this.$notify({
-            type: "success",
-            message: "Money added successfuly.",
-          });
-          this.form.emissionId = null;
-          this.form.scwpmId = null;
-          this.form.kuphurId = null;
-          this.form.value = null;
-          this.form.serieId = null;
-          this.form.cilValue = null;
-          this.form.ctValue = null;
-          this.form.tValue = null;
-          this.form.tertipId = null;
-          this.form.size = null;
-          this.form.printPlace = null;
-          this.form.signatures = [];
-          this.form.tedavulDate = null;
-          this.form.lastDate = null;
-          this.form.zortedDate = null;
-          this.form.timeoutDate = null;
-          this.form.expiryDate = null;
-          this.form.frontColor = null;
-          this.form.backColor = null;
-          this.image.frontImage = null;
-          this.image.backImage = null;
-          this.form.link = null;
-          this.form.desc = null;
-          this.form.status = '1';
-          this.image.fpPreview = null;
-          this.image.bpPreview = null;
-        })
-        .catch((err) => {
-          this.errors = err.respose.data.errors;
-          this.$notify({
-            type: "error",
-            message: "Money didn't added.",
-          });
-        })
-        .finally(() => {
-          this.isLoading = false;
-        });
-    },
-  },
-};
-</script>
 <style src="@vueform/multiselect/themes/default.css"></style>

@@ -50,7 +50,7 @@ class EmissionController extends Controller
         return response()->json([
             "status" => "false",
             "message" => "Emission not found."
-        ]);
+        ] ,500);
     }
 
     public function update(Request $request, $id)

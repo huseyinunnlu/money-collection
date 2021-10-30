@@ -90,11 +90,7 @@
 <script>
 import CryptoJs from "crypto-js";
 export default {
-  props: {
-    user: {
-      type: Array,
-    },
-  },
+  props:['user'],
   data() {
     return {
       form: {
@@ -107,7 +103,7 @@ export default {
       errors: [],
     };
   },
-  created() {
+  mounted() {
     this.form.fullName = this.user.fullName;
     this.form.email = this.user.email;
     this.form.role = this.user.role;
