@@ -46,6 +46,10 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('/collection/delete', [CollectionController::class, 'delete']);
     Route::get('/moneyfilter', [MoneyController::class, 'getFilters']);
 
+    //Get selected money
+    Route::get('/money/{id}/get', [MoneyController::class, 'getMoney']);
+
+    //admin routes
     Route::middleware(['isAdmin'])->group(function () {
         //Admin user
         Route::get('/user/get', [UserController::class, 'getUsers']);
@@ -78,7 +82,6 @@ Route::middleware(['auth:api'])->group(function () {
         //Admin money
         Route::post('/money/add', [MoneyController::class, 'add']);
         Route::delete('/money/{id}/delete', [MoneyController::class, 'delete']);
-        Route::get('/money/{id}/get', [MoneyController::class, 'getMoney']);
         Route::post('/money/{id}/update', [MoneyController::class, 'update']);
     });
 });

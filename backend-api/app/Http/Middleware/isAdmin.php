@@ -22,6 +22,6 @@ class isAdmin
         }
         return response()->json([
             'message'=>"You are not admin!",
-        ]);
+        ], 500);
     }
 }

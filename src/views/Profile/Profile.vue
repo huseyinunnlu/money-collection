@@ -8,22 +8,14 @@
           <div class="container-fluid">
             <div class="row py-4">
               <div class="col-md-3">
-                <div class="sidebar-loader" v-if="isLoading">
-                  <UserSidebarLoader />
-                </div>
-                <div class="user-sidebar" v-else>
-                  <UserProfile :_User="user"/>
-                </div>
+                  <ProfileLoader v-if="isLoading"/>
+                  <UserProfile :_User="user" v-else/>
               </div>
               <div class="col-md-9">
-                <div class="card" v-if="isLoading">
-                  <div class="card-body">
-                    <h1 class="text-center">Loading...</h1>
-                  </div>
-                </div>
-                <div class="card" v-else>
+                <div class="card">
                   <UserNavbar :slug="user.slug" />
-                  <UserContent/>
+                  <UserContentLoader v-if="isLoading" />
+                  <UserContent v-else/>
                 </div>
               </div>
             </div>
@@ -41,8 +33,8 @@ import Footer from "@/components/Header/Footer.vue";
 import UserProfile from "@/components/Profile/UserProfile.vue";
 import UserContent from "@/components/Profile/UserContent.vue";
 import UserNavbar from "@/components/Profile/UserNavbar.vue";
-import UserSidebarLoader from "@/components/Profile/UserSidebarLoader.vue";
-
+import ProfileLoader from "@/components/Loaders/ProfileLoader.vue";
+import UserContentLoader from "@/components/Loaders/UserContentLoader.vue";
 export default {
   components: {
     Navbar,
@@ -51,7 +43,8 @@ export default {
     UserProfile,
     UserContent,
     UserNavbar,
-    UserSidebarLoader
+    ProfileLoader,
+    UserContentLoader,
   },
   data() {
     return {

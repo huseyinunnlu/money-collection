@@ -6,12 +6,12 @@
         <div class="col-12">
           <div class="card">
             <div
-              class="card-header d-flex align-items-center justify-content-between flex-wrap"
+              class="card-header d-flex align-items-center flex-wrap"
             >
               <h3 class="card-title">
                 <button
                   v-if="_IsAuth && _User.role == 1"
-                  class="btn btn-primary btn-sm"
+                  class="btn btn-primary btn-sm mb-3"
                   data-toggle="modal"
                   data-target="#add"
                 >
@@ -165,9 +165,9 @@
                       Reset
                     </button>
                   </div>
-                  <div class="d-flex align-items-center">
+                  <div class="form-check d-flex align-items-center">
                     <input id="show" type="checkbox" v-model="isCollection" />
-                    <label for="show">Show My Collection</label>
+                    <label class="form-check-label" for="show">MyCollection</label>
                   </div>
                 </div>
               </div>
@@ -191,7 +191,7 @@
                   </tr>
                 </thead>
                 <tbody v-if="isLoading">
-                  <UserLoader />
+                  <MoneyLoader />
                 </tbody>
                 <tbody v-if="!isLoading && _Moneys.length > 0">
                   <Item
@@ -222,13 +222,13 @@
 <script>
 import Item from "@/components/Moneys/ListItem.vue";
 import Add from "@/components/Moneys/Add.vue";
-import UserLoader from "@/components/Loaders/UserLoader.vue";
+import MoneyLoader from "@/components/Loaders/MoneyLoader.vue";
 import { mapGetters } from "vuex";
 export default {
   components: {
     Item,
     Add,
-    UserLoader,
+    MoneyLoader,
   },
   data() {
     return {

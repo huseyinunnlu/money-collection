@@ -7,7 +7,7 @@
       <span class="badge badge-primary" v-if="user.role == 0">User</span>
       <span class="badge badge-success" v-else>Admin</span>
     </td>
-    <td>{{ user.created_at }}</td>
+    <td>{{ moment(user.created_at).format("MMM Do YY") }}</td>
     <td>
       <router-link
         :to="{ name: 'Profile', params: { slug: user.slug } }"
@@ -73,12 +73,16 @@
   </tr>
 </template>
 <script>
+import moment from 'moment'
 export default {
   data() {
     return {
       isDeleted: false,
       isLoading: false,
     };
+  },
+  created(){
+    this.moment = moment;
   },
   methods: {
     deleteUser() {
