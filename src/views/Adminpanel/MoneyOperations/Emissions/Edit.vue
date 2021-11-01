@@ -44,7 +44,7 @@ export default {
     get() {
       this.isLoading = true;
       this.$appAxios
-        .get("/emission/" + this.$route.params.id + "/get")
+        .get("/emission/" + this.$route.params.id)
         .then((res) => {
           this.emission = res.data.data;
         })

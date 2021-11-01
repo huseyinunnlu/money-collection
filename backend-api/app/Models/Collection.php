@@ -11,4 +11,9 @@ class Collection extends Model
     protected $table = 'collections';
     protected $fillable = ['userId','moneyId'];
     public $timestamps = false;
+
+    public function user()
+    {
+        return $this->hasOne('App\Models\User'::class, 'id');
+    }
 }

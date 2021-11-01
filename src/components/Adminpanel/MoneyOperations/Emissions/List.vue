@@ -125,7 +125,7 @@ export default {
     getEmissions() {
       this.isLoading = true;
       this.$appAxios
-        .get("emission/get", {
+        .get("emission", {
           params: {
             page: this.page,
             search: this.search,

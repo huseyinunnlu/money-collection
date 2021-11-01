@@ -66,7 +66,7 @@ export default {
     updateEmission() {
       this.isLoading = true;
       this.$appAxios
-        .post("/emission/" + this.ems.id + "/update", {
+        .put("/emission/" + this.ems.id, {
           title: this.form.title,
           status: this.form.status,
         })

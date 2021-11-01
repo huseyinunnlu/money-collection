@@ -96,7 +96,7 @@ export default {
     addEmission() {
       this.isLoading = true;
       this.$appAxios
-        .post("/emission/add", {
+        .post("/emission", {
           title: this.form.title,
           status: this.form.status,
         })

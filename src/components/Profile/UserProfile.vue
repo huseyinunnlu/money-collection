@@ -6,6 +6,7 @@
           class="profile-user-img img-fluid img-circle"
           :src="_User.profilePhoto"
           alt="User profile picture"
+          style="width:100px; height:100px;"
         />
       </div>
       <p class="text-muted text-center">{{ _User.fullName }}</p>

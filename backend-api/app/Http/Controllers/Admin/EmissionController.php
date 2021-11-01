@@ -3,19 +3,32 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Emission;
+use Illuminate\Http\Request;
 
 class EmissionController extends Controller
 {
-    public function get(Request $request)
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
     {
         $data = Emission::where('title', 'LIKE', '%' . $request->search . '%')->where('status', $request->status)->orderBy('id', $request->sort)->paginate($request->count);
         return response()->json($data);
     }
 
-    public function add(Request $request)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
+
         $request->validate([
             'title' => 'required|max:255',
             'status' => 'required'
@@ -38,7 +51,13 @@ class EmissionController extends Controller
         ], 500);
     }
 
-    public function getEmission($id)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
         $data = Emission::whereId($id)->first();
         if ($data) {
@@ -50,9 +69,16 @@ class EmissionController extends Controller
         return response()->json([
             "status" => "false",
             "message" => "Emission not found."
-        ] ,500);
+        ], 500);
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -76,7 +102,13 @@ class EmissionController extends Controller
         ], 500);
     }
 
-    public function delete($id)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
     {
         $data = Emission::whereId($id)->delete();
         if ($data) {

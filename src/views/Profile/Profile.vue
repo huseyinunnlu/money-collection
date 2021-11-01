@@ -8,14 +8,14 @@
           <div class="container-fluid">
             <div class="row py-4">
               <div class="col-md-3">
-                  <ProfileLoader v-if="isLoading"/>
-                  <UserProfile :_User="user" v-else/>
+                <ProfileLoader v-if="isLoading" />
+                <UserProfile :_User="user" v-else />
               </div>
               <div class="col-md-9">
                 <div class="card">
                   <UserNavbar :slug="user.slug" />
                   <UserContentLoader v-if="isLoading" />
-                  <UserContent v-else/>
+                  <UserContent :moneyStatics="moneyStatics" v-else />
                 </div>
               </div>
             </div>
@@ -49,6 +49,7 @@ export default {
   data() {
     return {
       user: [],
+      moneyStatics: [],
       isLoading: false,
     };
   },
@@ -57,6 +58,7 @@ export default {
       this.getUser();
     } else {
       this.user = this.$store.getters._User;
+      this.getCollectionStatics(this.$store.getters._User.id)
     }
   },
   methods: {
@@ -68,6 +70,7 @@ export default {
         })
         .then((res) => {
           this.user = res.data;
+          this.getCollectionStatics(res.data.id)
         })
         .catch(() => {
           this.$router.push({ name: "404" });
@@ -77,6 +80,21 @@ export default {
             this.isLoading = false;
           }, 2000);
         });
+    },
+    getCollectionStatics(id) {
+      this.isLoading = true;
+      this.$appAxios
+        .get("/getstatics", {
+          params: {
+            id: id,
+          },
+        })
+        .then((res) => {
+            this.moneyStatics = res.data.result;
+        })
+        .finally(()=>{
+            this.isLoading = false;
+        })
     },
   },
 };

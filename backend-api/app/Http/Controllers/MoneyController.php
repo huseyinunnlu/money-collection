@@ -58,7 +58,7 @@ class MoneyController extends Controller
             }
         }
 
-        $filter = Money::where(function ($query) use ($request,$collectedMoneys) {
+        $filter = Money::where(function ($query) use ($request, $collectedMoneys) {
             if (Auth::user()->role == 1) {
                 if ($request->status) {
                     $query->where('status', $request->status);
@@ -191,71 +191,46 @@ class MoneyController extends Controller
 
     public function get(Request $request)
     {
-        $collectedMoneys = [];
-        if ($request->isCollected == 1) {
-            $collected = Collection::where('userId', Auth::user()->id)->select('moneyId')->get();
-            foreach ($collected as $coll) {
-                array_push($collectedMoneys, $coll->moneyId);
-            }
-        }
-        if ($request->isCollected == 1) {
-            $data = Money::with('collection', 'emission_id', 'scwpm_id', 'kuphur_id', 'serie_id', 'tertip_id', 'print_place_id', 'signature.name')
-                ->whereIn('id', $collectedMoneys)
-                ->where(function ($query) use ($request) {
-                    if (Auth::user()->role == 1) {
-                        if ($request->status) {
-                            $query->where('status', $request->status);
-                        }
-                    } else {
-                        $query->where('status', '1');
+        $data = Money::with('collection', 'emission_id', 'scwpm_id', 'kuphur_id', 'serie_id', 'tertip_id', 'print_place_id', 'signature.name')
+            ->where(function ($query) use ($request) {
+                if (Auth::user()->role == 1) {
+                    if ($request->status) {
+                        $query->where('status', $request->status);
                     }
-                    if ($request->emission_id) {
-                        $query->where('emission_id', $request->emission_id);
+                } else {
+                    $query->where('status', '1');
+                }
+
+                if ($request->isCollected == 1) {
+
+                    $collectedMoneys = [];
+                    $collected = Collection::where('userId', Auth::user()->id)->select('moneyId')->get();
+                    foreach ($collected as $coll) {
+                        array_push($collectedMoneys, $coll->moneyId);
                     }
-                    if ($request->scwpm_id) {
-                        $query->where('scwpm_id', $request->scwpm_id);
-                    }
-                    if ($request->kuphur_id) {
-                        $query->where('kuphur_id', $request->kuphur_id);
-                    }
-                    if ($request->serie_id) {
-                        $query->where('serie_id', $request->serie_id);
-                    }
-                    if ($request->tertip_id) {
-                        $query->where('tertip_id', $request->tertip_id);
-                    }
-                })
-                ->orderBy('created_at', $request->sort)
-                ->paginate($request->count);
-        } else {
-            $data = Money::with('collection', 'emission_id', 'scwpm_id', 'kuphur_id', 'serie_id', 'tertip_id', 'print_place_id', 'signature.name')
-                ->where(function ($query) use ($request) {
-                    if (Auth::user()->role == 1) {
-                        if ($request->status) {
-                            $query->where('status', $request->status);
-                        }
-                    } else {
-                        $query->where('status', '1');
-                    }
-                    if ($request->emission_id) {
-                        $query->where('emission_id', $request->emission_id);
-                    }
-                    if ($request->scwpm_id) {
-                        $query->where('scwpm_id', $request->scwpm_id);
-                    }
-                    if ($request->kuphur_id) {
-                        $query->where('kuphur_id', $request->kuphur_id);
-                    }
-                    if ($request->serie_id) {
-                        $query->where('serie_id', $request->serie_id);
-                    }
-                    if ($request->tertip_id) {
-                        $query->where('tertip_id', $request->tertip_id);
-                    }
-                })
-                ->orderBy('created_at', $request->sort)
-                ->paginate($request->count);
-        }
+
+                    $query->whereIn('id', $collectedMoneys);
+                }
+
+                if ($request->emission_id) {
+                    $query->where('emission_id', $request->emission_id);
+                }
+                if ($request->scwpm_id) {
+                    $query->where('scwpm_id', $request->scwpm_id);
+                }
+                if ($request->kuphur_id) {
+                    $query->where('kuphur_id', $request->kuphur_id);
+                }
+                if ($request->serie_id) {
+                    $query->where('serie_id', $request->serie_id);
+                }
+                if ($request->tertip_id) {
+                    $query->where('tertip_id', $request->tertip_id);
+                }
+            })
+            ->orderBy('created_at', $request->sort)
+            ->paginate($request->count);
+
 
         if ($data) {
             return response()->json([

@@ -28,7 +28,7 @@ export default {
   methods: {
     del() {
       this.$appAxios
-        .delete("/emission/" + this.ems.id + "/delete")
+        .delete("/emission/" + this.ems.id)
         .then(() => {
           this.isDeleted = true;
           this.$notify({

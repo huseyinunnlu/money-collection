@@ -33,7 +33,9 @@ export default {
           localStorage.removeItem("role");
         })
         .finally(() => {
-          this.isLoading = false;
+          setTimeout(() => {
+            this.isLoading = false;
+          }, 1000);
         });
     },
   },

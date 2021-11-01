@@ -40,7 +40,9 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('/updateprofile', [ProfileController::class, 'updateProfile']);
     Route::post('/getuser', [ProfileController::class, 'getUser']);
     Route::post('/changepassword', [ProfileController::class, 'changePassword']);
+    Route::get('/getstatics', [ProfileController::class, 'getStatics']);
 
+    //Money routes
     Route::get('/moneys/get', [MoneyController::class, 'get']);
     Route::post('/collection/add', [CollectionController::class, 'add']);
     Route::post('/collection/delete', [CollectionController::class, 'delete']);
@@ -61,12 +63,7 @@ Route::middleware(['auth:api'])->group(function () {
         //Admin Money opr.
 
         //Emission
-        Route::get('/emission/get', [EmissionController::class, 'get']);
-        Route::post('/emission/add', [EmissionController::class, 'add']);
-        Route::get('/emission/{id}/get', [EmissionController::class, 'getEmission']);
-        Route::post('/emission/{id}/update', [EmissionController::class, 'update']);
-        Route::delete('/emission/{id}/delete', [EmissionController::class, 'delete']);
-
+        Route::apiResource('/emission', EmissionController::class);
         //SCWPM
         Route::apiResource('/scwpm', SCWPMController::class);
         //Kuphur

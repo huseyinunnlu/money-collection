@@ -5,6 +5,7 @@
         :src="_User.profilePhoto"
         class="img-circle elevation-2"
         alt="User Image"
+        style="width:40px; height:40px;"
       />
     </div>
     <div class="info d-flex flex-column">

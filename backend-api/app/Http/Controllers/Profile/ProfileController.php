@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
+use App\Models\Collection;
+use App\Models\Money;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
 
 class ProfileController extends Controller
 {
@@ -106,5 +107,28 @@ class ProfileController extends Controller
                 'cpassword' => ['Please enter your correct password.'],
             ],
         ], 422);
+    }
+
+    public function getStatics(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+        ]);
+
+        $data = Collection::where('userId', $request->id)
+            ->select('id')
+            ->count();
+
+        $moneyCount = Money::where('status', '1')->count();
+        $percent = ($data / $moneyCount) * 100;
+
+        return response()->json([
+            'status' => 'ok',
+            'result' => [
+                'collectedMoney' => $data,
+                'moneyCount' => $moneyCount,
+                'percent' => round($percent) . '%',
+            ],
+        ], 200);
     }
 }

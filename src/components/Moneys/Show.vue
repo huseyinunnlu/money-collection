@@ -151,9 +151,9 @@
 export default {
   props:{
     money:{
-      type:Array,
+      type:Object,
       default(){
-        return []
+        return {}
       }
     }
   }
