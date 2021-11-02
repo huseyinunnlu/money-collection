@@ -40,7 +40,10 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('/updateprofile', [ProfileController::class, 'updateProfile']);
     Route::post('/getuser', [ProfileController::class, 'getUser']);
     Route::post('/changepassword', [ProfileController::class, 'changePassword']);
+
+    //Profile Statics
     Route::get('/getstatics', [ProfileController::class, 'getStatics']);
+    Route::get('/timeline', [ProfileController::class, 'getTimeline']);
 
     //Money routes
     Route::get('/moneys/get', [MoneyController::class, 'get']);

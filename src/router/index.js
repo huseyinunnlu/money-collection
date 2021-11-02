@@ -172,7 +172,7 @@ const routes = [
   },
   {
     path: "/money/:id/details",
-    name: "AdminMoneyShow",
+    name: "MoneyShow",
     component: () => import("../views/Moneys/Show.vue"),
   },
 

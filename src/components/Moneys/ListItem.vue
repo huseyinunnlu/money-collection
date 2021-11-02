@@ -21,7 +21,7 @@
         ><i class="fas fa-pen"></i
       ></router-link>
       <router-link
-        :to="{ name: 'AdminMoneyShow', params: { id: money.id } }"
+        :to="{ name: 'MoneyShow', params: { id: money.id } }"
         class="btn btn-info btn-sm"
         ><i class="fas fa-eye"></i
       ></router-link>

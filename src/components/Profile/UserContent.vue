@@ -23,13 +23,22 @@
               <!-- /.info-box -->
             </div>
           </div>
+
         </div>
+        
+        <!-- User Timeline -->
+
+        <UserTimeline :timeline="moneyStatics.timeline"/>
       </div>
     </div>
   </div>
 </template>
 <script>
+import UserTimeline from '@/components/Profile/UserTimeline.vue'
 export default {
-  props:['moneyStatics']
+  props:['moneyStatics'],
+  components:{
+    UserTimeline,
+  }
 }
 </script>

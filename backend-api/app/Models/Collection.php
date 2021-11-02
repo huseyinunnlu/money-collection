@@ -10,10 +10,14 @@ class Collection extends Model
     use HasFactory;
     protected $table = 'collections';
     protected $fillable = ['userId','moneyId'];
-    public $timestamps = false;
 
     public function user()
     {
-        return $this->hasOne('App\Models\User'::class, 'id');
+        return $this->hasOne('App\Models\User'::class, 'id','userId');
+    }
+
+    public function money()
+    {
+        return $this->hasOne('App\Models\Money'::class, 'id','moneyId');
     }
 }

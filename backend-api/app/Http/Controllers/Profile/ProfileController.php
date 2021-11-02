@@ -8,6 +8,8 @@ use App\Models\Money;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class ProfileController extends Controller
 {
@@ -120,7 +122,19 @@ class ProfileController extends Controller
             ->count();
 
         $moneyCount = Money::where('status', '1')->count();
-        $percent = ($data / $moneyCount) * 100;
+        if($moneyCount != 0 && $data != 0){
+            $percent = ($data / $moneyCount) * 100;
+        }else{
+            $percent = 0;
+        }
+
+        $collection = Collection::with('user','money')
+        ->where('userId',$request->id)
+        ->orderBy('created_at','desc')
+        ->get()
+        ->groupBy(function($query) {
+            return $query->created_at->format('Y-m-d');
+        });
 
         return response()->json([
             'status' => 'ok',
@@ -128,7 +142,9 @@ class ProfileController extends Controller
                 'collectedMoney' => $data,
                 'moneyCount' => $moneyCount,
                 'percent' => round($percent) . '%',
+                'timeline' => $collection,
             ],
         ], 200);
     }
+
 }

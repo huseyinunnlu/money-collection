@@ -17,6 +17,7 @@ class CreateCollectionsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('userId');
             $table->unsignedBigInteger('moneyId');
+            $table->timestamps();
             $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('moneyId')->references('id')->on('money')->onDelete('cascade');
         });
