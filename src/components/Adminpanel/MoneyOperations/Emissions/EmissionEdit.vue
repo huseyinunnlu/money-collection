@@ -46,6 +46,7 @@
   </form>
 </template>
 <script>
+import {mapGetters} from "vuex"
 export default {
   props: ['ems'],
   data() {
@@ -57,6 +58,9 @@ export default {
       isLoading: false,
       errors: [],
     };
+  },
+  computed: {
+    ...mapGetters(["_Emissions"]),
   },
   created() {
     this.form.title = this.ems.title;
@@ -75,6 +79,15 @@ export default {
             type: "success",
             title: "Emisson successfully updated",
           });
+          if (this._Emissions.length > 0) {
+            const editedData = this.ems;
+            editedData.title = this.form.title;
+            editedData.status = this.form.status;
+            let foundIndex = this._Emissions.findIndex(
+              (element) => element.id === this.ems.id
+            );
+            this._Emissions.splice(foundIndex, 1, editedData);
+          }
         })
         .catch((err) => {
           this.errors = err.response.data.errors;

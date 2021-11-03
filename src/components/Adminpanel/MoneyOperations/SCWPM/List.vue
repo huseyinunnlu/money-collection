@@ -47,7 +47,7 @@
                   </select>
                   <div class="input-group-append">
                     <button
-                      @click="page=1,get()"
+                      @click="(page = 1), get()"
                       type="submit"
                       class="btn btn-default"
                     >
@@ -83,7 +83,7 @@
                   v-if="_scwpms.length < dataCount && !isLoading"
                   class="text-center text-primary my-3"
                   style="cursor:pointer;"
-                  @click="page++,get()"
+                  @click="page++, get()"
                   >Load more</a
                 >
               </div>
@@ -113,13 +113,15 @@ export default {
       status: 1,
       count: 15,
       sort: "desc",
-      isLoading: true,
+      isLoading: false,
       page: 1,
       dataCount: 0,
     };
   },
   created() {
-    this.get();
+    if (this._scwpms.length == 0) {
+      this.get();
+    }
   },
   methods: {
     get() {
@@ -136,7 +138,7 @@ export default {
         })
         .then((res) => {
           if (this.page == 1) {
-            this.$store.state.Opr.scwpms = []
+            this.$store.state.Opr.scwpms = [];
             this.$store.state.Opr.scwpms = res.data.data;
           } else {
             this.$store.state.Opr.scwpms = this.$store.state.Opr.scwpms.concat(

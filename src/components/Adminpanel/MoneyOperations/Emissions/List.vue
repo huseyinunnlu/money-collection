@@ -83,7 +83,7 @@
                   v-if="_Emissions.length < dataCount && !isLoading"
                   class="text-center text-primary my-3"
                   style="cursor:pointer;"
-                  @click="page++,getEmissions()"
+                  @click="page++,get()"
                   >Load more</a
                 >
               </div>
@@ -113,16 +113,18 @@ export default {
       status: 1,
       count: 15,
       sort: "desc",
-      isLoading: true,
+      isLoading: false,
       page: 1,
       dataCount: 0,
     };
   },
   created() {
-    this.getEmissions();
+    if(this._Emissions.length == 0) {
+      this.get();
+    }
   },
   methods: {
-    getEmissions() {
+    get() {
       this.isLoading = true;
       this.$appAxios
         .get("emission", {

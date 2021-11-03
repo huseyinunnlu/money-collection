@@ -46,17 +46,21 @@
   </form>
 </template>
 <script>
+import {mapGetters} from 'vuex'
 export default {
-  props: ['printPlace'],
+  props: ["printPlace"],
   data() {
     return {
       form: {
         title: null,
-        status: '1',
+        status: "1",
       },
       isLoading: false,
       errors: [],
     };
+  },
+  computed: {
+    ...mapGetters(["_printPlaces"]),
   },
   created() {
     this.form.title = this.printPlace.title;
@@ -75,6 +79,16 @@ export default {
             type: "success",
             title: "Print place successfully updated",
           });
+
+          if (this._printPlaces.length > 0) {
+            const editedData = this.printPlace;
+            editedData.title = this.form.title;
+            editedData.status = this.form.status;
+            let foundIndex = this._printPlaces.findIndex(
+              (element) => element.id === this.printPlace.id
+            );
+            this._printPlaces.splice(foundIndex, 1, editedData);
+          }
         })
         .catch((err) => {
           this.errors = err.response.data.errors;

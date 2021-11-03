@@ -46,6 +46,7 @@
   </form>
 </template>
 <script>
+import {mapGetters} from "vuex"
 export default {
   props: ['tertip'],
   data() {
@@ -62,6 +63,9 @@ export default {
     this.form.title = this.tertip.title;
     this.form.status = this.tertip.status;
   },
+  computed:{
+    ...mapGetters(['_tertip'])
+  },
   methods: {
     update() {
       this.isLoading = true;
@@ -75,6 +79,15 @@ export default {
             type: "success",
             title: "Tertip successfully updated",
           });
+          if (this._tertip.length > 0) {
+            const editedData = this.tertip;
+            editedData.title = this.form.title;
+            editedData.status = this.form.status;
+            let foundIndex = this._tertip.findIndex(
+              (element) => element.id === this.tertip.id
+            );
+            this._tertip.splice(foundIndex, 1, editedData);
+          }
         })
         .catch((err) => {
           this.errors = err.response.data.errors;

@@ -136,6 +136,10 @@ class ProfileController extends Controller
             return $query->created_at->format('Y-m-d');
         });
 
+        if(!$collection) {
+            $collection = [];
+        }
+
         return response()->json([
             'status' => 'ok',
             'result' => [

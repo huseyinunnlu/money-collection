@@ -9,13 +9,13 @@
             <div class="row py-4">
               <div class="col-md-3">
                 <ProfileLoader v-if="isLoading" />
-                <UserProfile :_User="user" v-else />
+                <UserProfile :_User="_Profile" v-else />
               </div>
               <div class="col-md-9">
                 <div class="card">
-                  <UserNavbar :slug="user.slug" />
+                  <UserNavbar :slug="_Profile.slug" />
                   <UserContentLoader v-if="isLoading" />
-                  <UserContent :moneyStatics="moneyStatics" v-else />
+                  <UserContent :moneyStatics="_Collection" v-else />
                 </div>
               </div>
             </div>
@@ -35,6 +35,7 @@ import UserContent from "@/components/Profile/UserContent.vue";
 import UserNavbar from "@/components/Profile/UserNavbar.vue";
 import ProfileLoader from "@/components/Loaders/ProfileLoader.vue";
 import UserContentLoader from "@/components/Loaders/UserContentLoader.vue";
+import {mapGetters} from "vuex"
 export default {
   components: {
     Navbar,
@@ -46,19 +47,22 @@ export default {
     ProfileLoader,
     UserContentLoader,
   },
+  computed:{
+    ...mapGetters(['_Profile','_User','_Collection'])
+  },
   data() {
     return {
-      user: [],
-      moneyStatics: [],
       isLoading: false,
     };
   },
   created() {
-    if (this.$route.params.slug != this.$store.getters._User.slug) {
-      this.getUser();
+    if (this.$route.params.slug != this._User.slug) {
+      if(this._Profile.length == 0 || this.$route.params.slug != this._Profile.slug) {
+        this.getUser();
+      }
     } else {
-      this.user = this.$store.getters._User;
-      this.getCollectionStatics(this.$store.getters._User.id)
+      this.$store.state.Profile.profile = this._User;
+      this.getCollectionStatics(this._User.id)
     }
   },
   methods: {
@@ -69,11 +73,11 @@ export default {
           slug: this.$route.params.slug,
         })
         .then((res) => {
-          this.user = res.data;
+          this.$store.state.Profile.profile = res.data;
           this.getCollectionStatics(res.data.id)
         })
         .catch(() => {
-          this.$router.push({ name: "404" });
+          this.$router.push({ name: "Index" });
         })
         .finally(() => {
           setTimeout(() => {
@@ -90,7 +94,7 @@ export default {
           },
         })
         .then((res) => {
-            this.moneyStatics = res.data.result;
+            this.$store.state.Profile.collection = res.data.result;
         })
         .finally(()=>{
             this.isLoading = false;

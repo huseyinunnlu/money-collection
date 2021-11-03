@@ -46,6 +46,7 @@
   </form>
 </template>
 <script>
+import {mapGetters} from "vuex"
 export default {
   props: ['scwpm'],
   data() {
@@ -57,6 +58,9 @@ export default {
       isLoading: false,
       errors: [],
     };
+  },
+  computed:{
+    ...mapGetters(['_scwpms'])
   },
   created() {
     this.form.title = this.scwpm.title;
@@ -75,6 +79,15 @@ export default {
             type: "success",
             title: "SCWPM successfully updated",
           });
+          if (this._scwpms.length > 0) {
+            const editedData = this.scwpm;
+            editedData.title = this.form.title;
+            editedData.status = this.form.status;
+            let foundIndex = this._scwpms.findIndex(
+              (element) => element.id === this.scwpm.id
+            );
+            this._scwpms.splice(foundIndex, 1, editedData);
+          }
         })
         .catch((err) => {
           this.errors = err.response.data.errors;

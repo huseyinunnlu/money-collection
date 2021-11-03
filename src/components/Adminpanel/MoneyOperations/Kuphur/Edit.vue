@@ -46,17 +46,21 @@
   </form>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
-  props: ['kuphur'],
+  props: ["kuphur"],
   data() {
     return {
       form: {
         title: null,
-        status: '1',
+        status: "1",
       },
       isLoading: false,
       errors: [],
     };
+  },
+  computed: {
+    ...mapGetters(["_kuphur"]),
   },
   created() {
     this.form.title = this.kuphur.title;
@@ -75,6 +79,15 @@ export default {
             type: "success",
             title: "Kuphür successfully updated",
           });
+          if (this._kuphur.length > 0) {
+            const editedData = this.kuphur;
+            editedData.title = this.form.title;
+            editedData.status = this.form.status;
+            let foundIndex = this._kuphur.findIndex(
+              (element) => element.id === this.kuphur.id
+            );
+            this._kuphur.splice(foundIndex, 1, editedData);
+          }
         })
         .catch((err) => {
           this.errors = err.response.data.errors;

@@ -7,8 +7,11 @@
       <div class="card-body">
         <div class="tab-content">
           <div class="tab-pane active">
-            <div class="timeline timeline-inverse">
+            <div class="timeline timeline-inverse" v-if="timeline.length != 0">
               <TimelineParentItem v-for="(item,index) in timeline" :key="index" :item="item"/>
+            </div>
+            <div v-else>
+              <h4 class="text-center">Your timeline is empty!</h4>
             </div>
           </div>
         </div>
