@@ -48,4 +48,20 @@ class CollectionController extends Controller
             "message" => "Money didn't deleted to your collection",
         ] ,500);
     }
+
+    public function getLastCollected()
+    {
+        $data = Collection::with('user','money.emission_id','money.kuphur_id','money.serie_id')->orderBy('created_at','desc')->limit(10)->get();
+
+        if($data) {
+            return response()->json([
+                "status" => "ok",
+                "data" => $data,
+            ], 200);
+        }
+        return response()->json([
+            "status" => "false",
+            "data" => [],
+        ], 500);
+    }
 }

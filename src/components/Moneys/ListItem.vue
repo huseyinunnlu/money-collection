@@ -13,36 +13,64 @@
       <span class="badge badge-success" v-if="money.status == '1'">Active</span>
       <span class="badge badge-danger" v-else>Inactive</span>
     </td>
-    <td>
-      <router-link
-        v-if="_IsAuth && _User.role == 1"
-        :to="{ name: 'AdminMoneyEdit', params: { id: money.id } }"
-        class="btn btn-success btn-sm"
-        ><i class="fas fa-pen"></i
-      ></router-link>
-      <router-link
-        :to="{ name: 'MoneyShow', params: { id: money.id } }"
-        class="btn btn-info btn-sm"
-        ><i class="fas fa-eye"></i
-      ></router-link>
-      <button
-        v-if="_IsAuth && _User.role == 1"
-        class="btn btn-danger btn-sm"
-        @click="del(money.id)"
-      >
-        <i class="fas fa-trash"></i>
-      </button>
-      <button
-        class="btn btn-primary btn-sm"
-        :disabled="buttonIsLoading"
-        @click="addCollection()"
-        v-if="!isCollected && money.status == 1"
-      >
-        <i class="fas fa-plus"></i>
-      </button>
-      <button class="btn btn-info btn-sm" @click="deleteCollection()" :disabled="buttonIsLoading" v-if="isCollected && money.status == 1">
-        <i class="fas fa-times"></i>
-      </button>
+    <td class="text-end">
+      <div class="dropdown">
+        <button
+          class="btn btn-light btn-active-light-primary btn-sm dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Actions
+        </button>
+        <div
+          class="dropdown-menu menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
+          aria-labelledby="dropdownMenuButton"
+        >
+          <div class="menu-item px-3">
+            <router-link
+              v-if="_IsAuth && _User.role == 1"
+              :to="{ name: 'AdminMoneyEdit', params: { id: money.id } }"
+              class="menu-link px-3"
+              ><i class="fas fa-pen mx-2"></i> Edit</router-link
+            >
+          </div>
+          <div class="menu-item px-3">
+            <router-link
+              :to="{ name: 'MoneyShow', params: { id: money.id } }"
+              class="menu-link px-3"
+              ><i class="fas fa-eye mx-2"></i> Details</router-link
+            >
+          </div>
+          <div class="menu-item px-3">
+            <a
+              v-if="_IsAuth && _User.role == 1"
+              class="menu-link px-3"
+              @click="del(money.id)"
+            >
+              <i class="fas fa-trash mx-2"></i> Delete
+            </a>
+          </div>
+          <div class="menu-item px-3">
+            <a
+              class="menu-link px-3"
+              :disabled="buttonIsLoading"
+              @click="addCollection()"
+              v-if="!isCollected && money.status == 1"
+            >Add Coll.
+            </a>
+            <a
+              class="menu-link px-3"
+              @click="deleteCollection()"
+              :disabled="buttonIsLoading"
+              v-if="isCollected && money.status == 1"
+            >Del. Coll.
+            </a>
+          </div>
+        </div>
+      </div>
     </td>
   </tr>
 </template>
@@ -52,8 +80,8 @@ export default {
   computed: {
     ...mapGetters(["_User", "_IsAuth"]),
   },
-  created(){
-    this.isCollected = this.money.isCollected
+  created() {
+    this.isCollected = this.money.isCollected;
   },
   data() {
     return {
@@ -109,7 +137,7 @@ export default {
           this.buttonIsLoading = false;
         });
     },
-    deleteCollection(){
+    deleteCollection() {
       this.buttonIsLoading = true;
       this.$appAxios
         .post("collection/delete", {
@@ -132,7 +160,7 @@ export default {
         .finally(() => {
           this.buttonIsLoading = false;
         });
-    }
+    },
   },
 };
 </script>

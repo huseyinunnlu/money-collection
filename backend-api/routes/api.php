@@ -34,6 +34,11 @@ Route::middleware(['auth:api'])->group(function () {
     Route::middleware('auth:api')->get('/user', function (Request $request) {
         return $request->user();
     });
+
+    //Index routes
+    Route::post('/getlastcollected', [CollectionController::class, 'getLastCollected']);
+
+
     Route::get('getdata', [MoneyController::class, 'getdata']);
     Route::post('/logout', [LoginController::class, 'logout']);
     Route::post('/updatepp', [ProfileController::class, 'updatepp']);

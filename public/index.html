@@ -18,9 +18,49 @@
     rel="stylesheet"
     href="/assets/plugins/fontawesome-free/css/all.min.css"
   />
+  <script
+    src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"
+  ></script>
   <!-- Theme style -->
   <link rel="stylesheet" href="/assets/dist/css/adminlte.min.css" />
-  <body>
+  <!--begin::Fonts-->
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"
+  />
+  <!--end::Fonts-->
+  <!--begin::Page Vendor Stylesheets(used by this page)-->
+  <link
+    href="assets/plugins/custom/fullcalendar/fullcalendar.bundle.css"
+    rel="stylesheet"
+    type="text/css"
+  />
+  <!--end::Page Vendor Stylesheets-->
+  <!--begin::Global Stylesheets Bundle(used by all pages)-->
+  <link
+    href="assets/plugins/global/plugins.bundle.css"
+    rel="stylesheet"
+    type="text/css"
+  />
+  <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+
+  <body
+    id="kt_body"
+    style="background-image: url('assets/media/misc/page-bg.jpg')"
+    class="page-bg header-fixed header-tablet-and-mobile-fixed aside-enabled"
+  >
     <noscript>
       <strong
         >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
@@ -37,5 +77,16 @@
     <!-- AdminLTE App -->
     <script src="/assets/dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
+    <script src="assets/plugins/global/plugins.bundle.js"></script>
+    <script src="assets/js/scripts.bundle.js"></script>
+    <!--end::Global Javascript Bundle-->
+    <!--begin::Page Vendors Javascript(used by this page)-->
+    <script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+    <!--end::Page Vendors Javascript-->
+    <!--begin::Page Custom Javascript(used by this page)-->
+    <script src="assets/js/custom/widgets.js"></script>
+    <script src="assets/js/custom/apps/chat/chat.js"></script>
+    <script src="assets/js/custom/modals/create-app.js"></script>
+    <script src="assets/js/custom/modals/upgrade-plan.js"></script>
   </body>
 </html>
