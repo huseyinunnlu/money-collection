@@ -1,44 +1,34 @@
 <template>
-  <div class="card-body">
-    <div class="tab-content">
-      <div class="active tab-pane" id="content">
-        <div class="row">
-          <div class="collections-statics d-flex flex-wrap">
-            <div class="col-md-12">
-              <div class="info-box">
-                <span class="info-box-icon bg-info elevation-1"
-                  ><i class="fas fa-dollar-sign"></i
-                ></span>
-
-                <div class="info-box-content">
-                  <span class="info-box-text">Collected Moneys</span>
-                  <span class="info-box-number">
-                    {{moneyStatics.collectedMoney}} /
-                    <small>{{moneyStatics.moneyCount}}</small>
-                    <span class="float-right">{{moneyStatics.percent}}</span>
-                  </span>
-                </div>
-                <!-- /.info-box-content -->
-              </div>
-              <!-- /.info-box -->
-            </div>
-          </div>
-
-        </div>
-        
-        <!-- User Timeline -->
-
-        <UserTimeline :timeline="moneyStatics.timeline"/>
-      </div>
+  <div class="card card-xl-stretch mb-xl-10">
+    <!--begin::Header-->
+    <div class="card-header align-items-center border-0 mt-4">
+      <h3 class="card-title align-items-start flex-column">
+        <span class="fw-bolder mb-2 text-dark">Collection History</span>
+      </h3>
     </div>
+    <!--end::Header-->
+    <!--begin::Body-->
+    <div class="card-body pt-5">
+      <!--begin::Timeline-->
+      
+        <!--begin::Item-->
+        <TimelineParentItem
+          v-for="(item, index) in moneyStatics.timeline"
+          :key="index"
+          :item="item"
+        />
+        <!--end::Item-->
+      <!--end::Timeline-->
+    </div>
+    <!--end: Card Body-->
   </div>
 </template>
 <script>
-import UserTimeline from '@/components/Profile/UserTimeline.vue'
+import TimelineParentItem from "@/components/Profile/TimelineParentItem.vue";
 export default {
-  props:['moneyStatics'],
-  components:{
-    UserTimeline,
-  }
-}
+  props: ["moneyStatics"],
+  components: {
+    TimelineParentItem,
+  },
+};
 </script>

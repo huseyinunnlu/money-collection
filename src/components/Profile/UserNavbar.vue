@@ -1,40 +1,49 @@
 <template>
-  <div class="card-header p-2">
-    <ul class="nav nav-pills">
-      <router-link
-        class="router-link py-0 px-2"
-        :to="{
-          name: 'Profile',
-          params: { slug: slug },
-        }"
-        data-toggle="tab"
-        >Index</router-link
+  <div class="card">
+    <div class="card-body p-0">
+      <ul
+        class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 mx-5 fw-bolder"
       >
-      
-      <router-link
-        v-if="slug == $store.getters._User.slug"
-        class="router-link py-0 px-2"
-        :to="{ name: 'ProfileSettings' }"
-        data-toggle="tab"
-        >Settings</router-link
-      >
-      <router-link
-        v-if="slug == $store.getters._User.slug"
-        class="router-link py-0 px-2"
-        :to="{ name: 'ChangePassword' }"
-        data-toggle="tab"
-        >Change Password</router-link
-      >
-    </ul>
+        <!--begin::Nav item-->
+        <li class="nav-item mt-2">
+          <router-link
+            class="nav-link text-active-primary ms-0 me-10 py-5"
+            :to="{ name: 'Profile', params: { slug: slug } }"
+            >Index</router-link
+          >
+        </li>
+        <li class="nav-item mt-2">
+          <router-link
+            v-if="_User.slug == slug"
+            class="nav-link text-active-primary ms-0 me-10 py-5"
+            :to="{ name: 'ProfileSettings' }"
+            >Settings</router-link
+          >
+        </li>
+        <li class="nav-item mt-2">
+          <router-link
+            v-if="_User.slug == slug"
+            class="nav-link text-active-primary ms-0 me-10 py-5"
+            :to="{ name: 'ChangePassword' }"
+            >ChangePassword</router-link
+          >
+        </li>
+        <!--end::Nav item-->
+      </ul>
+    </div>
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   props: {
     slug: {
       type: String,
-      default:'test'
+      default: "test",
     },
+  },
+  computed: {
+    ...mapGetters(["_User"]),
   },
 };
 </script>

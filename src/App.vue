@@ -1,7 +1,20 @@
+<style src="./assets/css/style.bundle.css"></style>
+<style src="./assets/plugins/global/plugins.bundle.css"></style>
+<style
+  src="./assets/plugins/custom/fullcalendar/fullcalendar.bundle.css"
+></style>
 <template>
-  <MainLoader v-if="isLoading" />
-  <router-view v-else :key="$route.fullPath"/>
-  <notifications :ignoreDuplicates="true" position="top right" class="my-2 ml-2" />
+  <body
+    class="page-bg header-fixed header-tablet-and-mobile-fixed aside-enabled"
+  >
+    <MainLoader v-if="isLoading" />
+    <router-view v-else :key="$route.fullPath" />
+    <notifications
+      :ignoreDuplicates="true"
+      position="top right"
+      class="my-2 ml-2"
+    />
+  </body>
 </template>
 <script>
 import MainLoader from "@/components/Loaders/MainLoader.vue";

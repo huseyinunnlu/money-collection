@@ -1,90 +1,88 @@
 <template>
-  <div class="card-body">
-    <div class="tab-content">
-      <div class="active tab-pane" id="settings">
-        <div>
-          <form class="form-horizontal" @submit.prevent="update()">
-            <div class="form-group row">
-              <label for="cpassword" class="col-sm-2 col-form-label"
-                >Current Password</label
-              >
-              <div class="col-sm-10">
-                <input
-                  type="password"
-                  class="form-control"
-                  id="cpassword"
-                  placeholder="Current Password"
-                  v-model="form.cpassword"
-                />
-                <small
-                  v-if="errors.cpassword"
-                  v-text="errors.cpassword[0]"
-                  class="text-danger"
-                ></small>
-              </div>
+  <div class="card mb-5 mb-xl-10">
+    <div class="card-body pt-9 pb-0">
+      <div>
+        <form class="form-horizontal" @submit.prevent="update()">
+          <div class="form-group my-4 row">
+            <label for="cpassword" class="col-sm-2 col-form-label"
+              >Current Password</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="password"
+                class="form-control form-control-solid"
+                id="cpassword"
+                placeholder="Current Password"
+                v-model="form.cpassword"
+              />
+              <small
+                v-if="errors.cpassword"
+                v-text="errors.cpassword[0]"
+                class="text-danger"
+              ></small>
             </div>
+          </div>
 
-            <div class="form-group row">
-              <label for="password" class="col-sm-2 col-form-label"
-                >New Password</label
-              >
-              <div class="col-sm-10">
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  placeholder="New Password"
-                  v-model="form.password"
-                />
-                <small
-                  v-if="errors.password"
-                  v-text="errors.password[0]"
-                  class="text-danger"
-                ></small>
-              </div>
+          <div class="form-group my-4 row">
+            <label for="password" class="col-sm-2 col-form-label"
+              >New Password</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="password"
+                class="form-control form-control-solid"
+                id="password"
+                placeholder="New Password"
+                v-model="form.password"
+              />
+              <small
+                v-if="errors.password"
+                v-text="errors.password[0]"
+                class="text-danger"
+              ></small>
             </div>
+          </div>
 
-            <div class="form-group row">
-              <label for="password_confirmation" class="col-sm-2 col-form-label"
-                >Re-Enter New Password</label
-              >
-              <div class="col-sm-10">
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password_confirmation"
-                  placeholder="Re-enter new password"
-                  v-model="form.password_confirmation"
-                />
-                <small
-                  v-if="errors.password_confirmation"
-                  v-text="errors.password_confirmation[0]"
-                  class="text-danger"
-                ></small>
-              </div>
+          <div class="form-group my-4 row">
+            <label for="password_confirmation" class="col-sm-2 col-form-label"
+              >Re-Enter New Password</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="password"
+                class="form-control form-control-solid"
+                id="password_confirmation"
+                placeholder="Re-enter new password"
+                v-model="form.password_confirmation"
+              />
+              <small
+                v-if="errors.password_confirmation"
+                v-text="errors.password_confirmation[0]"
+                class="text-danger"
+              ></small>
             </div>
+          </div>
 
-            <div class="form-group row">
-              <div class="offset-sm-2 col-sm-10">
-                <button
-                  type="submit"
-                  class="btn btn-primary"
-                  :disabled="
-                    !form.password ||
-                      !form.password_confirmation ||
-                      !form.cpassword
-                  "
-                  v-if="!isLoading"
-                >
-                  Update
-                </button>
-                <button type="submit" class="btn btn-primary" v-if="isLoading">
-                  Updating
-                </button>
-              </div>
+          <div class="form-group my-4 row">
+            <div class="offset-sm-2 col-sm-10">
+              <button
+                type="submit"
+                class="btn btn-primary btn-sm"
+                :disabled="
+                  !form.password ||
+                    !form.password_confirmation ||
+                    !form.cpassword
+                "
+                v-if="!isLoading"
+              >
+                Update
+              </button>
+              <button type="submit" class="btn btn-primary" v-if="isLoading">
+                Updating
+              </button>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -147,9 +145,9 @@ export default {
               type: "success",
               title: "Password changed successfully.",
             });
-            this.form.cpassword = null
-            this.form.password = null
-            this.form.password_confirmation = null
+            this.form.cpassword = null;
+            this.form.password = null;
+            this.form.password_confirmation = null;
           })
           .catch((err) => {
             this.$notify({

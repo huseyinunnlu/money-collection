@@ -1,30 +1,29 @@
 <template>
-  <body class="hold-transition sidebar-mini">
-    <div class="wrapper">
-      <Navbar />
-      <Sidebar />
-      <div class="content-wrapper">
-        <section class="content">
-          <div class="container-fluid">
-            <div class="row py-4">
-              <div class="col-md-3">
-                <ProfileLoader v-if="isLoading" />
-                <UserProfile :_User="_Profile" v-else />
-              </div>
-              <div class="col-md-9">
-                <div class="card">
-                  <UserNavbar :slug="_Profile.slug" />
-                  <UserContentLoader v-if="isLoading" />
-                  <UserContent :moneyStatics="_Collection" v-else />
-                </div>
-              </div>
-            </div>
+  <div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+      <!--begin::Wrapper-->
+      <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+        <Navbar />
+        <div
+          id="kt_content_container"
+          class="d-flex flex-column-fluid align-items-start container-xxl"
+        >
+          <Sidebar />
+          <!--begin::Post-->
+          <div class="content flex-row-fluid" id="kt_content">
+            <!--begin::Row-->
+            <UserNavbar :slug="_Profile.slug" class="my-3" />
+            <ProfileLoader v-if="isLoading" />
+            <UserProfile :_User="_Profile" v-else />
+            <UserContentLoader v-if="isLoading" />
+            <UserContent class="col-md-5" :moneyStatics="_Collection" v-else />
           </div>
-        </section>
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </div>
-  </body>
+  </div>
 </template>
 <script>
 import Navbar from "@/components/Header/Navbar.vue";
@@ -35,7 +34,7 @@ import UserContent from "@/components/Profile/UserContent.vue";
 import UserNavbar from "@/components/Profile/UserNavbar.vue";
 import ProfileLoader from "@/components/Loaders/ProfileLoader.vue";
 import UserContentLoader from "@/components/Loaders/UserContentLoader.vue";
-import {mapGetters} from "vuex"
+import { mapGetters } from "vuex";
 export default {
   components: {
     Navbar,
@@ -47,8 +46,8 @@ export default {
     ProfileLoader,
     UserContentLoader,
   },
-  computed:{
-    ...mapGetters(['_Profile','_User','_Collection'])
+  computed: {
+    ...mapGetters(["_Profile", "_User", "_Collection"]),
   },
   data() {
     return {
@@ -57,12 +56,15 @@ export default {
   },
   created() {
     if (this.$route.params.slug != this._User.slug) {
-      if(this._Profile.length == 0 || this.$route.params.slug != this._Profile.slug) {
+      if (
+        this._Profile.length == 0 ||
+        this.$route.params.slug != this._Profile.slug
+      ) {
         this.getUser();
       }
     } else {
       this.$store.state.Profile.profile = this._User;
-      this.getCollectionStatics(this._User.id)
+      this.getCollectionStatics(this._User.id);
     }
   },
   methods: {
@@ -74,7 +76,7 @@ export default {
         })
         .then((res) => {
           this.$store.state.Profile.profile = res.data;
-          this.getCollectionStatics(res.data.id)
+          this.getCollectionStatics(res.data.id);
         })
         .catch(() => {
           this.$router.push({ name: "Index" });
@@ -94,11 +96,11 @@ export default {
           },
         })
         .then((res) => {
-            this.$store.state.Profile.collection = res.data.result;
+          this.$store.state.Profile.collection = res.data.result;
         })
-        .finally(()=>{
-            this.isLoading = false;
-        })
+        .finally(() => {
+          this.isLoading = false;
+        });
     },
   },
 };

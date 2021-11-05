@@ -1,13 +1,13 @@
 <template>
-    <a style="cursor:pointer;" v-if="_IsAuth" @click="logout" class="d-block">
-      Logout
-    </a>
+  <div class="menu-item px-5">
+    <a @click="logout()" class="menu-link px-5">Sign Out</a>
+  </div>
 </template>
 <script>
 import { mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapGetters(["_User",'_IsAuth']),
+    ...mapGetters(["_User", "_IsAuth"]),
   },
   created() {},
   methods: {
@@ -19,7 +19,7 @@ export default {
           this.$store.state.User.isAuth = false;
           localStorage.removeItem("token");
           localStorage.removeItem("role");
-          window.location.reload()
+          window.location.reload();
           this.$router.push({ name: "Login" });
           this.$notify({
             type: "success",

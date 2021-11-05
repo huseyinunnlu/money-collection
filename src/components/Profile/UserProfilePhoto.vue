@@ -1,5 +1,5 @@
 <template>
-  <div class="form-group row">
+  <div class="form-group my-4 row">
     <label class="col-sm-2 col-form-label">
       Profile Photo<br />
       <a class="text-muted" @click="isUploaded"
@@ -27,7 +27,7 @@
           style="width:60px; height:60px;"
         />
       </div>
-      <input type="file" class="form-control-file" @change="isUploaded" />
+      <input type="file" class="me-3 form-control-file form-control-file-solid" @change="isUploaded" />
 
       <small
         v-if="errors.image"
@@ -57,8 +57,8 @@ export default {
       if (e.target.files) {
         image = e.target.files[0];
         this.photoPreview = URL.createObjectURL(image);
-      }else{
-        this.photoPreview = null
+      } else {
+        this.photoPreview = null;
       }
       let formData = new FormData();
       formData.append("image", image);
@@ -67,12 +67,12 @@ export default {
         .then((res) => {
           this.$store.state.User.user.profilePhoto = res.data.url;
           this.photo = res.data.url;
-          this.photoPreview = null
+          this.photoPreview = null;
           this.$notify({
             type: "success",
             title: "Photo successfully uploaded",
           });
-          window.location.reload()
+          window.location.reload();
         })
         .catch((err) => {
           this.$notify({

@@ -1,67 +1,63 @@
 <template>
-  <div class="card-body">
-    <div class="tab-content">
-      <div class="active tab-pane" id="settings">
-        <div>
-          <form class="form-horizontal" @submit.prevent="updateProfile()">
-            <UserProfilePhoto />
-            <div class="form-group row">
-              <label for="fullName" class="col-sm-2 col-form-label"
-                >Full Name</label
+  <div class="card mb-5 mb-xl-10">
+    <div class="card-body pt-9 pb-0">
+      <div>
+        <form class="form-horizontal" @submit.prevent="updateProfile()">
+          <UserProfilePhoto />
+          <div class="form-group my-4 row">
+            <label for="fullName" class="col-sm-2 col-form-label"
+              >Full Name</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control form-control-solid"
+                id="fullName"
+                placeholder="Full Name"
+                v-model="form.fullName"
+              />
+              <small
+                v-if="errors.fullName"
+                v-text="errors.fullName[0]"
+                class="text-danger"
+              ></small>
+            </div>
+          </div>
+
+          <div class="form-group my-4 row">
+            <label for="email" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control form-control-solid"
+                id="email"
+                placeholder="Email"
+                v-model="form.email"
+              />
+              <small
+                v-if="errors.email"
+                v-text="errors.email[0]"
+                class="text-danger"
+              ></small>
+            </div>
+          </div>
+
+          <div class="form-group my-4 row">
+            <div class="offset-sm-2 col-sm-10">
+              <button
+                type="submit"
+                class="btn btn-primary btn-sm"
+                :disabled="!form.fullName || !form.email"
+                v-if="!isLoading"
               >
-              <div class="col-sm-10">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="fullName"
-                  placeholder="Full Name"
-                  v-model="form.fullName"
-                />
-                <small
-                  v-if="errors.fullName"
-                  v-text="errors.fullName[0]"
-                  class="text-danger"
-                ></small>
-              </div>
+                Update
+              </button>
+              <button type="submit" class="btn btn-primary btn-sm" v-if="isLoading">
+                Updating
+              </button>
             </div>
-            
-            <div class="form-group row">
-              <label for="email" class="col-sm-2 col-form-label">Email</label>
-              <div class="col-sm-10">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="email"
-                  placeholder="Email"
-                  v-model="form.email"
-                />
-                <small
-                  v-if="errors.email"
-                  v-text="errors.email[0]"
-                  class="text-danger"
-                ></small>
-              </div>
-            </div>
-
-            
-            <div class="form-group row">
-              <div class="offset-sm-2 col-sm-10">
-                <button
-                  type="submit"
-                  class="btn btn-primary"
-                  :disabled="!form.fullName || !form.email"
-                  v-if="!isLoading"
-                >
-                  Update
-                </button>
-                <button type="submit" class="btn btn-primary" v-if="isLoading">
-                  Updating
-                </button>
-              </div>
-            </div>
-
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -106,7 +102,7 @@ export default {
             type: "success",
             title: "Profile successfully updated.",
           });
-          window.location.reload()
+          window.location.reload();
         })
         .catch((err) => {
           this.errors = err.response.data.errors;
