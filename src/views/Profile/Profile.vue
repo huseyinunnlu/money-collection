@@ -16,8 +16,10 @@
             <UserNavbar :slug="_Profile.slug" class="my-3" />
             <ProfileLoader v-if="isLoading" />
             <UserProfile :_User="_Profile" v-else />
-            <UserContentLoader v-if="isLoading" />
-            <UserContent class="col-md-5" :moneyStatics="_Collection" v-else />
+            <div v-if="isLoading">
+              <h2 class="text-center">Loading</h2>
+            </div>
+            <UserContent class="col-md-5" :moneyStatics="_Collection" v-else/>
           </div>
         </div>
         <Footer />
@@ -30,10 +32,9 @@ import Navbar from "@/components/Header/Navbar.vue";
 import Sidebar from "@/components/Sidebar/Sidebar.vue";
 import Footer from "@/components/Header/Footer.vue";
 import UserProfile from "@/components/Profile/UserProfile.vue";
-import UserContent from "@/components/Profile/UserContent.vue";
 import UserNavbar from "@/components/Profile/UserNavbar.vue";
+import UserContent from "@/components/Profile/UserContent.vue";
 import ProfileLoader from "@/components/Loaders/ProfileLoader.vue";
-import UserContentLoader from "@/components/Loaders/UserContentLoader.vue";
 import { mapGetters } from "vuex";
 export default {
   components: {
@@ -44,7 +45,6 @@ export default {
     UserContent,
     UserNavbar,
     ProfileLoader,
-    UserContentLoader,
   },
   computed: {
     ...mapGetters(["_Profile", "_User", "_Collection"]),

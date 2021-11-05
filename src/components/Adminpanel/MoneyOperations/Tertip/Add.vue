@@ -23,12 +23,12 @@
         </div>
         <div class="modal-body">
           <form class="form-horizontal">
-            <div class="form-group row">
+            <div class="form-group my-4 row">
               <label for="title" class="col-sm-2 col-form-label">Title</label>
               <div class="col-sm-10">
                 <input
                   type="text"
-                  class="form-control"
+                  class="form-control form-control-solid"
                   id="title"
                   placeholder="Title"
                   v-model="form.title"
@@ -41,12 +41,12 @@
               v-text="errors.title[0]"
             ></small>
 
-            <div class="form-group row">
+            <div class="form-group my-4 row">
               <label for="status" class="col-sm-2 col-form-label"
                 >Status</label
               >
               <div class="col-sm-10">
-                <select id="status" v-model="form.status" class="form-control">
+                <select id="status" v-model="form.status" class="form-select form-select-solid">
                   <option :value="'0'">Inactive</option>
                   <option :value="'1'">Active</option>
                 </select>

@@ -6,8 +6,8 @@
       <div class="content-wrapper py-4">
         <div class="row">
           <div class="col-12">
-            <ContentHeader :title="'Moneys'" />
-            <List />
+              <ContentHeader :title="'Moneys'" />
+              <List />
           </div>
         </div>
       </div>

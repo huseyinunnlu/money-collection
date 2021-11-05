@@ -47,7 +47,7 @@
                   </select>
                   <div class="input-group-append">
                     <button
-                      @click="page=1,getEmissions()"
+                      @click="page=1,get()"
                       type="submit"
                       class="btn btn-default"
                     >

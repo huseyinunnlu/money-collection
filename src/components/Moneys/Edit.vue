@@ -1,9 +1,9 @@
 <template>
   <form class="form-horizontal" @submit.prevent="update()">
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label">Emission</label>
       <div class="col-sm-10">
-        <select class="form-control" v-model="form.emissionId">
+        <select class="form-select form-select-solid" v-model="form.emissionId">
           <option
             v-for="ems in datas.emission"
             :key="ems.id"
@@ -19,10 +19,10 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label">SCWPM</label>
       <div class="col-sm-10">
-        <select class="form-control" v-model="form.scwpmId">
+        <select class="form-select form-select-solid" v-model="form.scwpmId">
           <option
             v-for="scwpm in datas.scwpm"
             :key="scwpm.id"
@@ -38,10 +38,10 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label">Kuphür</label>
       <div class="col-sm-10">
-        <select class="form-control" v-model="form.kuphurId">
+        <select class="form-select form-select-solid" v-model="form.kuphurId">
           <option
             v-for="kuphur in datas.kuphur"
             :key="kuphur.id"
@@ -57,12 +57,12 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label">Nominal Value</label>
       <div class="col-sm-10">
         <input
           type="text"
-          class="form-control"
+          class="form-control form-control-solid"
           placeholder="Value"
           v-model="form.value"
         />
@@ -73,10 +73,10 @@
         ></small>
       </div>
     </div>
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label">Serie</label>
       <div class="col-sm-10">
-        <select class="form-control" v-model="form.serieId">
+        <select class="form-select form-select-solid" v-model="form.serieId">
           <option
             v-for="serie in datas.serie"
             :key="serie.id"
@@ -92,12 +92,12 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label">Çil Value</label>
       <div class="col-sm-10">
         <input
           type="text"
-          class="form-control"
+          class="form-control form-control-solid"
           placeholder="Value"
           v-model="form.cilValue"
         />
@@ -109,12 +109,12 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label">ÇT (XF) Value</label>
       <div class="col-sm-10">
         <input
           type="text"
-          class="form-control"
+          class="form-control form-control-solid"
           placeholder="Value"
           v-model="form.ctValue"
         />
@@ -126,12 +126,12 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label">T(F) Value</label>
       <div class="col-sm-10">
         <input
           type="text"
-          class="form-control"
+          class="form-control form-control-solid"
           placeholder="Value"
           v-model="form.tValue"
         />
@@ -143,10 +143,10 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label">Tertip</label>
       <div class="col-sm-10">
-        <select class="form-control" v-model="form.tertipId">
+        <select class="form-select form-select-solid" v-model="form.tertipId">
           <option
             v-for="tertip in datas.tertip"
             :key="tertip.id"
@@ -162,10 +162,10 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label">Size</label>
       <div class="col-sm-10">
-        <input class="form-control" type="text" v-model="form.size" />
+        <input class="form-control form-control-solid" type="text" v-model="form.size" />
         <small
           class="text-danger"
           v-if="errors.size"
@@ -174,10 +174,10 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label">Print Place</label>
       <div class="col-sm-10">
-        <select class="form-control" v-model="form.printPlace">
+        <select class="form-select form-select-solid" v-model="form.printPlace">
           <option
             v-for="place in datas.printPlace"
             :value="place.id"
@@ -192,10 +192,10 @@
         ></small>
       </div>
     </div>
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label">Signatures</label>
       <div class="col-sm-10">
-        <select class="form-control" v-model="form.signatures" multiple>
+        <select class="form-select form-select-solid" v-model="form.signatures" multiple>
           <option
             v-for="sign in datas.signatures"
             :key="sign.id"
@@ -211,10 +211,10 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label">Tedavul date</label>
       <div class="col-sm-10">
-        <input type="date" class="form-control" v-model="form.tedavulDate" />
+        <input type="date" class="form-control form-control-solid" v-model="form.tedavulDate" />
         <small
           class="text-danger"
           v-if="errors.tedavulDate"
@@ -223,10 +223,10 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label">Tedavulden Çıkma Tarihi</label>
       <div class="col-sm-10">
-        <input type="date" class="form-control" v-model="form.lastDate" />
+        <input type="date" class="form-control form-control-solid" v-model="form.lastDate" />
         <small
           class="text-danger"
           v-if="errors.lastDate"
@@ -235,12 +235,12 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label"
         >Zorunlu Tedavulden Süresi Sonu</label
       >
       <div class="col-sm-10">
-        <input type="date" class="form-control" v-model="form.zortedDate" />
+        <input type="date" class="form-control form-control-solid" v-model="form.zortedDate" />
         <small
           class="text-danger"
           v-if="errors.zortedDate"
@@ -249,10 +249,10 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label">Timeout</label>
       <div class="col-sm-10">
-        <input type="date" class="form-control" v-model="form.timeoutDate" />
+        <input type="date" class="form-control form-control-solid" v-model="form.timeoutDate" />
         <small
           class="text-danger"
           v-if="errors.timeoutDate"
@@ -261,10 +261,10 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label">Expiry Date</label>
       <div class="col-sm-10">
-        <input type="date" class="form-control" v-model="form.expiryDate" />
+        <input type="date" class="form-control form-control-solid" v-model="form.expiryDate" />
         <small
           class="text-danger"
           v-if="errors.expiryDate"
@@ -273,10 +273,10 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label">Front Color</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" v-model="form.frontColor" />
+        <input type="text" class="form-control form-control-solid" v-model="form.frontColor" />
         <small
           class="text-danger"
           v-if="errors.frontColor"
@@ -285,10 +285,10 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label">Back Color</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" v-model="form.backColor" />
+        <input type="text" class="form-control form-control-solid" v-model="form.backColor" />
         <small
           class="text-danger"
           v-if="errors.backColor"
@@ -297,12 +297,12 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label">Front Image</label>
       <div class="col-sm-10">
         <img :src="money.frontImage" v-if="!image.fpPreview" style="width:50px; height:50px;">
         <img :src="image.fpPreview" v-else @click="image.fpPreview = null,image.frontImage = null" style="width:50px; height:50px; cursor:poniter;">
-        <input type="file" class="form-control-file" @change="onUpdatefp" />
+        <input type="file" class="form-control-file form-control-file-solid" @change="onUpdatefp" />
         <small
           class="text-danger"
           v-if="errors.frontImage"
@@ -311,13 +311,13 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label">Back Image</label>
       <div class="col-sm-10">
         <img :src="money.backImage" v-if="!image.bpPreview" style="width:50px; height:50px;">
         <img :src="image.bpPreview" @click="image.bpPreview = null,image.backImage = null" v-else style="width:50px; height:50px; cursor:pointer;">
 
-        <input type="file" class="form-control-file" @change="onUpdatebp" />
+        <input type="file" class="form-control-file form-control-file-solid" @change="onUpdatebp" />
         <small
           class="text-danger"
           v-if="errors.backImage"
@@ -326,10 +326,10 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label">Link</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" v-model="form.link" />
+        <input type="text" class="form-control form-control-solid" v-model="form.link" />
         <small
           class="text-danger"
           v-if="errors.link"
@@ -338,10 +338,10 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label">Back Color</label>
       <div class="col-sm-10">
-        <textarea class="form-control" v-model="form.desc"></textarea>
+        <textarea class="form-control form-control-solid" v-model="form.desc"></textarea>
         <small
           class="text-danger"
           v-if="errors.desc"
@@ -353,7 +353,7 @@
     <div class="form-group row">
       <label class="col-sm-2 col-form-label">Status</label>
       <div class="col-sm-10">
-        <select v-model="form.status" class="form-control">
+        <select v-model="form.status" class="form-select form-select-solid">
           <option :value="'0'">Inactive</option>
           <option :value="'1'">Active</option>
         </select>
@@ -365,17 +365,17 @@
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label"></label>
       <div class="col-sm-10">
         <button
           type="submit"
-          class="btn btn-primary"
+          class="btn btn-primary btn-sm"
           v-if="!isLoading"
         >
           Update Money
         </button>
-        <button disabled class="btn btn-primary" v-if="isLoading">
+        <button disabled class="btn btn-primary btn-sm" v-if="isLoading">
           Updating...
         </button>
       </div>

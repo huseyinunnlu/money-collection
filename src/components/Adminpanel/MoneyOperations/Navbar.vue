@@ -1,76 +1,73 @@
 <template>
-  <div class="card-header p-2">
-    <ul class="nav nav-pills">
-      <router-link
-        class="router-link py-0 px-2"
-        :to="{
-          name: 'AdminMoneyOperations',
-        }"
-        data-toggle="tab"
-        >Index</router-link
+  <div class="card">
+    <div class="card-body p-0">
+      <ul
+        class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 mx-5 fw-bolder"
       >
-      <router-link
-        class="router-link py-0 px-2"
-        :to="{
-          name: 'AdminEmissions',
-        }"
-        data-toggle="tab"
-        >Emissions</router-link
-      >
-      <router-link
-        class="router-link py-0 px-2"
-        :to="{
-          name: 'AdminSCWPM',
-        }"
-        data-toggle="tab"
-        >SCWPM  </router-link
-      >
-      <router-link
-        class="router-link py-0 px-2"
-        :to="{
-          name: 'AdminKuphur',
-        }"
-        data-toggle="tab"
-        >Kuphür  </router-link
-      >
-      <router-link
-        class="router-link py-0 px-2"
-        :to="{
-          name: 'AdminPrintPlace',
-        }"
-        data-toggle="tab"
-        >Print Place  </router-link
-      >
-      <router-link
-        class="router-link py-0 px-2"
-        :to="{
-          name: 'AdminTertip',
-        }"
-        data-toggle="tab"
-        >Tertip  </router-link
-      >
-      <router-link
-        class="router-link py-0 px-2"
-        :to="{
-          name: 'AdminSerie',
-        }"
-        data-toggle="tab"
-        >Serie  </router-link
-      >
-      <router-link
-        class="router-link py-0 px-2"
-        :to="{
-          name: 'AdminSignature',
-        }"
-        data-toggle="tab"
-        >Signature  </router-link
-      >
-    </ul>
+        <!--begin::Nav item-->
+        <li class="nav-item mt-2">
+          <router-link
+            class="nav-link text-active-primary ms-0 me-10 py-5"
+            :to="{ name: 'AdminMoneyOperations'}"
+            >Index</router-link
+          >
+        </li>
+        <li class="nav-item mt-2">
+          <router-link
+            class="nav-link text-active-primary ms-0 me-10 py-5"
+            :to="{ name: 'AdminEmissions' }"
+            >Emissions</router-link
+          >
+        </li>
+        <li class="nav-item mt-2">
+          <router-link
+            class="nav-link text-active-primary ms-0 me-10 py-5"
+            :to="{ name: 'AdminSCWPM' }"
+            >Scwpms</router-link
+          >
+        </li>
+        <li class="nav-item mt-2">
+          <router-link
+            class="nav-link text-active-primary ms-0 me-10 py-5"
+            :to="{ name: 'AdminKuphur' }"
+            >Kuphur</router-link
+          >
+        </li>
+        <li class="nav-item mt-2">
+          <router-link
+            class="nav-link text-active-primary ms-0 me-10 py-5"
+            :to="{ name: 'AdminPrintPlace' }"
+            >Print Places</router-link
+          >
+        </li>
+        <li class="nav-item mt-2">
+          <router-link
+            class="nav-link text-active-primary ms-0 me-10 py-5"
+            :to="{ name: 'AdminTertip' }"
+            >Tertip</router-link
+          >
+        </li>
+        <li class="nav-item mt-2">
+          <router-link
+            class="nav-link text-active-primary ms-0 me-10 py-5"
+            :to="{ name: 'AdminSerie' }"
+            >Series</router-link
+          >
+        </li>
+        <li class="nav-item mt-2">
+          <router-link
+            class="nav-link text-active-primary ms-0 me-10 py-5"
+            :to="{ name: 'AdminSignature' }"
+            >Signature</router-link
+          >
+        </li>
+        <!--end::Nav item-->
+      </ul>
+    </div>
   </div>
 </template>
 <script>
-export default {
-};
+export default {};
 </script>
 <style>
 .router-link-active {
