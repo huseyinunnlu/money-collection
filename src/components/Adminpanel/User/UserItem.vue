@@ -8,72 +8,52 @@
       <span class="badge badge-success" v-else>Admin</span>
     </td>
     <td>{{ moment(user.created_at).format("MMM Do YY") }}</td>
-    <td>
-      <router-link
-        :to="{ name: 'Profile', params: { slug: user.slug } }"
-        class="btn btn-primary btn-sm"
-        ><i class="fas fa-eye"></i
-      ></router-link>
-      <router-link
-        :to="{ name: 'AdminpanelEditUser', params: { id: user.id } }"
-        class="btn btn-success btn-sm"
-        ><i class="fas fa-pen"></i
-      ></router-link>
-      <button
-        data-toggle="modal"
-        data-target=".deletemModal"
-        class="btn btn-danger btn-sm"
-        v-if="user.id != $store.getters._User.id"
-      >
-        <i class="fas fa-trash"></i>
-      </button>
-    </td>
-
-    <div
-      class="modal fade deletemModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="mySmallModalLabel"
-      aria-hidden="true"
-    >
-      Ê
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          <div class="modal-body">
-            <div
-              class="container my-3 text-center d-flex flex-column justify-content-center"
+    <td class="text-end">
+      <div class="dropdown">
+        <button
+          class="btn btn-light btn-active-light-primary btn-sm dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Actions
+        </button>
+        <div
+          class="dropdown-menu menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
+          aria-labelledby="dropdownMenuButton"
+        >
+          <div class="menu-item px-3">
+            <router-link
+              :to="{ name: 'AdminpanelEditUser', params: { id: user.id } }"
+              class="menu-link px-3"
+              ><i class="fas fa-pen mx-2"></i> Edit</router-link
             >
-              <h4>Are sou sure to delete</h4>
-              <div
-                class="d-flex justify-content-center justify-content-around mt-3"
-              >
-                <button
-                  data-dismiss="modal"
-                  aria-label="Close"
-                  class="btn btn-secondary"
-                >
-                  No
-                </button>
-                <button
-                  v-if="!isLoading"
-                  @click="deleteUser()"
-                  class="btn btn-danger"
-                >
-                  Yes
-                </button>
-                <button v-else disabled class="btn btn-danger">
-                  Deleting
-                </button>
-              </div>
-            </div>
+          </div>
+          <div class="menu-item px-3">
+            <router-link
+              :to="{ name: 'Profile', params: { slug: user.slug } }"
+              class="menu-link px-3"
+              ><i class="fas fa-eye mx-2"></i> Show</router-link
+            >
+          </div>
+          <div class="menu-item px-3">
+            <a
+              v-if="$store.getters._User.id != user.id"
+              class="menu-link px-3"
+              @click="deleteUser()"
+            >
+              <i class="fas fa-trash mx-2"></i> Delete
+            </a>
           </div>
         </div>
       </div>
-    </div>
+    </td>
   </tr>
 </template>
 <script>
-import moment from 'moment'
+import moment from "moment";
 export default {
   data() {
     return {
@@ -81,7 +61,7 @@ export default {
       isLoading: false,
     };
   },
-  created(){
+  created() {
     this.moment = moment;
   },
   methods: {

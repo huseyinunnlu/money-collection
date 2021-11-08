@@ -1,52 +1,93 @@
 <template>
-  <form @submit.prevent="login()">
-    <div class="input-group">
+  <form
+    class="form w-100 fv-plugins-bootstrap5 fv-plugins-framework"
+    novalidate="novalidate"
+    id="kt_sign_in_form"
+    @submit.prevent="login()"
+  >
+    <!--begin::Heading-->
+    <div class="text-center mb-10">
+      <!--begin::Title-->
+      <h1 class="text-dark mb-3">Sign In to Metronic</h1>
+      <!--end::Title-->
+      <!--begin::Link-->
+      <div class="text-gray-400 fw-bold fs-4">
+        New Here?
+        <router-link :to="{ name: 'Register' }" class="link-primary fw-bolder"
+          >Create an Account</router-link
+        >
+      </div>
+      <!--end::Link-->
+    </div>
+    <!--begin::Heading-->
+    <!--begin::Input group-->
+    <div class="fv-row mb-10 fv-plugins-icon-container">
+      <!--begin::Label-->
+      <label class="form-label fs-6 fw-bolder text-dark">Email</label>
+      <!--end::Label-->
+      <!--begin::Input-->
       <input
+        class="form-control form-control-lg form-control-solid"
         type="text"
-        class="form-control"
-        placeholder="Email"
+        name="email"
+        autocomplete="off"
         v-model="form.email"
       />
-      <div class="input-group-append">
-        <div class="input-group-text">
-          <span class="fas fa-envelope"></span>
-        </div>
-      </div>
+      <!--end::Input-->
+      <div
+        class="fv-plugins-message-container invalid-feedback"
+        v-if="errors.email"
+        v-text="errors.email[0]"
+      ></div>
     </div>
-    <small
-      class="text-danger"
-      v-if="errors.email"
-      v-text="errors.email[0]"
-    ></small>
-    <div class="input-group my-3">
+    <!--end::Input group-->
+    <!--begin::Input group-->
+    <div class="fv-row mb-10 fv-plugins-icon-container">
+      <!--begin::Wrapper-->
+      <div class="d-flex flex-stack mb-2">
+        <!--begin::Label-->
+        <label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
+        <!--end::Label-->
+        <!--begin::Link
+        <a
+          href="/metronic8/demo12/../demo12/authentication/flows/basic/password-reset.html"
+          class="link-primary fs-6 fw-bolder"
+          >Forgot Password ?</a
+        >
+        end::Link-->
+      </div>
+      <!--end::Wrapper-->
+      <!--begin::Input-->
       <input
+        class="form-control form-control-lg form-control-solid"
         type="password"
-        class="form-control"
-        placeholder="Password"
+        name="password"
+        autocomplete="off"
         v-model="form.password"
       />
-      <div class="input-group-append">
-        <div class="input-group-text">
-          <span class="fas fa-lock"></span>
-        </div>
-      </div>
+      <!--end::Input-->
+      <div
+        class="fv-plugins-message-container invalid-feedback"
+        v-if="errors.password"
+        v-text="errors.password[0]"
+      ></div>
     </div>
-
-    <div class="row d-flex justify-content-center">
-      <div class="col-6">
-        <button
-          v-if="!isLoading"
-          :disabled="isLoading || !form.email || !form.password"
-          type="submit"
-          class="btn btn-primary btn-block"
-        >
-          Sign In
-        </button>
-        <button v-else disabled type="button" class="btn btn-primary btn-block">
-          Siging In...
-        </button>
-      </div>
-      <!-- /.col -->
+    <!--end::Input group-->
+    <!--begin::Actions-->
+    <div class="text-center">
+      <!--begin::Submit button-->
+      <button
+        v-if="!isLoading"
+        :disabled="isLoading || !form.email || !form.password"
+        type="submit"
+        class="btn btn-primary btn-block"
+      >
+        Sign In
+      </button>
+      <button v-else disabled type="button" class="btn btn-primary btn-block">
+        Siging In...
+      </button>
+      <!--end::Submit button-->
     </div>
   </form>
 </template>
@@ -88,7 +129,7 @@ export default {
           localStorage.setItem("token", encryptedToken);
           localStorage.setItem("role", res.data.user.role);
           this.$router.push({ name: "Index" });
-          window.location.reload()
+          window.location.reload();
         })
         .catch((err) => {
           this.$notify({

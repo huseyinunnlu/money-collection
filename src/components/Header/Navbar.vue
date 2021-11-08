@@ -44,10 +44,12 @@
       <!--end::Heaeder menu toggle-->
       <!--begin::Header Logo-->
       <div class="header-logo me-5 me-md-10 flex-grow-1 flex-lg-grow-0">
-        <router-link :to="{name:'Index'}">
+        <router-link :to="{ name: 'Index' }">
           <img
             alt="'Logo'"
-            :src="'https://preview.keenthemes.com/metronic8/demo12/assets/media/logos/logo-1.svg'"
+            :src="
+              'https://preview.keenthemes.com/metronic8/demo12/assets/media/logos/logo-1.svg'
+            "
             class="d-none d-lg-block h-30px"
           />
         </router-link>
@@ -82,9 +84,28 @@
               <div class="menu-item me-lg-1">
                 <router-link
                   class="menu-link active py-3"
-                  :to="{name:'Index'}"
+                  :to="{ name: 'Index' }"
                 >
                   <span class="menu-title">Index</span>
+                </router-link>
+              </div>
+
+              <div class="menu-item me-lg-1">
+                <router-link
+                  v-if="_User.role == 1"
+                  class="menu-link active py-3"
+                  :to="{ name: 'AdminMoneyOperations' }"
+                >
+                  <span class="menu-title">Money Opr.</span>
+                </router-link>
+              </div>
+              <div class="menu-item me-lg-1">
+                <router-link
+                  v-if="_User.role == 1"
+                  class="menu-link active py-3"
+                  :to="{ name: 'AdminpanelUsers' }"
+                >
+                  <span class="menu-title">Users</span>
                 </router-link>
               </div>
             </div>
@@ -146,10 +167,14 @@
   <!--end::Header-->
 </template>
 <script>
-import NavbarUser from "@/components/Header/NavbarUser.vue"
+import NavbarUser from "@/components/Header/NavbarUser.vue";
+import { mapGetters } from "vuex";
 export default {
-  components:{
-    NavbarUser
-  }
-}
+  components: {
+    NavbarUser,
+  },
+  computed: {
+    ...mapGetters(["_User"]),
+  },
+};
 </script>

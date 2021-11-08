@@ -10,6 +10,7 @@
           id="kt_content_container"
           class="d-flex flex-column-fluid align-items-start container-xxl"
         >
+          <!-- <Sidebar /> -->
           <!--begin::Post-->
           <div class="content flex-row-fluid" id="kt_content">
             <!--begin::Row-->
@@ -115,10 +116,11 @@
               </div>
             </div>
             <!--end::Row-->
+            <CatalogBody />
             <!--begin::Row-->
-            <div class="row gy-5 g-xl-8">
+            <div class="row gy-5 my-4 g-xl-8">
               <!--begin::Col-->
-              <LastCollections />
+              <LastCollections/>
               <!--end::Col-->
             </div>
             <!--end::Row-->
@@ -142,22 +144,50 @@ import Navbar from "@/components/Header/Navbar.vue";
 import Footer from "@/components/Header/Footer.vue";
 
 import LastCollections from "@/components/Index/LastCollectionList.vue";
+import CatalogBody from "@/components/Index/CatalogBody.vue";
 export default {
   components: {
     Navbar,
     // Sidebar,
     Footer,
     LastCollections,
+    CatalogBody,
   },
   data() {
     return {
-      
+      emission_id: null,
+      datas: {
+        emission: [],
+      },
     };
   },
   created() {
+    
   },
   methods: {
-    
+    filterItems(data) {
+      let iscollect = 0;
+      this.$appAxios
+        .get("/moneyfilter", {
+          params: {
+            column: data.column,
+            data: data.data,
+            status: 1,
+            emission_id: data.emission_id,
+            scwpm_id: null,
+            kuphur_id: null,
+            serie_id: null,
+            isCollected: iscollect,
+          },
+        })
+        .then((res) => {
+          const data = res.data.data;
+          const array = res.data.arrdata;
+          if (array == "emission") {
+            this.datas.emission = data;
+          }
+        });
+    },
   },
 };
 </script>

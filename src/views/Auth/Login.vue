@@ -1,35 +1,61 @@
 <template>
-  <body class="hold-transition login-page">
-    <div class="login-box my-3">
-      <div class="login-logo">
-        <b>Logo</b>
-      </div>
-      <!-- /.login-logo -->
-      <div class="card">
-        <div class="card-body login-card-body">
-          <p class="login-box-msg">Sign in to start your session</p>
-
-            <LoginForm />
-          
-
-          <p class="mb-1">
-            <a href="forgot-password.html">I forgot my password</a>
-          </p>
-          <p class="mb-0">
-            <router-link :to="{ name: 'Register' }" class="text-center"
-              >Register a new membership</router-link
+  <div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+      <!--begin::Wrapper-->
+      <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+        <!--begin::Container-->
+        <div
+          id="kt_content_container"
+          class="d-flex flex-column-fluid align-items-start container-xxl"
+        >
+          <!--begin::Post-->
+          <div class="content flex-row-fluid" id="kt_content">
+            <!--begin::Row-->
+            <div
+              class="row gy-5 g-xl-8 d-flex align-items-center mt-lg-0 mb-10 mb-lg-15"
+            ></div>
+            <!--end::Row-->
+            <!--begin::Row-->
+            <div
+              class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20"
             >
-          </p>
+              <!--begin::Logo-->
+              <a href="/metronic8/demo12/../demo12/index.html" class="mb-12">
+                <img
+                  alt="Logo"
+                  :src="
+                    'https://preview.keenthemes.com/metronic8/demo12/assets/media/logos/logo-1.svg'
+                  "
+                  class="h-40px"
+                />
+              </a>
+              <!--end::Logo-->
+              <!--begin::Wrapper-->
+              <div
+                class="w-lg-400px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto"
+              >
+                <LoginForm />
+              </div>
+            </div>
+            <!--end::Post-->
+            <Footer />
+          </div>
+          <!--end::Container-->
         </div>
+        <!--end::Wrapper-->
       </div>
+      <!--end::Page-->
     </div>
-  </body>
+  </div>
 </template>
-<script> 
-import LoginForm from '@/components/Auth/LoginForm.vue'
+<script>
+import LoginForm from "@/components/Auth/LoginForm.vue";
+import Footer from "@/components/Header/Footer.vue";
 export default {
-    components: {
-        LoginForm,
-    }
-}
+  components: {
+    LoginForm,
+    Footer
+  },
+};
 </script>

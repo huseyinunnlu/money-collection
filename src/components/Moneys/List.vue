@@ -1,193 +1,153 @@
 <template>
   <Add v-if="_IsAuth && _User.role == 1" />
-  <!--begin::Col-->
 
-  <div class="col-xl-4 d-flex align-items-center">
-    <select class="form-control form-control-lg">
-      <option :value="'tr'">Türkiye</option>
-    </select>
-  </div>
-
-  <!--end::Col-->
-
-  <!--begin::Col-->
-  <div class="col-xl-8">
-    <div class="d-flex ps-lg-20" v-if="datas.emission.length > 0">
-      <a
-        v-for="ems in datas.emission"
-        :key="ems.emission_id.id"
-        class="btn btn-icon btn-outline btn-nav h-50px w-50px h-lg-70px w-lg-70px ms-2"
-        @click="
-          (emission = ems.emission_id.id),
-            filterItems({
-              column: 'scwpm_id',
-              data: 'scwpm',
-              emission_id: emission,
-              scwpm_id: null,
-              kuphur_id: null,
-              serie_id: null,
-            }),
-            get()
-        "
-      >
-        <!--begin::Svg Icon | path: icons/duotune/abstract/abs038.svg-->
-        <span class="text-white" style="font-size:110%;">{{
-          ems.emission_id.title
-        }}</span>
-        <!--end::Svg Icon-->
-      </a>
-    </div>
-  </div>
-  <!--end::Col-->
-  
   <div class="card">
     <!--begin::Card header-->
     <div
       class="card-header border-0 pt-6"
       data-select2-id="select2-data-83-t4vv"
     >
-      
       <div class="card-toolbar" data-select2-id="select2-data-82-5tlq">
         <!--begin::Toolbar-->
         <div class="card-title">
-        <div
-          data-kt-user-table-toolbar="base"
-          data-select2-id="select2-data-81-jv68"
-        >
-          <button
-            class="btn btn-primary mb-3"
-            data-toggle="modal"
-            data-target="#add"
+          <div
+            data-kt-user-table-toolbar="base"
+            data-select2-id="select2-data-81-jv68"
           >
-            <i class="fas fa-plus"></i>Add Money
-          </button>
-          <div class="input-group input-group-sm" style="width: 100%;">
-            <select
-              @change="
-                filterItems({
-                  column: 'kuphur_id',
-                  data: 'kuphur',
-                  emission_id: emission,
-                  scwpm_id: scwpm,
-                  kuphur_id: null,
-                  serie_id: null,
-                })
-              "
-              :disabled="datas.scwpm.length < 1"
-              class="form-control"
-              v-model="scwpm"
+            <button
+              class="btn btn-primary mb-3"
+              data-toggle="modal"
+              data-target="#add"
             >
-              <option :value="null">Select Scwpm</option>
+              <i class="fas fa-plus"></i>Add Money
+            </button>
+            <div class="input-group input-group-sm" style="width: 100%;">
+              <select
+                @change="
+                  filterItems({
+                    column: 'kuphur_id',
+                    data: 'kuphur',
+                    emission_id: emission,
+                    scwpm_id: scwpm,
+                    kuphur_id: null,
+                    serie_id: null,
+                  })
+                "
+                :disabled="datas.scwpm.length < 1"
+                class="form-control"
+                v-model="scwpm"
+              >
+                <option :value="null">Select Scwpm</option>
 
-              <option
-                v-for="scwpm in datas.scwpm"
-                :key="scwpm.scwpm_id.id"
-                :value="scwpm.scwpm_id.id"
-                >{{ scwpm.scwpm_id.title }}</option
+                <option
+                  v-for="scwpm in datas.scwpm"
+                  :key="scwpm.scwpm_id.id"
+                  :value="scwpm.scwpm_id.id"
+                  >{{ scwpm.scwpm_id.title }}</option
+                >
+              </select>
+              <select
+                @change="
+                  filterItems({
+                    column: 'serie_id',
+                    data: 'serie',
+                    emission_id: emission,
+                    scwpm_id: scwpm,
+                    kuphur_id: kuphur,
+                    serie_id: null,
+                  })
+                "
+                :disabled="datas.kuphur.length < 1"
+                class="form-control"
+                v-model="kuphur"
               >
-            </select>
-            <select
-              @change="
-                filterItems({
-                  column: 'serie_id',
-                  data: 'serie',
-                  emission_id: emission,
-                  scwpm_id: scwpm,
-                  kuphur_id: kuphur,
-                  serie_id: null,
-                })
-              "
-              :disabled="datas.kuphur.length < 1"
-              class="form-control"
-              v-model="kuphur"
-            >
-              <option :value="null">Select Kuphür</option>
+                <option :value="null">Select Kuphür</option>
 
-              <option
-                v-for="kuphur in datas.kuphur"
-                :key="kuphur.kuphur_id.id"
-                :value="kuphur.kuphur_id.id"
-                >{{ kuphur.kuphur_id.title }}</option
+                <option
+                  v-for="kuphur in datas.kuphur"
+                  :key="kuphur.kuphur_id.id"
+                  :value="kuphur.kuphur_id.id"
+                  >{{ kuphur.kuphur_id.title }}</option
+                >
+              </select>
+              <select
+                @change="
+                  filterItems({
+                    column: 'tertip_id',
+                    data: 'tertip',
+                    emission_id: emission,
+                    scwpm_id: scwpm,
+                    kuphur_id: kuphur,
+                    serie_id: serie,
+                  })
+                "
+                class="form-control"
+                :disabled="datas.serie.length < 1"
+                v-model="serie"
               >
-            </select>
-            <select
-              @change="
-                filterItems({
-                  column: 'tertip_id',
-                  data: 'tertip',
-                  emission_id: emission,
-                  scwpm_id: scwpm,
-                  kuphur_id: kuphur,
-                  serie_id: serie,
-                })
-              "
-              class="form-control"
-              :disabled="datas.serie.length < 1"
-              v-model="serie"
-            >
-              <option :value="null">Select Serie</option>
+                <option :value="null">Select Serie</option>
 
-              <option
-                v-for="serie in datas.serie"
-                :key="serie.serie_id.id"
-                :value="serie.serie_id.id"
-                >{{ serie.serie_id.title }}</option
+                <option
+                  v-for="serie in datas.serie"
+                  :key="serie.serie_id.id"
+                  :value="serie.serie_id.id"
+                  >{{ serie.serie_id.title }}</option
+                >
+              </select>
+              <select
+                class="form-control"
+                :disabled="datas.tertip.length < 1"
+                v-model="tertip"
               >
-            </select>
-            <select
-              class="form-control"
-              :disabled="datas.tertip.length < 1"
-              v-model="tertip"
-            >
-              <option :value="null">Select Tertip</option>
+                <option :value="null">Select Tertip</option>
 
-              <option
-                v-for="tertip in datas.tertip"
-                :key="tertip.tertip_id.id"
-                :value="tertip.tertip_id.id"
-                >{{ tertip.tertip_id.title }}</option
+                <option
+                  v-for="tertip in datas.tertip"
+                  :key="tertip.tertip_id.id"
+                  :value="tertip.tertip_id.id"
+                  >{{ tertip.tertip_id.title }}</option
+                >
+              </select>
+              <select class="form-control" v-model="count" style="width:20px;">
+                <option :value="null">Select data count</option>
+                <option :value="'5'">5</option>
+                <option :value="'15'">15</option>
+              </select>
+              <select class="form-control" v-model="sort">
+                <option :value="'desc'">Creating Date DESC</option>
+                <option :value="'asc'">Creating Date ASC</option>
+              </select>
+              <select
+                class="form-control"
+                v-model="status"
+                v-if="_IsAuth && _User.role == 1"
               >
-            </select>
-            <select class="form-control" v-model="count" style="width:20px;">
-              <option :value="null">Select data count</option>
-              <option :value="'5'">5</option>
-              <option :value="'15'">15</option>
-            </select>
-            <select class="form-control" v-model="sort">
-              <option :value="'desc'">Creating Date DESC</option>
-              <option :value="'asc'">Creating Date ASC</option>
-            </select>
-            <select
-              class="form-control"
-              v-model="status"
-              v-if="_IsAuth && _User.role == 1"
-            >
-              <option :value="'1'">Active</option>
-              <option :value="'0'">Inactive</option>
-            </select>
-            <div class="input-group-append">
-              <button
-                @click="(page = 1), get()"
-                type="submit"
-                class="btn btn-default"
-              >
-                <i class="fas fa-search"></i>
-              </button>
-              <button
-                @click="(page = 1), reset(), get()"
-                type="submit"
-                class="btn btn-default"
-              >
-                Reset
-              </button>
-            </div>
-            <div class="form-check d-flex align-items-center">
-              <input id="show" type="checkbox" v-model="isCollection" />
-              <label class="form-check-label" for="show">MyCollection</label>
+                <option :value="'1'">Active</option>
+                <option :value="'0'">Inactive</option>
+              </select>
+              <div class="input-group-append">
+                <button
+                  @click="(page = 1), get()"
+                  type="submit"
+                  class="btn btn-default"
+                >
+                  <i class="fas fa-search"></i>
+                </button>
+                <button
+                  @click="(page = 1), reset(), get()"
+                  type="submit"
+                  class="btn btn-default"
+                >
+                  Reset
+                </button>
+              </div>
+              <div class="form-check d-flex align-items-center">
+                <input id="show" type="checkbox" v-model="isCollection" />
+                <label class="form-check-label" for="show">MyCollection</label>
+              </div>
             </div>
           </div>
         </div>
-      </div>
         <!--end::Toolbar-->
       </div>
     </div>
@@ -280,9 +240,9 @@ export default {
   created() {
     this.get();
     this.filterItems({
-      column: "emission_id",
-      data: "emission",
-      emission_id: null,
+      column: "scwpm_id",
+      data: "scwpm",
+      emission_id: this.$route.query.ems_id,
       scwpm_id: null,
       kuphur_id: null,
       serie: null,
@@ -326,7 +286,7 @@ export default {
         .get("moneys/get", {
           params: {
             page: this.page,
-            emission_id: this.emission,
+            emission_id: this.$route.query.ems_id,
             scwpm_id: this.scwpm,
             kuphur_id: this.kuphur,
             serie_id: this.serie,
@@ -338,15 +298,23 @@ export default {
           },
         })
         .then((res) => {
-          if (this.page == 1) {
-            this.$store.state.Money.moneys = [];
-            this.$store.state.Money.moneys = res.data.data.data;
+          if (res.data.data.data.length > 0) {
+            if (this.page == 1) {
+              this.$store.state.Money.moneys = [];
+              this.$store.state.Money.moneys = res.data.data.data;
+            } else {
+              this.$store.state.Money.moneys = this.$store.state.Money.moneys.concat(
+                res.data.data.data
+              );
+            }
+            this.dataCount = res.data.data.total;
           } else {
-            this.$store.state.Money.moneys = this.$store.state.Money.moneys.concat(
-              res.data.data.data
-            );
+            this.$router.push({name:'Index'})
+            this.$notify({
+              type:'error',
+              title:"Emission not found."
+            })
           }
-          this.dataCount = res.data.data.total;
         })
         .catch(() => {
           this.$store.state.Money.moneys = [];

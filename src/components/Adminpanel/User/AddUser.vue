@@ -12,25 +12,18 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Add New User</h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <i data-dismiss="modal" aria-label="Close" class="close fas fa-times" style="cursor:pointer"></i>
         </div>
         <div class="modal-body">
           <form class="form-horizontal">
-            <div class="form-group row">
+            <div class="form-group my-4 row">
               <label for="fullName" class="col-sm-2 col-form-label"
                 >Full Name</label
               >
               <div class="col-sm-10">
                 <input
                   type="text"
-                  class="form-control"
+                  class="form-control form-control-solid"
                   id="fullName"
                   placeholder="Full Name"
                   v-model="form.fullName"
@@ -43,12 +36,12 @@
               v-text="errors.fullname[0]"
             ></small>
 
-            <div class="form-group row">
+            <div class="form-group my-4 row">
               <label for="email" class="col-sm-2 col-form-label">Email</label>
               <div class="col-sm-10">
                 <input
                   type="text"
-                  class="form-control"
+                  class="form-control form-control-solid"
                   id="email"
                   placeholder="Email"
                   v-model="form.email"
@@ -61,14 +54,14 @@
               v-text="errors.email[0]"
             ></small>
 
-            <div class="form-group row">
+            <div class="form-group my-4 row">
               <label for="password" class="col-sm-2 col-form-label"
                 >Password</label
               >
               <div class="col-sm-10">
                 <input
                   type="password"
-                  class="form-control"
+                  class="form-control form-control-solid"
                   id="password"
                   placeholder="Password"
                   v-model="form.password"
@@ -81,12 +74,16 @@
               v-text="errors.password[0]"
             ></small>
 
-            <div class="form-group row">
+            <div class="form-group my-4 row">
               <label for="accType" class="col-sm-2 col-form-label"
                 >Account Role</label
               >
               <div class="col-sm-10">
-                <select id="accType" v-model="form.role" class="form-control">
+                <select
+                  id="accType"
+                  v-model="form.role"
+                  class="form-select form-select-solid"
+                >
                   <option :value="'0'">User</option>
                   <option :value="'1'">Admin</option>
                 </select>
@@ -106,10 +103,7 @@
           <button
             type="submit"
             class="btn btn-primary"
-            :disabled="
-              !form.fullName ||
-                !form.email
-            "
+            :disabled="!form.fullName || !form.email"
             v-if="!isLoading"
             @click="addUser"
           >

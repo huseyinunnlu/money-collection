@@ -9,17 +9,20 @@
           id="kt_content_container"
           class="d-flex flex-column-fluid align-items-start container-xxl"
         >
-          <Sidebar />
           <!--begin::Post-->
           <div class="content flex-row-fluid" id="kt_content">
             <!--begin::Row-->
             <UserNavbar :slug="_Profile.slug" class="my-3" />
             <ProfileLoader v-if="isLoading" />
             <UserProfile :_User="_Profile" v-else />
-            <div v-if="isLoading">
-              <h2 class="text-center">Loading</h2>
+            <div class="row">
+              <UserContentLoader class="col-md-5" v-if="isLoading" />
+              <UserContent
+                class="col-md-5"
+                :moneyStatics="_Collection"
+                v-else
+              />
             </div>
-            <UserContent class="col-md-5" :moneyStatics="_Collection" v-else/>
           </div>
         </div>
         <Footer />
@@ -29,22 +32,22 @@
 </template>
 <script>
 import Navbar from "@/components/Header/Navbar.vue";
-import Sidebar from "@/components/Sidebar/Sidebar.vue";
 import Footer from "@/components/Header/Footer.vue";
 import UserProfile from "@/components/Profile/UserProfile.vue";
 import UserNavbar from "@/components/Profile/UserNavbar.vue";
 import UserContent from "@/components/Profile/UserContent.vue";
 import ProfileLoader from "@/components/Loaders/ProfileLoader.vue";
+import UserContentLoader from "@/components/Loaders/UserContentLoader.vue";
 import { mapGetters } from "vuex";
 export default {
   components: {
     Navbar,
-    Sidebar,
     Footer,
     UserProfile,
     UserContent,
     UserNavbar,
     ProfileLoader,
+    UserContentLoader,
   },
   computed: {
     ...mapGetters(["_Profile", "_User", "_Collection"]),

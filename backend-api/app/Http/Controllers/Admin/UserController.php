@@ -11,16 +11,18 @@ class UserController extends Controller
 {
     public function getUsers(Request $request)
     {
-        if ($request->role) {
-            $data = User::where($request->column, 'LIKE', '%' . $request->search . '%')
-                ->where('role', $request->role)
-                ->orderBy('created_at', $request->sort)
-                ->paginate($request->count);
-            return response()->json($data);
-        }
-        $data = User::where($request->column, 'LIKE', '%' . $request->search . '%')
-            ->orderBy('created_at', $request->sort)
-            ->paginate($request->count);
+        $data = User::
+        where(function ($query) use ($request) {
+            if ($request->role) {
+                $query->where('role',$request->role);
+            }
+            if($request->search) {
+                $query->where($request->column,'LIKE','%'.$request->search.'%');
+            }
+        })
+        ->orderBy('created_at',$request->sort)
+        ->paginate($request->count);
+
         return response()->json($data);
     }
 

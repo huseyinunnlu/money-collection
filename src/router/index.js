@@ -26,6 +26,11 @@ const routes = [
     name: "Index",
     component: () => import("../views/Index.vue"),
   },
+  {
+    path: "/catalog",
+    name: "Catalog",
+    component: () => import("../views/Catalog.vue"),
+  },
   //Profile Routes
   {
     path: "/u/:slug",

@@ -1,82 +1,139 @@
 <template>
-  <form method="post" @submit.prevent="register()">
-    <div class="input-group">
+  <form
+    class="form w-100 fv-plugins-bootstrap5 fv-plugins-framework"
+    novalidate="novalidate"
+    id="kt_sign_up_form"
+    @submit.prevent="register()"
+  >
+    <!--begin::Heading-->
+    <div class="mb-10 text-center">
+      <!--begin::Title-->
+      <h1 class="text-dark mb-3">Create an Account</h1>
+      <!--end::Title-->
+      <!--begin::Link-->
+      <div class="text-gray-400 fw-bold fs-4">
+        Already have an account?
+        <router-link :to="{ name: 'Login' }" class="link-primary fw-bolder"
+          >Sign in here</router-link
+        >
+      </div>
+      <!--end::Link-->
+    </div>
+    <!--end::Heading-->
+    <!--begin::Input group-->
+    <div class="row fv-row mb-7 fv-plugins-icon-container">
+      <!--begin::Col-->
+      <label class="form-label fw-bolder text-dark fs-6">Full Name</label>
       <input
+        class="form-control form-control-lg form-control-solid"
         type="text"
-        class="form-control"
-        placeholder="Full name"
+        placeholder=""
+        name="first-name"
+        autocomplete="off"
         v-model="form.fullName"
       />
-      <div class="input-group-append">
-        <div class="input-group-text">
-          <span class="fas fa-user"></span>
-        </div>
-      </div>
+      <div class="fv-plugins-message-container invalid-feedback"></div>
     </div>
-
-    <div class="input-group mt-3">
+    <!--end::Input group-->
+    <!--begin::Input group-->
+    <div class="fv-row mb-7 fv-plugins-icon-container">
+      <label class="form-label fw-bolder text-dark fs-6">Email</label>
       <input
-        type="text"
-        class="form-control"
-        placeholder="Email"
+        class="form-control form-control-lg form-control-solid"
+        type="email"
+        placeholder=""
+        name="email"
+        autocomplete="off"
         v-model="form.email"
       />
-      <div class="input-group-append">
-        <div class="input-group-text">
-          <span class="fas fa-envelope"></span>
-        </div>
-      </div>
+      <div class="fv-plugins-message-container invalid-feedback"></div>
     </div>
-
-    <div class="input-group mt-3">
-      <input
-        type="password"
-        class="form-control"
-        placeholder="Password"
-        v-model="form.password"
-      />
-      <div class="input-group-append">
-        <div class="input-group-text">
-          <span class="fas fa-lock"></span>
+    <!--end::Input group-->
+    <!--begin::Input group-->
+    <div
+      class="mb-10 fv-row fv-plugins-icon-container"
+      data-kt-password-meter="true"
+    >
+      <!--begin::Wrapper-->
+      <div class="mb-1">
+        <!--begin::Label-->
+        <label class="form-label fw-bolder text-dark fs-6">Password</label>
+        <!--end::Label-->
+        <!--begin::Input wrapper-->
+        <div class="position-relative mb-3">
+          <input
+            class="form-control form-control-lg form-control-solid"
+            type="password"
+            placeholder=""
+            name="password"
+            autocomplete="off"
+            v-model="form.password"
+          />
+          <span
+            class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2"
+            data-kt-password-meter-control="visibility"
+          >
+            <i class="bi bi-eye-slash fs-2"></i>
+            <i class="bi bi-eye fs-2 d-none"></i>
+          </span>
         </div>
+        <!--end::Input wrapper-->
       </div>
+      <!--end::Wrapper-->
+      <div class="fv-plugins-message-container invalid-feedback"></div>
     </div>
-
-    <div class="input-group mt-3">
+    <!--end::Input group=-->
+    <!--begin::Input group-->
+    <div class="fv-row mb-5 fv-plugins-icon-container">
+      <label class="form-label fw-bolder text-dark fs-6"
+        >Confirm Password</label
+      >
       <input
+        class="form-control form-control-lg form-control-solid"
         type="password"
-        class="form-control"
-        placeholder="Retype password"
+        placeholder=""
+        name="confirm-password"
+        autocomplete="off"
         v-model="form.password_confirmation"
       />
-      <div class="input-group-append">
-        <div class="input-group-text">
-          <span class="fas fa-lock"></span>
-        </div>
-      </div>
+      <div class="fv-plugins-message-container invalid-feedback"></div>
     </div>
-
-    <div class="row mt-3 my-3">
-      <div class="col-6 offset-3">
-        <button
-          v-if="!isLoading"
-          type="submit"
-          class="btn btn-primary btn-block"
-          :disabled="
-            !form.fullName ||
-              !form.email ||
-              !form.password ||
-              !form.password_confirmation
-          "
+    <!--end::Input group-->
+    <!--begin::Input group-->
+    <div class="fv-row mb-10 fv-plugins-icon-container">
+      <label
+        class="form-check form-check-custom form-check-solid form-check-inline"
+      >
+        <input class="form-check-input" type="checkbox" name="toc" value="1" />
+        <span class="form-check-label fw-bold text-gray-700 fs-6"
+          >I Agree
+          <a href="#" class="ms-1 link-primary">Terms and conditions</a>.</span
         >
-          Register
-        </button>
-        <button class="btn btn-primary btn-block" v-else disabled>
-          Registering...
-        </button>
-      </div>
-      <!-- /.col -->
+      </label>
+      <div class="fv-plugins-message-container invalid-feedback"></div>
     </div>
+    <!--end::Input group-->
+    <!--begin::Actions-->
+    <div class="text-center">
+      <button
+        v-if="!isLoading"
+        type="submit"
+        class="btn btn-primary btn-block"
+        :disabled="
+          !form.fullName ||
+            !form.email ||
+            !form.password ||
+            !form.password_confirmation
+        "
+      >
+        Register
+      </button>
+      <button class="btn btn-primary btn-block disabled" v-else>
+        Registering...
+      </button>
+    </div>
+    <!--end::Actions-->
+    <div></div>
   </form>
 </template>
 <script>
@@ -162,8 +219,10 @@ export default {
             }
           });
       }
-      this.isLoading = false;
-      this.isRegisterable = true;
+      setTimeout(() => {
+        this.isLoading = false;
+        this.isRegisterable = true;
+      }, 1000);
     },
   },
 };
