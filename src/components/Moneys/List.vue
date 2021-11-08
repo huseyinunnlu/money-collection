@@ -18,6 +18,7 @@
               class="btn btn-primary mb-3"
               data-toggle="modal"
               data-target="#add"
+              v-if="_User.role == 1 && IsAuth"
             >
               <i class="fas fa-plus"></i>Add Money
             </button>
@@ -195,6 +196,15 @@
               <Item v-for="money in _Moneys" :key="money.id" :money="money" />
             </tbody>
             <!--end::Table body-->
+            <div class="text-center">
+              <a
+                v-if="_Moneys.length < dataCount && !isLoading"
+                class="text-center text-primary my-3"
+                style="cursor:pointer;"
+                @click="page++, get()"
+                >Load more</a
+              >
+            </div>
           </table>
         </div>
       </div>
@@ -309,11 +319,11 @@ export default {
             }
             this.dataCount = res.data.data.total;
           } else {
-            this.$router.push({name:'Index'})
+            this.$router.push({ name: "Index" });
             this.$notify({
-              type:'error',
-              title:"Emission not found."
-            })
+              type: "error",
+              title: "Emission not found.",
+            });
           }
         })
         .catch(() => {

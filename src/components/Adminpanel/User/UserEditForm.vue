@@ -1,11 +1,11 @@
 <template>
   <form class="form-horizontal" @submit.prevent="updateUser()">
-    <div class="form-group row">
+    <div class="form-group my-2 row">
       <label for="fullName" class="col-sm-2 col-form-label">Full Name</label>
       <div class="col-sm-10">
         <input
           type="text"
-          class="form-control"
+          class="form-control form-control-solid"
           id="fullName"
           placeholder="Full Name"
           v-model="form.fullName"
@@ -19,12 +19,12 @@
     ></small>
     
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label for="email" class="col-sm-2 col-form-label">Email</label>
       <div class="col-sm-10">
         <input
           type="text"
-          class="form-control"
+          class="form-control form-control-solid"
           id="email"
           placeholder="Email"
           v-model="form.email"
@@ -37,10 +37,10 @@
       v-text="errors.email[0]"
     ></small>
 
-    <div class="form-group row">
+    <div class="form-group my-4 row">
       <label for="accType" class="col-sm-2 col-form-label">Account Role</label>
       <div class="col-sm-10">
-        <select id="accType" v-model="form.role" class="form-control">
+        <select id="accType" v-model="form.role" class="form-select form-select-solid">
           <option :value="'0'">User</option>
           <option :value="'1'">Admin</option>
         </select>
@@ -53,12 +53,11 @@
       v-text="errors.role[0]"
     ></small>
 
-    <div class="change-password my-3">
-      <div class="header my-5">
-        <h3 class="text-center">Change Password</h3>
-      </div>
+    <div class="change-password my-5">
+        <h3 class="my-5">Change Password</h3>
 
-      <div class="form-group row">
+
+      <div class="form-group my-4 row">
         <label for="password" class="col-sm-2 col-form-label"
           >Change Password</label
         >
