@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Money extends Model
 {
@@ -59,4 +60,5 @@ class Money extends Model
     {
         return $this->hasMany('App\Models\Collection'::class, 'moneyId');
     }
+
 }

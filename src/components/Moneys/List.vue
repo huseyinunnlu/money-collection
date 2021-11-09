@@ -1,6 +1,5 @@
 <template>
   <Add v-if="_IsAuth && _User.role == 1" />
-
   <div class="card">
     <!--begin::Card header-->
     <div
@@ -28,7 +27,6 @@
                   filterItems({
                     column: 'kuphur_id',
                     data: 'kuphur',
-                    emission_id: emission,
                     scwpm_id: scwpm,
                     kuphur_id: null,
                     serie_id: null,
@@ -52,7 +50,6 @@
                   filterItems({
                     column: 'serie_id',
                     data: 'serie',
-                    emission_id: emission,
                     scwpm_id: scwpm,
                     kuphur_id: kuphur,
                     serie_id: null,
@@ -76,7 +73,6 @@
                   filterItems({
                     column: 'tertip_id',
                     data: 'tertip',
-                    emission_id: emission,
                     scwpm_id: scwpm,
                     kuphur_id: kuphur,
                     serie_id: serie,
@@ -99,6 +95,7 @@
                 class="form-control"
                 :disabled="datas.tertip.length < 1"
                 v-model="tertip"
+                @change="get()"
               >
                 <option :value="null">Select Tertip</option>
 
@@ -109,12 +106,12 @@
                   >{{ tertip.tertip_id.title }}</option
                 >
               </select>
-              <select class="form-control" v-model="count" style="width:20px;">
+              <select class="form-control" v-model="count" style="width:20px;" @change="get()">
                 <option :value="null">Select data count</option>
                 <option :value="'5'">5</option>
                 <option :value="'15'">15</option>
               </select>
-              <select class="form-control" v-model="sort">
+              <select class="form-control" v-model="sort" @change="get()">
                 <option :value="'desc'">Creating Date DESC</option>
                 <option :value="'asc'">Creating Date ASC</option>
               </select>
@@ -122,18 +119,12 @@
                 class="form-control"
                 v-model="status"
                 v-if="_IsAuth && _User.role == 1"
+                @change="get()"
               >
                 <option :value="'1'">Active</option>
                 <option :value="'0'">Inactive</option>
               </select>
               <div class="input-group-append">
-                <button
-                  @click="(page = 1), get()"
-                  type="submit"
-                  class="btn btn-default"
-                >
-                  <i class="fas fa-search"></i>
-                </button>
                 <button
                   @click="(page = 1), reset(), get()"
                   type="submit"
@@ -143,7 +134,7 @@
                 </button>
               </div>
               <div class="form-check d-flex align-items-center">
-                <input id="show" type="checkbox" v-model="isCollection" />
+                <input id="show" type="checkbox" v-model="isCollection" @change="get()"/>
                 <label class="form-check-label" for="show">MyCollection</label>
               </div>
             </div>
@@ -226,7 +217,6 @@ export default {
   },
   data() {
     return {
-      emission: null,
       scwpm: null,
       kuphur: null,
       serie: null,
@@ -239,7 +229,6 @@ export default {
       dataCount: 0,
       isCollection: false,
       datas: {
-        emission: [],
         scwpm: [],
         kuphur: [],
         serie: [],
@@ -248,7 +237,6 @@ export default {
     };
   },
   created() {
-    this.get();
     this.filterItems({
       column: "scwpm_id",
       data: "scwpm",
@@ -260,7 +248,6 @@ export default {
   },
   methods: {
     reset() {
-      this.emission = null;
       this.scwpm = null;
       this.kuphur = null;
       this.serie = null;
@@ -270,15 +257,14 @@ export default {
       this.sort = "desc";
       this.isLoading = true;
       this.page = 1;
-      this.datas.emission = [];
       this.datas.scwpm = [];
       this.datas.kuphur = [];
       this.datas.serie = [];
       this.datas.tertip = [];
       this.filterItems({
-        column: "emission_id",
-        data: "emission",
-        emission_id: null,
+        column: "scwpm_id",
+        data: "scwpm",
+        emission_id: this.$route.query.ems_id,
         scwpm_id: null,
         kuphur_id: null,
         serie: null,
@@ -319,11 +305,11 @@ export default {
             }
             this.dataCount = res.data.data.total;
           } else {
-            this.$router.push({ name: "Index" });
             this.$notify({
               type: "error",
-              title: "Emission not found.",
+              title: "Money not found.",
             });
+            this.$store.state.Money.moneys = []
           }
         })
         .catch(() => {
@@ -346,7 +332,7 @@ export default {
             column: data.column,
             data: data.data,
             status: this.status,
-            emission_id: data.emission_id,
+            emission_id: this.$route.query.ems_id,
             scwpm_id: data.scwpm_id,
             kuphur_id: data.kuphur_id,
             serie_id: data.serie_id,
@@ -356,17 +342,29 @@ export default {
         .then((res) => {
           const data = res.data.data;
           const array = res.data.arrdata;
-          if (array == "emission") {
-            this.datas.emission = data;
-          } else if (array == "scwpm") {
+          if (array == "scwpm") {
             this.datas.scwpm = data;
+            this.kuphur = null;
+            this.serie = null;
+            this.tertip = null;
+            this.datas.kuphur = []
+            this.datas.serie = []
+            this.datas.tertip = []
           } else if (array == "kuphur") {
-            this.datas.kuphur = data;
+            this.datas.kuphur = data;   
+            this.kuphur = null
+            this.serie = null;
+            this.tertip = null;
+            this.datas.serie = []
+            this.datas.tertip = []
           } else if (array == "serie") {
             this.datas.serie = data;
+            this.tertip = null;
+            this.datas.tertip = []
           } else if (array == "tertip") {
             this.datas.tertip = data;
           }
+          this.get()
         });
     },
   },

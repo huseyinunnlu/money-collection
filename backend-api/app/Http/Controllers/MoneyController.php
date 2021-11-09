@@ -50,15 +50,7 @@ class MoneyController extends Controller
             "column" => "required",
         ]);
 
-        $collectedMoneys = [];
-        if ($request->isCollected == 1) {
-            $collected = Collection::where('userId', Auth::user()->id)->select('moneyId')->get();
-            foreach ($collected as $coll) {
-                array_push($collectedMoneys, $coll->moneyId);
-            }
-        }
-
-        $filter = Money::where(function ($query) use ($request, $collectedMoneys) {
+        $filter = Money::where(function ($query) use ($request) {
             if (Auth::user()->role == 1) {
                 if ($request->status) {
                     $query->where('status', $request->status);
@@ -67,6 +59,12 @@ class MoneyController extends Controller
                 $query->where('status', '1');
             }
             if ($request->isCollected == 1) {
+                $collectedMoneys = [];
+                $collected = Collection::where('userId', Auth::user()->id)->select('moneyId')->get();
+
+                foreach ($collected as $coll) {
+                    array_push($collectedMoneys, $coll->moneyId);
+                }
                 $query->whereIn('id', $collectedMoneys);
             }
             if ($request->emission_id) {
@@ -230,7 +228,6 @@ class MoneyController extends Controller
             })
             ->orderBy('created_at', $request->sort)
             ->paginate($request->count);
-
 
         if ($data) {
             return response()->json([
