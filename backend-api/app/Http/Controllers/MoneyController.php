@@ -46,10 +46,6 @@ class MoneyController extends Controller
 
     public function getFilters(Request $request)
     {
-        $request->validate([
-            "column" => "required",
-        ]);
-
         $filter = Money::where(function ($query) use ($request) {
             if (Auth::user()->role == 1) {
                 if ($request->status) {
@@ -70,14 +66,17 @@ class MoneyController extends Controller
             if ($request->emission_id) {
                 $query->where('emission_id', $request->emission_id);
             }
-            if ($request->scwpm_id) {
-                $query->where('scwpm_id', $request->scwpm_id);
+            if ($request->scwpm) {
+                $query->whereIn('scwpm_id', $request->scwpm);
             }
-            if ($request->kuphur_id) {
-                $query->where('kuphur_id', $request->kuphur_id);
+            if ($request->kuphur) {
+                $query->whereIn('kuphur_id', $request->kuphur);
             }
-            if ($request->serie_id) {
-                $query->where('serie_id', $request->serie_id);
+            if ($request->serie) {
+                $query->whereIn('serie_id', $request->serie);
+            }
+            if ($request->tertip) {
+                $query->whereIn('tertip_id', $request->tertip);
             }
         })
             ->with($request->column)
@@ -89,6 +88,7 @@ class MoneyController extends Controller
             "column" => $request->column,
             "arrdata" => $request->data,
             "data" => $filter,
+            "request" => $request->query,
         ], 200);
     }
 
@@ -189,8 +189,28 @@ class MoneyController extends Controller
 
     public function get(Request $request)
     {
+        $arrays = [
+            "scwpm_id" => [
+                "column" => "scwpm_id",
+                "data" => $request->scwpm_id,
+            ],
+            "kuphur_id" => [
+                "column" => "kuphur_id",
+                "data" => $request->kuphur_id,
+            ],
+            "serie_id" => [
+                "column" => "serie_id",
+                "data" => $request->serie_id,
+            ],
+            "terip_id" => [
+                "column" => "terip_id",
+                "data" => $request->terip_id,
+            ],
+        ];
+
         $data = Money::with('collection', 'emission_id', 'scwpm_id', 'kuphur_id', 'serie_id', 'tertip_id', 'print_place_id', 'signature.name')
-            ->where(function ($query) use ($request) {
+            ->where('emission_id', $request->emission_id)
+            ->where(function ($query) use ($request, $arrays) {
                 if (Auth::user()->role == 1) {
                     if ($request->status) {
                         $query->where('status', $request->status);
@@ -210,23 +230,13 @@ class MoneyController extends Controller
                     $query->whereIn('id', $collectedMoneys);
                 }
 
-                if ($request->emission_id) {
-                    $query->where('emission_id', $request->emission_id);
-                }
-                if ($request->scwpm_id) {
-                    $query->where('scwpm_id', $request->scwpm_id);
-                }
-                if ($request->kuphur_id) {
-                    $query->where('kuphur_id', $request->kuphur_id);
-                }
-                if ($request->serie_id) {
-                    $query->where('serie_id', $request->serie_id);
-                }
-                if ($request->tertip_id) {
-                    $query->where('tertip_id', $request->tertip_id);
+                foreach ($arrays as $item) {
+                    if (gettype($item['data']) == "array" && count($item['data']) > 0) {
+                        $query->whereIn($item['column'], $item['data']);
+                    }
                 }
             })
-            ->orderBy('created_at', $request->sort)
+            ->orderBy('created_at', $request->order)
             ->paginate($request->count);
 
         if ($data) {
