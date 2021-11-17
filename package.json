@@ -18,6 +18,7 @@
     "vue-axios": "^3.3.7",
     "vue-next-select": "^2.10.1",
     "vue-router": "^4.0.0-0",
+    "vue3-carousel": "^0.1.30",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {

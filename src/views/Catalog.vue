@@ -15,7 +15,15 @@
           <div class="content flex-row-fluid" id="kt_content">
             <!--begin::Row-->
             <div
-              class="row gy-5 g-xl-8 d-flex align-items-center mt-lg-0 mb-10 mb-lg-15"
+              class="
+                row
+                gy-5
+                g-xl-8
+                d-flex
+                align-items-center
+                mt-lg-0
+                mb-10 mb-lg-15
+              "
             >
               <div class="row gy-5 g-xl-8">
                 <!--begin::Col-->
@@ -120,7 +128,7 @@
             <!--begin::Row-->
             <div class="row gy-5 my-4 g-xl-8">
               <!--begin::Col-->
-              <LastCollections/>
+              <LastCollections />
               <!--end::Col-->
             </div>
             <!--end::Row-->
@@ -152,42 +160,6 @@ export default {
     Footer,
     LastCollections,
     CatalogBody,
-  },
-  data() {
-    return {
-      emission_id: null,
-      datas: {
-        emission: [],
-      },
-    };
-  },
-  created() {
-    
-  },
-  methods: {
-    filterItems(data) {
-      let iscollect = 0;
-      this.$appAxios
-        .get("/moneyfilter", {
-          params: {
-            column: data.column,
-            data: data.data,
-            status: 1,
-            emission_id: data.emission_id,
-            scwpm_id: null,
-            kuphur_id: null,
-            serie_id: null,
-            isCollected: iscollect,
-          },
-        })
-        .then((res) => {
-          const data = res.data.data;
-          const array = res.data.arrdata;
-          if (array == "emission") {
-            this.datas.emission = data;
-          }
-        });
-    },
   },
 };
 </script>

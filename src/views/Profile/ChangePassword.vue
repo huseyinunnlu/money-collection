@@ -9,7 +9,6 @@
           id="kt_content_container"
           class="d-flex flex-column-fluid align-items-start container-xxl"
         >
-          <Sidebar />
           <div class="content flex-row-fluid" id="kt_content">
             <!--begin::Row-->
             <UserNavbar :slug="_User.slug" class="my-3" />
@@ -24,7 +23,6 @@
 </template>
 <script>
 import Navbar from "@/components/Header/Navbar.vue";
-import Sidebar from "@/components/Sidebar/Sidebar.vue";
 import Footer from "@/components/Header/Footer.vue";
 import UserProfile from "@/components/Profile/UserProfile.vue";
 import UserNavbar from "@/components/Profile/UserNavbar.vue";
@@ -33,7 +31,6 @@ import {mapGetters} from "vuex"
 export default {
   components: {
     Navbar,
-    Sidebar,
     Footer,
     UserProfile,
     UserNavbar,

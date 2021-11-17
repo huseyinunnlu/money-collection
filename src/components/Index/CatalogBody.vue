@@ -9,17 +9,7 @@
       </a>
       <a
         class="btn btn-outline btn-nav ms-2"
-        @click="
-          (trShow = !trShow),
-            filterItems({
-              column: 'emission_id',
-              data: 'emission',
-              emission_id: null,
-              scwpm_id: null,
-              kuphur_id: null,
-              serie: null,
-            })
-        "
+        @click="(trShow = !trShow), filterItems()"
       >
         Türkiye Cumhuriyeti Kağıt Paralar
       </a>
@@ -66,21 +56,17 @@ export default {
   },
   created() {},
   methods: {
-    filterItems(data) {
+    filterItems() {
       if (this.datas.emission.length == 0) {
         this.isLoading = true;
-        let iscollect = 0;
         this.$appAxios
-          .get("/moneyfilter", {
-            params: {
-              column: data.column,
-              data: data.data,
-              status: 1,
-              emission_id: data.emission_id,
-              scwpm_id: null,
-              kuphur_id: null,
-              serie_id: null,
-              isCollected: iscollect,
+          .post("/moneyfilter", {
+            column: "emission_id",
+            data: "emission",
+            filter: {
+              isCollection: false,
+              arrays: {},
+              status:'1',
             },
           })
           .then((res) => {

@@ -51,13 +51,16 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('/timeline', [ProfileController::class, 'getTimeline']);
 
     //Money routes
-    Route::get('/moneys/get', [MoneyController::class, 'get']);
-    Route::post('/collection/add', [CollectionController::class, 'add']);
-    Route::post('/collection/delete', [CollectionController::class, 'delete']);
-    Route::get('/moneyfilter', [MoneyController::class, 'getFilters']);
-
+    Route::post('/moneys/get', [MoneyController::class, 'get']);
+    Route::post('/moneyfilter', [MoneyController::class, 'getFilters']);
     //Get selected money
     Route::get('/money/{id}/get', [MoneyController::class, 'getMoney']);
+
+    //Collection
+    Route::get('/money/{id}/mycollection', [CollectionController::class, 'get']);
+    Route::post('/collection/add', [CollectionController::class, 'add']);
+    Route::post('/collection/delete', [CollectionController::class, 'delete']);
+
 
     //admin routes
     Route::middleware(['isAdmin'])->group(function () {

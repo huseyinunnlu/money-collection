@@ -9,7 +9,7 @@ class Collection extends Model
 {
     use HasFactory;
     protected $table = 'collections';
-    protected $fillable = ['userId','moneyId'];
+    protected $fillable = ['userId','moneyId','uniqueSerie','price','date','purchasedPerson'];
 
     public function user()
     {
@@ -20,4 +20,11 @@ class Collection extends Model
     {
         return $this->hasOne('App\Models\Money'::class, 'id','moneyId');
     }
+
+    public function images()
+    {
+        return $this->hasMany('App\Models\CollectionImage'::class, 'collection_id');
+    }
+
+
 }

@@ -54,20 +54,11 @@
             </a>
           </div>
           <div class="menu-item px-3">
-            <a
+            <router-link
+              :to="{name:'MyCollection',params:{id:money.id}}"
               class="menu-link px-3"
-              :disabled="buttonIsLoading"
-              @click="addCollection()"
-              v-if="!isCollected && money.status == 1"
-            >Add Coll.
-            </a>
-            <a
-              class="menu-link px-3"
-              @click="deleteCollection()"
-              :disabled="buttonIsLoading"
-              v-if="isCollected && money.status == 1"
-            >Del. Coll.
-            </a>
+            >Collection Details
+            </router-link>
           </div>
         </div>
       </div>

@@ -17,6 +17,10 @@ class CreateCollectionsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('userId');
             $table->unsignedBigInteger('moneyId');
+            $table->string('uniqueSerie');
+            $table->string('purchasedPerson')->nullable();
+            $table->string('price')->nullable();
+            $table->date('date');
             $table->timestamps();
             $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('moneyId')->references('id')->on('money')->onDelete('cascade');

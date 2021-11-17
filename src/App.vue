@@ -5,7 +5,7 @@
 ></style>
 <template>
   <body
-    class="page-bg header-fixed header-tablet-and-mobile-fixed aside-enabled"
+    class="page-bg header-fixed header-tablet-and-mobile-fixed aside-disabled"
   >
     <MainLoader v-if="isLoading" />
     <router-view v-else :key="$route.fullPath" />

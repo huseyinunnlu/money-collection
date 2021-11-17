@@ -63,7 +63,7 @@
                   <div class="form-group my-3 row">
                     <vue-select
                       class="form-control form-control-solid w-100"
-                      v-model="filter.arrays.scwpm"
+                      v-model="filter.arrays.scwpm_id.data"
                       :options="datas.scwpm"
                       :multiple="true"
                       :taggable="true"
@@ -75,7 +75,7 @@
                   <div class="form-group my-3 row">
                     <vue-select
                       class="form-control form-control-solid w-100"
-                      v-model="filter.arrays.kuphur"
+                      v-model="filter.arrays.kuphur_id.data"
                       :options="datas.kuphur"
                       :disabled="datas.kuphur.length < 1"
                       label-by="kuphur_id.title"
@@ -88,7 +88,7 @@
                   <div class="form-group my-3 row">
                     <vue-select
                       class="form-control form-control-solid w-100"
-                      v-model="filter.arrays.serie"
+                      v-model="filter.arrays.serie_id.data"
                       :options="datas.serie"
                       label-by="serie_id.title"
                       value-by="serie_id.id"
@@ -101,7 +101,7 @@
                   <div class="form-group my-3 row">
                     <vue-select
                       class="form-control form-control-solid w-100"
-                      v-model="filter.arrays.tertip"
+                      v-model="filter.arrays.tertip_id.data"
                       :options="datas.tertip"
                       :disabled="datas.tertip.length < 1"
                       label-by="tertip_id.title"
@@ -278,13 +278,25 @@ export default {
     return {
       filter: {
         arrays: {
-          scwpm: [],
-          kuphur: [],
-          serie: [],
-          tertip: [],
+          scwpm_id: {
+            column: "scwpm_id",
+            data: [],
+          },
+          kuphur_id: {
+            column: "kuphur_id",
+            data: [],
+          },
+          serie_id: {
+            column: "serie_id",
+            data: [],
+          },
+          tertip_id: {
+            column: "tertip_id",
+            data: [],
+          },
         },
         order: "desc",
-        status: 1,
+        status: '1',
         count: 15,
         isCollection: false,
       },
@@ -307,15 +319,11 @@ export default {
     });
   },
   watch: {
-    "filter.arrays.scwpm"(val) {
+    "filter.arrays.scwpm_id.data"(val) {
       if (val.length > 0) {
         this.filterItems({
           column: "kuphur_id",
           data: "kuphur",
-          scwpm: this.filter.arrays.scwpm,
-          kuphur: [],
-          serie: [],
-          tertip: [],
         });
       } else {
         this.datas.kuphur = [];
@@ -324,15 +332,11 @@ export default {
         this.get();
       }
     },
-    "filter.arrays.kuphur"(val) {
+    "filter.arrays.kuphur_id.data"(val) {
       if (val.length > 0) {
         this.filterItems({
           column: "serie_id",
           data: "serie",
-          scwpm: this.filter.arrays.scwpm,
-          kuphur: this.filter.arrays.kuphur,
-          serie: [],
-          tertip: [],
         });
       } else {
         this.datas.serie = [];
@@ -340,22 +344,18 @@ export default {
         this.get();
       }
     },
-    "filter.arrays.serie"(val) {
+    "filter.arrays.serie_id.data"(val) {
       if (val.length > 0) {
         this.filterItems({
           column: "tertip_id",
           data: "tertip",
-          scwpm: this.filter.arrays.scwpm,
-          kuphur: this.filter.arrays.kuphur,
-          serie: this.filter.arrays.serie,
-          tertip: [],
         });
       } else {
         this.datas.tertip = [];
         this.get();
       }
     },
-    "filter.arrays.tertip"() {
+    "filter.arrays.tertip_id.data"() {
       this.get();
     },
   },
@@ -366,30 +366,23 @@ export default {
       datas.kuphur = [];
       datas.serie = [];
       datas.tertip = [];
-      filter.scwpm = [];
-      filter.kuphur = [];
-      filter.serie = [];
-      filter.tertip = [];
+      filter.scwpm_id.data = [];
+      filter.kuphur_id.data = [];
+      filter.serie_id.data = [];
+      filter.tertip_id.data = [];
       this.filter.count = "15";
       this.filter.order = "desc";
       this.filter.status = "1";
       this.filter.isCollection = false;
-      this.get()
+      this.get();
     },
     filterItems(data) {
-      let filter = this.filter;
       this.$appAxios
-        .get("/moneyfilter", {
-          params: {
-            column: data.column,
-            data: data.data,
-            emission_id: this.$route.query.ems_id,
-            scwpm: data.scwpm,
-            kuphur: data.kuphur,
-            serie: data.serie,
-            tertip: data.tertip,
-            status: filter.status,
-          },
+        .post("/moneyfilter", {
+          column: data.column,
+          data: data.data,
+          emission_id: this.$route.query.ems_id,
+          filter: this.filter,
         })
         .then((res) => {
           const data = res.data.data;
@@ -417,21 +410,11 @@ export default {
         this.$router.push({ name: "Catalog" });
       }
       this.isLoading = true;
-      let filter = this.filter;
       this.$appAxios
-        .get("moneys/get", {
-          params: {
-            page: this.page,
-            emission_id: this.$route.query.ems_id,
-            scwpm_id: filter.arrays.scwpm,
-            kuphur_id: filter.arrays.kuphur,
-            serie_id: filter.arrays.serie,
-            tertip_id: filter.arrays.tertip,
-            order: filter.order,
-            status: filter.status,
-            count: filter.count,
-            isCollection: filter.isCollection,
-          },
+        .post("moneys/get", {
+          page: this.page,
+          emission_id: this.$route.query.ems_id,
+          filter: this.filter,
         })
         .then((res) => {
           if (res.data.data.data.length > 0) {

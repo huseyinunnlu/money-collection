@@ -10,7 +10,6 @@
           id="kt_content_container"
           class="d-flex flex-column-fluid align-items-start container-xxl"
         >
-          <Sidebar />
           <!--begin::Post-->
           <div class="content flex-row-fluid" id="kt_content">
             <!--begin::Row-->
@@ -33,14 +32,12 @@
 </template>
 <script>
 import Navbar from "@/components/Header/Navbar.vue";
-import Sidebar from "@/components/Sidebar/Sidebar.vue";
 import Footer from "@/components/Header/Footer.vue";
 import Edit from "@/components/Moneys/Edit.vue";
 
 export default {
   components: {
     Navbar,
-    Sidebar,
     Footer,
     Edit,
   },
