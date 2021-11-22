@@ -57,7 +57,7 @@
             <router-link
               :to="{name:'MyCollection',params:{id:money.id}}"
               class="menu-link px-3"
-            >Collection Details
+            >Collection Details({{money.isCollected}})
             </router-link>
           </div>
         </div>

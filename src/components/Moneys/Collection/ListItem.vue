@@ -4,12 +4,16 @@
     <td>{{ item.id }}</td>
     <td>
       <a
+        v-if="item.images.length > 0"
         class="text-primary"
         role="button"
         data-toggle="modal"
         :data-target="'#exampleModal' + item.id"
-        >See Photos({{ item.images.length }})</a
+        >Fotoğraflar({{ item.images.length }})</a
       >
+      <span v-else>
+        Fotoğraf Yok
+      </span>
     </td>
     <td>{{ item.uniqueSerie }}</td>
     <td>
@@ -50,14 +54,13 @@
           "
           aria-labelledby="dropdownMenuButton"
         >
-          <!-- <div class="menu-item px-3">
+          <div class="menu-item px-3">
             <router-link
-              v-if="_IsAuth && _User.role == 1"
-              :to="{ name: 'AdminMoneyEdit', params: { id: money.id } }"
+              :to="{ name: 'CollectionEdit', params: { id: item.id } }"
               class="menu-link px-3"
               ><i class="fas fa-pen mx-2"></i> Edit</router-link
             >
-          </div> -->
+          </div>
           <!-- <div class="menu-item px-3">
             <router-link
               :to="{ name: 'MoneyShow', params: { id: money.id } }"

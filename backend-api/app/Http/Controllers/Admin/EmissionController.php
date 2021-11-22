@@ -30,7 +30,7 @@ class EmissionController extends Controller
     {
 
         $request->validate([
-            'title' => 'required|max:255',
+            'title' => 'required|max:255|unique:emissions,title',
             'status' => 'required'
         ]);
 

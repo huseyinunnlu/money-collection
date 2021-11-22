@@ -9,7 +9,7 @@
       </a>
       <a
         class="btn btn-outline btn-nav ms-2"
-        @click="(trShow = !trShow), filterItems()"
+        @click="(trShow = !trShow), getEmissions()"
       >
         Türkiye Cumhuriyeti Kağıt Paralar
       </a>
@@ -30,7 +30,7 @@
     <CatalogItem
       v-else
       v-for="item in datas.emission"
-      :key="item.emission_id.id"
+      :key="item.id"
       :item="item"
     />
     <!--end::Col-->
@@ -56,25 +56,13 @@ export default {
   },
   created() {},
   methods: {
-    filterItems() {
+    getEmissions() {
       if (this.datas.emission.length == 0) {
         this.isLoading = true;
         this.$appAxios
-          .post("/moneyfilter", {
-            column: "emission_id",
-            data: "emission",
-            filter: {
-              isCollection: false,
-              arrays: {},
-              status:'1',
-            },
-          })
+          .post("/getcatalog")
           .then((res) => {
-            const data = res.data.data;
-            const array = res.data.arrdata;
-            if (array == "emission") {
-              this.datas.emission = data;
-            }
+            this.datas.emission = res.data.data
           })
           .finally(() => {
             this.isLoading = false;

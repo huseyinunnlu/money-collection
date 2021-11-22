@@ -60,6 +60,49 @@ class CollectionController extends Controller
         ],500);
     }
 
+    public function update(Request $request)
+    {
+        $request->validate([
+            "moneyId" => "required",
+            "id" => "required",
+            "images" => "array|max:4",
+            "uniqueSerie" => "required|not_in:null",
+            "purchasedPerson" => "nullable",
+            "price" => "nullable",
+            "date" => "required|date|before:" . date('Y-m-d', strtotime('+1 days')),
+        ]);
+
+        $data = Collection::whereId($request->id)->where('userId',Auth::user()->id)->first()->update([
+            "uniqueSerie" => $request->uniqueSerie,
+            "purchasedPerson" => $request->purchasedPerson,
+            "price" => $request->price,
+            "date" => $request->date,
+        ]);
+        if ($data && $request->hasFile('images')) {
+            foreach ($request->images as $image) {
+                $validator = Validator::make(
+                    ['image' => $image],
+                    ['image' => 'file|required|max:2048|mimes:jpg,jpeg,png,bmp'],
+                );
+                $filename = $image->store('public');
+                $img = CollectionImage::create([
+                    'collection_id' => $request->id,
+                    'image' => env('APP_URL') . $filename,
+                ]);
+            }
+        }
+        if ($data) {
+            return response()->json([
+                "status" => 200,
+                "message" => "Collection updated successfully",
+            ],200);
+        }
+        return response()->json([
+            "status" => 500,
+            "message" => "Collection didn't updated"
+        ],500);
+    }
+
     public function get($id)
     {
         $data = Collection::where('moneyId',$id)->where('userId',Auth::user()->id)->with('images')->paginate(15);
@@ -75,6 +118,23 @@ class CollectionController extends Controller
             "data" => [],
             "message" => "Collection not found",
         ],500);
+    }
+
+    public function getCollection($id)
+    {
+        $data = Collection::whereId($id)->where('userId',Auth::user()->id)->with('images')->first();
+
+        if($data) {
+            return response()->json([
+                "status" => "200",
+                "data" => $data,
+            ], 200);
+        }
+        return response()->json([
+            "status" => "500",
+            "message" => "Collection not found.",
+        ], 500);
+
     }
 
     public function delete(Request $request)
@@ -94,6 +154,26 @@ class CollectionController extends Controller
         return response()->json([
             'status' => '500',
             "message" => "Money didn't deleted to your collection",
+        ], 500);
+    }
+
+    public function deleteImg(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+        ]);
+
+        $data = CollectionImage::whereId($request->id)->first()->delete();
+
+        if ($data) {
+            return response()->json([
+                'status' => '200',
+                "message" => "Image successfully deleted",
+            ], 200);
+        }
+        return response()->json([
+            'status' => '500',
+            "message" => "Image didn't deleted",
         ], 500);
     }
 

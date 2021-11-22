@@ -21,7 +21,7 @@
     <td>
       <span class="text-muted fw-bold d-block fs-7"
         >{{ item.money.emission_id.title }} - ({{
-          item.money.serie_id.title
+          item.uniqueSerie
         }})</span
       >
       <span class="text-dark fw-bolder d-block fs-5">{{

@@ -7,6 +7,13 @@
   <body
     class="page-bg header-fixed header-tablet-and-mobile-fixed aside-disabled"
   >
+    <!-- <p>{{ $t("message") }}</p>
+
+    <select v-model="$i18n.locale">
+      <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">
+        {{ lang }}
+      </option>
+    </select> -->
     <MainLoader v-if="isLoading" />
     <router-view v-else :key="$route.fullPath" />
     <notifications
@@ -25,6 +32,7 @@ export default {
   data() {
     return {
       isLoading: false,
+      // langs: ['tr', 'en']
     };
   },
   created() {

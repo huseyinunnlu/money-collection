@@ -128,7 +128,7 @@ class ProfileController extends Controller
             $percent = 0;
         }
 
-        $collection = Collection::with('user','money')
+        $collection = Collection::with('user','money.emission_id','money.kuphur_id')
         ->where('userId',$request->id)
         ->orderBy('created_at','desc')
         ->get()

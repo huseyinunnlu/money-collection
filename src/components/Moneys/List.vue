@@ -149,10 +149,17 @@
                   <div class="separator border-gray-200"></div>
                   <!--end::Separator-->
                   <!--begin::Footer-->
-                  <div class="px-7 py-5">
+                  <div class="py-5">
                     <div
                       class="form-group-row d-flex justify-content-between my-4"
                     >
+                      <button
+                        @click="(page = 1), reset()"
+                        type="button"
+                        class="btn btn-primary"
+                      >
+                        Reset
+                      </button>
                       <div
                         class="
                           form-check form-check-solid
@@ -177,14 +184,6 @@
                 <!--end::Content-->
               </form>
             </div>
-
-            <button
-              @click="(page = 1), reset()"
-              type="button"
-              class="btn btn-primary mx-4"
-            >
-              Reset
-            </button>
           </div>
         </div>
         <!--end::Toolbar-->
@@ -296,7 +295,7 @@ export default {
           },
         },
         order: "desc",
-        status: '1',
+        status: "1",
         count: 15,
         isCollection: false,
       },

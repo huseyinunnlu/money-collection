@@ -187,6 +187,11 @@ const routes = [
     name: "MyCollection",
     component: () => import("../views/Moneys/Collection/List.vue"),
   },
+  {
+    path: "/mycollection/:id/edit",
+    name: "CollectionEdit",
+    component: () => import("../views/Moneys/Collection/Edit.vue"),
+  },
 
   //finish
 ];

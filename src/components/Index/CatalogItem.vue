@@ -4,14 +4,14 @@
     >
       <!--begin::Card-->
       <router-link
-        :to="{ name: 'Money', query: { ems_id: item.emission_id.id } }"
+        :to="{ name: 'Money', query: { ems_id: item.id } }"
         class="card card-xl-stretch mb-5 mb-xl-8"
       >
         <!--begin::Card body-->
         <div class="card-body d-flex flex-column flex-stack pb-0 px-0">
           <!--begin::Title-->
           <div class="text-dark fs-2 text-left mb-10 fw-bolder card-px">
-            {{ item.emission_id.title }}
+            {{ item.title }}
           </div>
           <!--end::Title-->
           <!--begin::Illustration-->

@@ -28,7 +28,7 @@ class SCWPMController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|max:255',
+            'title' => 'required|max:255|unique:scwpms,title',
             'status' => 'required'
         ]);
 

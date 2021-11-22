@@ -16,6 +16,7 @@
     "moment": "^2.29.1",
     "vue": "^3.0.0",
     "vue-axios": "^3.3.7",
+    "vue-i18n": "^9.2.0-beta.20",
     "vue-next-select": "^2.10.1",
     "vue-router": "^4.0.0-0",
     "vue3-carousel": "^0.1.30",

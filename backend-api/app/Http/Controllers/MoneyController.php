@@ -86,6 +86,24 @@ class MoneyController extends Controller
         ], 200);
     }
 
+    public function catalog()
+    {
+        $data = Emission::where('status','1')->get();
+
+        if($data) {
+            return response()->json([
+                'status' => '200',
+                'data' => $data,
+            ],200);
+        }
+
+        return response()->json([
+            'status' => '500',
+            'message' => "Emisyonlar bulunamadı",
+        ],500);
+
+    }
+
     public function add(Request $request)
     {
 
@@ -118,22 +136,10 @@ class MoneyController extends Controller
 
         if ($request->hasFile('frontImage') && $request->hasFile('backImage')) {
 
-            $key = '';
-            $keys = array_merge(range('a', 'z'), range('A', 'Z'), range('0', '9'));
-            for ($i = 0; $i <= 25; $i++) {
-                $key .= $keys[array_rand($keys)];
-            }
-            $frontImageName = env('APP_URL') . "uploads/" . $key . $request->frontImage->getClientOriginalName();
-            $request->frontImage->move(public_path('uploads'), $frontImageName);
-
-            $key = '';
-            $keys = array_merge(range('a', 'z'), range('A', 'Z'), range('0', '9'));
-            for ($i = 0; $i <= 25; $i++) {
-                $key .= $keys[array_rand($keys)];
-            }
-            $backImageName = env('APP_URL') . "uploads/" . $key . $request->backImage->getClientOriginalName();
-            $request->backImage->move(public_path('uploads'), $backImageName);
+            $frontImageName = $request->frontImage->store('public');
+            $backImageName = $request->backImage->store('public');
         }
+
 
         $moneyData = Money::create([
             "emission_id" => $request->emissionId,
@@ -157,8 +163,8 @@ class MoneyController extends Controller
             "link" => $request->link,
             "desc" => $request->desc,
             "status" => $request->status,
-            "frontImage" => $frontImageName,
-            "backImage" => $backImageName,
+            "frontImage" => env('APP_URL') . $frontImageName,
+            "backImage" => env('APP_URL') . $backImageName,
         ]);
 
         if ($moneyData) {
@@ -293,30 +299,18 @@ class MoneyController extends Controller
             $request->validate([
                 "frontImage" => "required|file|mimes:jpg,jpeg,png|max:2048",
             ]);
-            $key = '';
-            $keys = array_merge(range('a', 'z'), range('A', 'Z'), range('0', '9'));
-            for ($i = 0; $i <= 25; $i++) {
-                $key .= $keys[array_rand($keys)];
-            }
-            $frontImageName = env('APP_URL') . "uploads/" . $key . $request->frontImage->getClientOriginalName();
-            $request->frontImage->move(public_path('uploads'), $frontImageName);
+            $frontImageName = $request->frontImage->store('public');
             Money::whereId($id)->first()->update([
-                'frontImage' => $frontImageName,
+                'frontImage' => env('APP_URL') . $frontImageName,
             ]);
         }
         if ($request->hasFile('backImage')) {
             $request->validate([
                 "backImage" => "required|file|mimes:jpg,jpeg,png|max:2048",
             ]);
-            $key = '';
-            $keys = array_merge(range('a', 'z'), range('A', 'Z'), range('0', '9'));
-            for ($i = 0; $i <= 25; $i++) {
-                $key .= $keys[array_rand($keys)];
-            }
-            $backImageName = env('APP_URL') . "uploads/" . $key . $request->backImage->getClientOriginalName();
-            $request->backImage->move(public_path('uploads'), $backImageName);
+            $backImageName = $request->backImage->store('public');
             Money::whereId($id)->first()->update([
-                'backImage' => $backImageName,
+                'backImage' => env('APP_URL') . $backImageName,
             ]);
         }
 

@@ -14,7 +14,9 @@ use App\Http\Controllers\Admin\TertipController;
 use App\Http\Controllers\Admin\SerieController;
 use App\Http\Controllers\Admin\SignatureController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\Lang\LangController;
 use App\Http\Controllers\MoneyController;
+use App\Models\Serie;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,10 +28,22 @@ use App\Http\Controllers\MoneyController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+// Route::get('/lang', [LangController::class, 'lang'])->middleware('localization');
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/login', [LoginController::class, 'login']);
-
+// Route::get('/return', function () {
+//     $text = "A001-A654,B001-B999,C001-C999,D001-D999,E001-E999,A001-A733,B001-B999,C001-C999,D001-D999,E001-E999,A001-A746,B001-B999,C001-C999,D001-D999,E001-E999,A001-A772,B001-B999,C001-C999,D001-D999,E001-E999,A001-A631,B001-B999,C001-C999,D001-D999,E001-E999,F001-F999,A001-A161,B001-B999,C001-C999,D001-D999,E001-E999";
+//     $imploded = explode(",", $text);
+//     foreach ($imploded as $item) {
+//         $data = Serie::where('title', $item)->first();
+//         if (!$data) {
+//             Serie::create([
+//                 'title' => $item,
+//                 'status' => '1',
+//             ]);
+//         }
+//     }
+// });
 Route::middleware(['auth:api'])->group(function () {
     Route::middleware('auth:api')->get('/user', function (Request $request) {
         return $request->user();
@@ -53,6 +67,7 @@ Route::middleware(['auth:api'])->group(function () {
     //Money routes
     Route::post('/moneys/get', [MoneyController::class, 'get']);
     Route::post('/moneyfilter', [MoneyController::class, 'getFilters']);
+    Route::post('/getcatalog', [MoneyController::class, 'catalog']);
     //Get selected money
     Route::get('/money/{id}/get', [MoneyController::class, 'getMoney']);
 
@@ -60,6 +75,9 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('/money/{id}/mycollection', [CollectionController::class, 'get']);
     Route::post('/collection/add', [CollectionController::class, 'add']);
     Route::post('/collection/delete', [CollectionController::class, 'delete']);
+    Route::get('/mycollection/{id}/get', [CollectionController::class, 'getCollection']);
+    Route::post('/deletecollectionimage', [CollectionController::class, 'deleteImg']);
+    Route::post('/updatecollection', [CollectionController::class, 'update']);
 
 
     //admin routes

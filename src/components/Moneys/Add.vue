@@ -1,5 +1,11 @@
 <script>
+import VueSelect from "vue-next-select";
+import "vue-next-select/dist/index.min.css";
+
 export default {
+  components:{
+    'vue-select' : VueSelect,
+  },
   data() {
     return {
       form: {
@@ -182,7 +188,7 @@ export default {
             class="fas fa-times close"
             data-dismiss="modal"
             aria-label="Close"
-            style="cursor: pointer;"
+            style="cursor: pointer"
           >
           </i>
         </div>
@@ -191,15 +197,18 @@ export default {
             <div class="form-group my-4 row">
               <label class="col-sm-2 col-form-label">Emission</label>
               <div class="col-sm-10">
-                <select class="form-select form-select-solid mb-3 mb-lg-0" v-model="form.emissionId">
-                  <option :value="null">-Select-</option>
-                  <option
-                    v-for="ems in datas.emission"
-                    :key="ems.id"
-                    :value="ems.id"
-                    v-text="ems.title"
-                  ></option>
-                </select>
+                <vue-select
+                  class="form-control form-control-solid w-100"
+                  style="background-color:white;"
+                  v-model="form.emissionId"
+                  :options="datas.emission"
+                  :disabled="datas.emission.length < 1"
+                  close-on-select
+                  label-by="title"
+                  value-by="id"
+                  :collapse-tags="true"	
+                  :searchable="true"
+                ></vue-select>
                 <small
                   class="text-danger"
                   v-if="errors.emissionId"
@@ -211,15 +220,18 @@ export default {
             <div class="form-group my-4 row">
               <label class="col-sm-2 col-form-label">SCWPM</label>
               <div class="col-sm-10">
-                <select class="form-select form-select-solid mb-lg-0" v-model="form.scwpmId">
-                  <option :value="null">-Select-</option>
-                  <option
-                    v-for="scwpm in datas.scwpm"
-                    :key="scwpm.id"
-                    :value="scwpm.id"
-                    v-text="scwpm.title"
-                  ></option>
-                </select>
+                <vue-select
+                  class="form-control form-control-solid w-100"
+                  style="background-color:white;"
+                  v-model="form.scwpmId"
+                  :options="datas.scwpm"
+                  :disabled="datas.scwpm.length < 1"
+                  close-on-select
+                  label-by="title"
+                  value-by="id"
+                  :collapse-tags="true"	
+                  :searchable="true"
+                ></vue-select>
                 <small
                   class="text-danger"
                   v-if="errors.scwpmId"
@@ -231,14 +243,18 @@ export default {
             <div class="form-group my-4 row">
               <label class="col-sm-2 col-form-label">Kuphür</label>
               <div class="col-sm-10">
-                <select class="form-select form-select-solid mb-lg-0" v-model="form.kuphurId">
-                  <option
-                    v-for="kuphur in datas.kuphur"
-                    :key="kuphur.id"
-                    :value="kuphur.id"
-                    v-text="kuphur.title"
-                  ></option>
-                </select>
+                <vue-select
+                  class="form-control form-control-solid w-100"
+                  style="background-color:white;"
+                  v-model="form.kuphurId"
+                  :options="datas.kuphur"
+                  :disabled="datas.kuphur.length < 1"
+                  close-on-select
+                  label-by="title"
+                  value-by="id"
+                  :collapse-tags="true"	
+                  :searchable="true"
+                ></vue-select>
                 <small
                   class="text-danger"
                   v-if="errors.kuphurId"
@@ -266,15 +282,18 @@ export default {
             <div class="form-group my-4 row">
               <label class="col-sm-2 col-form-label">Serie</label>
               <div class="col-sm-10">
-                <select class="form-select form-select-solid mb-lg-0" v-model="form.serieId">
-                  <option :value="null">-Select-</option>
-                  <option
-                    v-for="serie in datas.serie"
-                    :key="serie.id"
-                    :value="serie.id"
-                    v-text="serie.title"
-                  ></option>
-                </select>
+                <vue-select
+                  class="form-control form-control-solid w-100"
+                  style="background-color:white;"
+                  v-model="form.serieId"
+                  :options="datas.serie"
+                  :disabled="datas.serie.length < 1"
+                  close-on-select
+                  label-by="title"
+                  value-by="id"
+                  :collapse-tags="true"	
+                  :searchable="true"
+                ></vue-select>
                 <small
                   class="text-danger"
                   v-if="errors.serieId"
@@ -337,15 +356,19 @@ export default {
             <div class="form-group my-4 row">
               <label class="col-sm-2 col-form-label">Tertip</label>
               <div class="col-sm-10">
-                <select class="form-select form-select-solid mb-lg-0" v-model="form.tertipId">
-                  <option :value="null">-Select-</option>
-                  <option
-                    v-for="tertip in datas.tertip"
-                    :key="tertip.id"
-                    :value="tertip.id"
-                    v-text="tertip.title"
-                  ></option>
-                </select>
+                <vue-select
+                  class="form-control form-control-solid w-100"
+                  style="background-color:white;"
+                  v-model="form.tertipId"
+                  :options="datas.tertip"
+                  :disabled="datas.tertip.length < 1"
+                  close-on-select
+                  label-by="title"
+                  :clear-on-select="true"
+                  value-by="id"
+                  :collapse-tags="true"	
+                  :searchable="true"
+                ></vue-select>
                 <small
                   class="text-danger"
                   v-if="errors.tertipId"
@@ -357,7 +380,11 @@ export default {
             <div class="form-group my-4 row">
               <label class="col-sm-2 col-form-label">Size</label>
               <div class="col-sm-10">
-                <input class="form-control form-control-solid mb-lg-0" type="text" v-model="form.size" />
+                <input
+                  class="form-control form-control-solid mb-lg-0"
+                  type="text"
+                  v-model="form.size"
+                />
                 <small
                   class="text-danger"
                   v-if="errors.size"
@@ -369,15 +396,19 @@ export default {
             <div class="form-group my-4 row">
               <label class="col-sm-2 col-form-label">Print Place</label>
               <div class="col-sm-10">
-                <select class="form-select form-select-solid mb-lg-0" v-model="form.printPlace">
-                  <option :value="null">-Select-</option>
-                  <option
-                    v-for="place in datas.printPlace"
-                    :value="place.id"
-                    :key="place.id"
-                    v-text="place.title"
-                  ></option>
-                </select>
+                <vue-select
+                  class="form-control form-control-solid w-100"
+                  style="background-color:white;"
+                  v-model="form.printPlace"
+                  :options="datas.printPlace"
+                  :disabled="datas.printPlace.length < 1"
+                  close-on-select
+                  label-by="title"
+                  :clear-on-select="true"
+                  value-by="id"
+                  :collapse-tags="true"	
+                  :searchable="true"
+                ></vue-select>
                 <small
                   class="text-danger"
                   v-if="errors.printPlace"
@@ -388,14 +419,21 @@ export default {
             <div class="form-group my-4 row">
               <label class="col-sm-2 col-form-label">Signatures</label>
               <div class="col-sm-10">
-                <select class="form-select form-select-solid mb-lg-0" v-model="form.signatures" multiple>
-                  <option
-                    v-for="sign in datas.signatures"
-                    :key="sign.id"
-                    :value="sign.id"
-                    v-text="sign.title"
-                  ></option>
-                </select>
+                <vue-select
+                  class="form-control form-control-solid w-100"
+                  style="background-color:white;"
+                  v-model="form.signatures"
+                  :options="datas.signatures"
+                  :disabled="datas.signatures.length < 1"
+                  close-on-select
+                  label-by="title"
+                  :clear-on-select="true"
+                  value-by="id"
+                  :collapse-tags="true"	
+                  :searchable="true"
+                  :taggable="true"
+                  :multiple="true"
+                ></vue-select>
                 <small
                   class="text-danger"
                   v-if="errors.signatures"
@@ -555,7 +593,11 @@ export default {
             <div class="form-group my-4 row">
               <label class="col-sm-2 col-form-label">Link</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control form-control-solid mb-lg-0" v-model="form.link" />
+                <input
+                  type="text"
+                  class="form-control form-control-solid mb-lg-0"
+                  v-model="form.link"
+                />
                 <small
                   class="text-danger"
                   v-if="errors.link"
@@ -567,7 +609,10 @@ export default {
             <div class="form-group my-4 row">
               <label class="col-sm-2 col-form-label">Description</label>
               <div class="col-sm-10">
-                <textarea class="form-control form-control-solid mb-lg-0" v-model="form.desc"></textarea>
+                <textarea
+                  class="form-control form-control-solid mb-lg-0"
+                  v-model="form.desc"
+                ></textarea>
                 <small
                   class="text-danger"
                   v-if="errors.desc"
@@ -579,7 +624,10 @@ export default {
             <div class="form-group my-4 row">
               <label class="col-sm-2 col-form-label">Status</label>
               <div class="col-sm-10">
-                <select v-model="form.status" class="form-select form-select-solid mb-lg-0">
+                <select
+                  v-model="form.status"
+                  class="form-select form-select-solid mb-lg-0"
+                >
                   <option :value="null">-Select-</option>
                   <option :value="'0'">Inactive</option>
                   <option :value="'1'">Active</option>
@@ -612,6 +660,4 @@ export default {
       </div>
     </div>
   </div>
-
 </template>
-<style src="@vueform/multiselect/themes/default.css"></style>

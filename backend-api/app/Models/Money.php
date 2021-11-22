@@ -16,16 +16,7 @@ class Money extends Model
 
     public function getIsCollectedAttribute()
     {
-        if (Auth()->user()) {
-            $user = $this->collection()->where('userId',Auth()->user()->id)->first();
-            if ($user) {
-                return true;
-            }else{
-                return false;
-            }
-        }else {
-            return false;
-        }
+        return $this->collection()->where('userId',Auth()->user()->id)->count();
     }
 
     public function signature(){
