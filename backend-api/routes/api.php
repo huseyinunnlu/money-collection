@@ -16,7 +16,14 @@ use App\Http\Controllers\Admin\SignatureController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\Lang\LangController;
 use App\Http\Controllers\MoneyController;
+use App\Models\Kuphur;
+use App\Models\Money;
+use App\Models\MoneySignatures;
+use App\Models\PrintPlace;
+use App\Models\Scwpm;
 use App\Models\Serie;
+use App\Models\Signature;
+use App\Models\Tertip;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,19 +38,125 @@ use App\Models\Serie;
 // Route::get('/lang', [LangController::class, 'lang'])->middleware('localization');
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/login', [LoginController::class, 'login']);
-// Route::get('/return', function () {
-//     $text = "A001-A654,B001-B999,C001-C999,D001-D999,E001-E999,A001-A733,B001-B999,C001-C999,D001-D999,E001-E999,A001-A746,B001-B999,C001-C999,D001-D999,E001-E999,A001-A772,B001-B999,C001-C999,D001-D999,E001-E999,A001-A631,B001-B999,C001-C999,D001-D999,E001-E999,F001-F999,A001-A161,B001-B999,C001-C999,D001-D999,E001-E999";
-//     $imploded = explode(",", $text);
-//     foreach ($imploded as $item) {
-//         $data = Serie::where('title', $item)->first();
-//         if (!$data) {
-//             Serie::create([
-//                 'title' => $item,
-//                 'status' => '1',
-//             ]);
-//         }
-//     }
-// });
+Route::get('/return', function () {
+    $string = file_get_contents(base_path('routes/money.json'));
+    foreach (json_decode($string, true) as $item) {
+        $item['Taşıdığı İmzalar'] = explode(",", $item['Taşıdığı İmzalar']);
+        $item['sign'] = [];
+        if ($item['Tedavüle çıkarıldığı tarih']) {
+            $date = strtotime($item['Tedavüle çıkarıldığı tarih']);
+            $item['Tedavüle çıkarıldığı tarih'] = date('Y-m-d', $date);
+        } else {
+            $item['Tedavüle çıkarıldığı tarih'] = date('Y-m-d');
+        }
+        if ($item['Tedavülden çekildiği tarih']) {
+            $date = strtotime($item['Tedavülden çekildiği tarih']);
+            $item['Tedavülden çekildiği tarih'] = date('Y-m-d', $date);
+        } else {
+            $item['Tedavülden çekildiği tarih'] = date('Y-m-d');
+        }
+        if ($item['Zorunlu tedavül süresinin sonu']) {
+            $date = strtotime($item['Zorunlu tedavül süresinin sonu']);
+            $item['Zorunlu tedavül süresinin sonu'] = date('Y-m-d', $date);
+        } else {
+            $item['Zorunlu tedavül süresinin sonu'] = date('Y-m-d');
+        }
+        if ($item['Zaman aşımı süresinin sonu']) {
+            $date = strtotime($item['Tedavüle çıkarıldığı tarih']);
+            $item['Zaman aşımı süresinin sonu'] = date('Y-m-d', $date);
+        } else {
+            $item['Zaman aşımı süresinin sonu'] = date('Y-m-d');
+        }
+        if ($item['Kıymetini tamamen kaybedeceği tarih']) {
+            $date = strtotime($item['Kıymetini tamamen kaybedeceği tarih']);
+            $item['Kıymetini tamamen kaybedeceği tarih'] = date('Y-m-d', $date);
+        } else {
+            $item['Kıymetini tamamen kaybedeceği tarih'] = date('Y-m-d');
+        }
+        $scwpm = Scwpm::where('title', $item['SCWPM / Pick #'])->select('id')->first();
+        if (!$scwpm) {
+            $scwpm = Scwpm::create([
+                'title' => $item['SCWPM / Pick #'],
+                'status' => '1',
+            ]);
+        }
+        $kuphur = Kuphur::where('title', $item['Kupür'])->select('id')->first();
+        if (!$kuphur) {
+            $kuphur = Kuphur::create([
+                'title' => $item['Kupür'],
+                'status' => '1',
+            ]);
+        }
+        $serie = Serie::where('title', $item[" İlk ve Son Seri"])->select('id')->first();
+        if (!$serie) {
+            $serie = Serie::create([
+                'title' => $item[' İlk ve Son Seri'],
+                'status' => '1',
+            ]);
+        }
+        $tertip = Tertip::where('title', $item['Tertip'])->select('id')->first();
+        if (!$tertip) {
+            $tertip = Tertip::create([
+                'title' => $item['Tertip'],
+                'status' => '1',
+            ]);
+        }
+        $printplace = PrintPlace::where('title', $item['Bastırıldığı yer'])->select('id')->first();
+        if (!$printplace) {
+            $printplace = PrintPlace::create([
+                'title' => $item['Bastırıldığı yer'],
+                'status' => '1',
+            ]);
+        }
+        foreach ($item['Taşıdığı İmzalar'] as $sign) {
+            $data = Signature::where('title', $sign)->select('id')->first();
+            if (!$data) {
+                $data = Signature::create([
+                    'title' => $sign,
+                    'status' => "1",
+                ]);
+                array_unshift($item['sign'], $data->id);
+            } else {
+                array_unshift($item['sign'], $data->id);
+            }
+        }
+        $moneyData = Money::create([
+            "emission_id" => "9",
+            "scwpm_id" => $scwpm['id'],
+            "kuphur_id" => $kuphur['id'],
+            "value" => $item['Nominal'],
+            "serie_id" => $serie['id'],
+            "cilValue" => $item['ÇİL (UNC) 58+'],
+            "ctValue" => $item['ÇT (XF) 30+'],
+            "tValue" => $item['T (F) 15+'],
+            "tertip_id" => $tertip['id'],
+            "size" => $item['Boyutları'],
+            "print_place_id" => $printplace['id'],
+            "tedavulDate" => $item['Tedavüle çıkarıldığı tarih'],
+            "lastDate" => $item['Tedavülden çekildiği tarih'],
+            "zortedDate" => $item['Zorunlu tedavül süresinin sonu'],
+            "timeoutDate" => $item['Zaman aşımı süresinin sonu'],
+            "expiryDate" => $item['Kıymetini tamamen kaybedeceği tarih'],
+            "frontColor" => "Zeytuni Yeşil",
+            "backColor" => "Zeytuni Yeşil",
+            "link" => $item['TCMB Detay Linki'],
+            "desc" => "",
+            "status" => "1",
+            "frontImage" => "http://localhost:8000/public/MyFqFCYneLi0n6BgsFuBj6VqqKtkuJSQPIiCWzxo.jpg",
+            "backImage" => "http://localhost:8000/public/MyFqFCYneLi0n6BgsFuBj6VqqKtkuJSQPIiCWzxo.jpg",
+        ]);
+
+        if ($moneyData) {
+            foreach ($item['sign'] as $sign) {
+                MoneySignatures::create([
+                    "moneyId" => $moneyData->id,
+                    "signatureId" => $sign,
+                ]);
+            }
+        }
+    }
+});
+
 Route::middleware(['auth:api'])->group(function () {
     Route::middleware('auth:api')->get('/user', function (Request $request) {
         return $request->user();

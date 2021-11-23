@@ -16,7 +16,8 @@ class Money extends Model
 
     public function getIsCollectedAttribute()
     {
-        return $this->collection()->where('userId',Auth()->user()->id)->count();
+        $count = $this->collection()->where('userId',Auth()->user()->id)->get();
+        return count($count); 
     }
 
     public function signature(){

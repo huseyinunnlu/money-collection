@@ -290,7 +290,7 @@ class MoneyController extends Controller
             "frontColor" => "required",
             "backColor" => "required",
             "link" => "required|url",
-            "desc" => "required|max:255",
+            "desc" => "nullable|max:255",
             "status" => "required",
             // "backImage" => "required|file|mimes:jpg,jpeg,png|max:2048",
         ]);

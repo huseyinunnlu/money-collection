@@ -69,7 +69,6 @@ export default {
       this.$appAxios
         .get("getdata")
         .then((res) => {
-          this.datas.emission = res.data.data.emission;
           this.datas.scwpm = res.data.data.scwpm;
           this.datas.kuphur = res.data.data.kuphur;
           this.datas.serie = res.data.data.serie;
@@ -78,7 +77,6 @@ export default {
           this.datas.signatures = res.data.data.signatures;
         })
         .catch(() => {
-          this.datas.emission = [];
           this.datas.scwpm = [];
           this.datas.kuphur = [];
           this.datas.serie = [];
@@ -97,7 +95,7 @@ export default {
         formData.append("backImage", this.image.backImage);
       }
 
-      formData.append("emissionId", this.form.emissionId);
+      formData.append("emissionId", this.$route.query.ems_id);
       formData.append("scwpmId", this.form.scwpmId);
       formData.append("kuphurId", this.form.kuphurId);
       formData.append("value", this.form.value);
@@ -128,7 +126,6 @@ export default {
             type: "success",
             message: "Money added successfuly.",
           });
-          this.form.emissionId = null;
           this.form.scwpmId = null;
           this.form.kuphurId = null;
           this.form.value = null;
@@ -194,28 +191,6 @@ export default {
         </div>
         <div class="modal-body">
           <form class="form-horizontal">
-            <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Emission</label>
-              <div class="col-sm-10">
-                <vue-select
-                  class="form-control form-control-solid w-100"
-                  style="background-color:white;"
-                  v-model="form.emissionId"
-                  :options="datas.emission"
-                  :disabled="datas.emission.length < 1"
-                  close-on-select
-                  label-by="title"
-                  value-by="id"
-                  :collapse-tags="true"	
-                  :searchable="true"
-                ></vue-select>
-                <small
-                  class="text-danger"
-                  v-if="errors.emissionId"
-                  v-text="errors.emissionId[0]"
-                ></small>
-              </div>
-            </div>
 
             <div class="form-group my-4 row">
               <label class="col-sm-2 col-form-label">SCWPM</label>

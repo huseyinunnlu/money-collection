@@ -502,7 +502,7 @@ export default {
             type: "error",
             title: "Money did't updated.",
           });
-          this.errors = err.respose.data.errors;
+          this.errors = err.response.data.errors;
         })
         .finally(() => {
           this.isLoading = false;
