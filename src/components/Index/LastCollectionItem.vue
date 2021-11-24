@@ -36,7 +36,7 @@
         :to="{name:'MoneyShow',params:{id:item.money.id}}"
         class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary"
       >
-      {{ $t("button.details") }}
+      See Money
       </router-link>
     </td>
   </tr>

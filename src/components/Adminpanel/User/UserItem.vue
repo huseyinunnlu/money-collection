@@ -18,7 +18,7 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-          {{$t('button.actions')}}
+          Actions
         </button>
         <div
           class="dropdown-menu menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
@@ -28,14 +28,14 @@
             <router-link
               :to="{ name: 'AdminpanelEditUser', params: { id: user.id } }"
               class="menu-link px-3"
-              ><i class="fas fa-pen mx-2"></i> {{$t('button.edit')}}</router-link
+              ><i class="fas fa-pen mx-2"></i> Edit</router-link
             >
           </div>
           <div class="menu-item px-3">
             <router-link
               :to="{ name: 'Profile', params: { slug: user.slug } }"
               class="menu-link px-3"
-              ><i class="fas fa-eye mx-2"></i> {{$t('button.details')}}</router-link
+              ><i class="fas fa-eye mx-2"></i> Show</router-link
             >
           </div>
           <div class="menu-item px-3">
@@ -44,7 +44,7 @@
               class="menu-link px-3"
               @click="deleteUser()"
             >
-              <i class="fas fa-trash mx-2"></i> {{$t('button.delete')}}
+              <i class="fas fa-trash mx-2"></i> Delete
             </a>
           </div>
         </div>

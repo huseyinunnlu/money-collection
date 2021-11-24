@@ -209,7 +209,6 @@
               dataTable
               no-footer
             "
-            style="height:190px;"
             id="kt_table_users"
           >
             <!--begin::Table head-->

@@ -32,7 +32,7 @@
                       <div
                         class="text-dark fs-2 text-left mb-10 fw-bolder card-px"
                       >
-                        {{ $t("index.catalog") }}
+                        Katalog
                       </div>
                       <!--end::Title-->
                       <!--begin::Illustration-->
@@ -63,7 +63,7 @@
                       <div
                         class="text-dark fs-2 text-left mb-10 fw-bolder card-px"
                       >
-                        {{ $t("index.priceAnalysis") }}
+                        Fiyat Analizi
                       </div>
                       <!--end::Title-->
                       <!--begin::Illustration-->
@@ -94,7 +94,7 @@
                       <div
                         class="text-dark fs-2 text-left mb-10 fw-bolder card-px"
                       >
-                        {{ $t("index.marketplace") }}
+                        Pazar Yeri
                       </div>
                       <!--end::Title-->
                       <!--begin::Illustration-->

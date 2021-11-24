@@ -11,14 +11,14 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">{{$t('user.add')}}</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Add New User</h5>
           <i data-dismiss="modal" aria-label="Close" class="close fas fa-times" style="cursor:pointer"></i>
         </div>
         <div class="modal-body">
           <form class="form-horizontal">
             <div class="form-group my-4 row">
               <label for="fullName" class="col-sm-2 col-form-label"
-                >{{$t('profile.fullName')}}</label
+                >Full Name</label
               >
               <div class="col-sm-10">
                 <input
@@ -37,7 +37,7 @@
             ></small>
 
             <div class="form-group my-4 row">
-              <label for="email" class="col-sm-2 col-form-label">{{$t('profile.email')}}</label>
+              <label for="email" class="col-sm-2 col-form-label">Email</label>
               <div class="col-sm-10">
                 <input
                   type="text"
@@ -56,7 +56,7 @@
 
             <div class="form-group my-4 row">
               <label for="password" class="col-sm-2 col-form-label"
-                >{{$t('user.password')}}</label
+                >Password</label
               >
               <div class="col-sm-10">
                 <input
@@ -76,7 +76,7 @@
 
             <div class="form-group my-4 row">
               <label for="accType" class="col-sm-2 col-form-label"
-                >{{$t('user.role')}}</label
+                >Account Role</label
               >
               <div class="col-sm-10">
                 <select
@@ -84,8 +84,8 @@
                   v-model="form.role"
                   class="form-select form-select-solid"
                 >
-                  <option :value="'0'">{{$t('profile.user')}}</option>
-                  <option :value="'1'">{{$t('user.admin')}}</option>
+                  <option :value="'0'">User</option>
+                  <option :value="'1'">Admin</option>
                 </select>
               </div>
             </div>
@@ -98,7 +98,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            {{$t('button.close')}}
+            Close
           </button>
           <button
             type="submit"
@@ -107,10 +107,10 @@
             v-if="!isLoading"
             @click="addUser"
           >
-            {{$t('button.add')}}
+            Add User
           </button>
           <button disabled class="btn btn-primary" v-if="isLoading">
-            {{$t('button.loading')}}
+            Adding...
           </button>
         </div>
       </div>

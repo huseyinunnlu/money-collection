@@ -6,7 +6,7 @@
           <UserProfilePhoto />
           <div class="form-group my-4 row">
             <label for="fullName" class="col-sm-2 col-form-label"
-              >{{ $t("profile.fullName") }}</label
+              >Full Name</label
             >
             <div class="col-sm-10">
               <input
@@ -25,7 +25,7 @@
           </div>
 
           <div class="form-group my-4 row">
-            <label for="email" class="col-sm-2 col-form-label">{{ $t("profile.email") }}</label>
+            <label for="email" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
               <input
                 type="text"
@@ -50,10 +50,10 @@
                 :disabled="!form.fullName || !form.email"
                 v-if="!isLoading"
               >
-                {{ $t("button.update") }}
+                Update
               </button>
               <button type="submit" class="btn btn-primary btn-sm" v-if="isLoading">
-                {{ $t("button.loading") }}
+                Updating
               </button>
             </div>
           </div>
