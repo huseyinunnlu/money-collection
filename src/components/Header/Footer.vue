@@ -19,6 +19,9 @@
       <!--begin::Menu-->
       <ul class="menu menu-gray-700 menu-hover-primary fw-bold order-1">
         <li class="menu-item">
+          <Lang />
+        </li>
+        <li class="menu-item">
           <a
             href="https://keenthemes.com"
             target="_blank"
@@ -49,3 +52,11 @@
   </div>
   <!--end::Footer-->
 </template>
+<script>
+import Lang from "@/components/Header/Lang/Lang.vue";
+export default {
+  components:{
+    Lang
+  }
+}
+</script>

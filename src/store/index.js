@@ -6,6 +6,7 @@ import Money from './Modules/Money'
 import Profile from './Modules/Profile'
 import Collection from './Modules/Collection'
 import Index from './Modules/Index/Index'
+import Lang from './Modules/Lang/Lang.js'
 const store = createStore({
   modules: {
     User,
@@ -14,7 +15,8 @@ const store = createStore({
     Money,
     Profile,
     Index,
-    Collection
+    Collection,
+    Lang,
   },
 });
 

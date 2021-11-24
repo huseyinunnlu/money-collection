@@ -7,7 +7,13 @@
       data-toggle="dropdown"
       aria-haspopup="true"
       aria-expanded="false"
-      class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px"
+      class="
+        btn btn-icon btn-active-light-primary
+        w-30px
+        h-30px
+        w-md-40px
+        h-md-40px
+      "
     >
       <img
         class="h-100 w-100 rounded"
@@ -17,7 +23,21 @@
     </div>
     <!--begin::Menu-->
     <div
-      class="dropdown-menu menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px"
+      class="
+        dropdown-menu
+        menu
+        menu-sub
+        menu-sub-dropdown
+        menu-column
+        menu-rounded
+        menu-gray-800
+        menu-state-bg
+        menu-state-primary
+        fw-bold
+        py-4
+        fs-6
+        w-275px
+      "
       aria-labelledby="dropdownMenuButton"
       data-kt-menu="true"
     >
