@@ -19,7 +19,8 @@
               data-toggle="modal"
               data-target="#addUser"
             >
-              <i class="fas fa-plus"></i>Add User
+              <i class="fas fa-plus"></i>
+              {{$t('button.add')}}
             </button>
             <div class="input-group input-group-sm" style="width: auto;">
               <input
@@ -30,17 +31,17 @@
                 v-model="search"
               />
               <select class="form-control" v-model="column">
-                <option :value="null">Select Column</option>
-                <option :value="'fullName'">Name Surname</option>
-                <option :value="'email'">Email</option>
+                <option :value="null">{{ $t('common.column')}}</option>
+                <option :value="'fullName'">{{ $t('user.table.column.nameSurname')}}</option>
+                <option :value="'email'">{{ $t('user.table.column.email')}}</option>
               </select>
               <select class="form-control" v-model="role">
-                <option :value="null">Select User Role</option>
+                <option :value="null">{{ $t('user.table.column.role')}}</option>
                 <option :value="'0'">User</option>
                 <option :value="'1'">Admin</option>
               </select>
               <select class="form-control" v-model="count" style="width:20px;">
-                <option :value="null">Select data count</option>
+                <option :value="null">{{ $t('common.count')}}</option>
                 <option :value="'5'">5</option>
                 <option :value="'15'">15</option>
                 <option :value="'25'">25</option>
@@ -48,8 +49,8 @@
                 <option :value="'100'">100</option>
               </select>
               <select class="form-control" v-model="sort">
-                <option :value="'desc'">Creating Date DESC</option>
-                <option :value="'asc'">Creating Date ASC</option>
+                <option :value="'desc'">{{ $t('common.desc')}}</option>
+                <option :value="'asc'">{{ $t('common.asc')}}</option>
               </select>
               <div class="input-group-append">
                 <button
@@ -85,11 +86,11 @@
               <!--begin::Table row-->
               <tr class="text-dark-600 fw-bold">
                 <th>ID</th>
-                <th>Name Surname</th>
-                <th>Email</th>
-                <th>User Role</th>
-                <th>Created At</th>
-                <th>Opr.</th>
+                <th>{{ $t('user.table.column.nameSurname')}}</th>
+                <th>{{ $t('user.table.column.email')}}</th>
+                <th>{{ $t('user.table.column.role')}}</th>
+                <th>{{ $t('common.createdAt')}}</th>
+                <th>{{ $t('common.opr')}}</th>
               </tr>
               <!--end::Table row-->
             </thead>
@@ -114,7 +115,7 @@
                 class="text-center text-primary my-3"
                 style="cursor:pointer;"
                 @click="page++, getUsers()"
-                >Load more</a
+                >{{ $t('common.loadMore')}}</a
               >
             </div>
             <!--end::Table body-->

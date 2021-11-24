@@ -1,13 +1,13 @@
 <template>
   <form class="form-horizontal" @submit.prevent="updateUser()">
     <div class="form-group my-2 row">
-      <label for="fullName" class="col-sm-2 col-form-label">Full Name</label>
+      <label for="fullName" class="col-sm-2 col-form-label">{{ $t('user.table.column.nameSurname')}}</label>
       <div class="col-sm-10">
         <input
           type="text"
           class="form-control form-control-solid"
           id="fullName"
-          placeholder="Full Name"
+          :placeholder="$t('user.table.column.nameSurname')"
           v-model="form.fullName"
         />
       </div>
@@ -20,13 +20,13 @@
     
 
     <div class="form-group my-4 row">
-      <label for="email" class="col-sm-2 col-form-label">Email</label>
+      <label for="email" class="col-sm-2 col-form-label">{{ $t('user.table.column.email')}}</label>
       <div class="col-sm-10">
         <input
           type="text"
           class="form-control form-control-solid"
           id="email"
-          placeholder="Email"
+          :placeholder="$t('user.table.column.email')"
           v-model="form.email"
         />
       </div>
@@ -38,7 +38,7 @@
     ></small>
 
     <div class="form-group my-4 row">
-      <label for="accType" class="col-sm-2 col-form-label">Account Role</label>
+      <label for="accType" class="col-sm-2 col-form-label">{{ $t('user.table.column.role')}}</label>
       <div class="col-sm-10">
         <select id="accType" v-model="form.role" class="form-select form-select-solid">
           <option :value="'0'">User</option>
@@ -54,19 +54,19 @@
     ></small>
 
     <div class="change-password my-5">
-        <h3 class="my-5">Change Password</h3>
+        <h3 class="my-5">{{ $t('profile.changePassword')}}</h3>
 
 
       <div class="form-group my-4 row">
         <label for="password" class="col-sm-2 col-form-label"
-          >Change Password</label
+          >{{ $t('profile.changePassword')}}</label
         >
         <div class="col-sm-10">
           <input
             type="password"
             class="form-control"
             id="password"
-            placeholder="Password"
+            :placeholder="$t('profile.changePassword')"
             v-model="form.password"
           />
         </div>
@@ -80,8 +80,8 @@
     <div class="form-group row">
       <label class="col-sm-2 col-form-label"></label>
       <div class="col-sm-10">
-        <button v-if="!isLoading" type="submit" class="btn btn-success btn-sm">Update</button>
-        <button v-else disabled type="submit" class="btn btn-success btn-sm">Updating...</button>
+        <button v-if="!isLoading" type="submit" class="btn btn-success btn-sm">{{$t('button.update')}}</button>
+        <button v-else disabled type="submit" class="btn btn-success btn-sm">{{$t('button.loading')}}</button>
       </div>
     </div>
   </form>

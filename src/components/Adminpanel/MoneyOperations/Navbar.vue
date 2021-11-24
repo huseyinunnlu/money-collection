@@ -9,14 +9,14 @@
           <router-link
             class="nav-link text-active-primary ms-0 me-10 py-5"
             :to="{ name: 'AdminMoneyOperations'}"
-            >Index</router-link
+            >{{$t('header.navbar.index')}}</router-link
           >
         </li>
         <li class="nav-item mt-2">
           <router-link
             class="nav-link text-active-primary ms-0 me-10 py-5"
             :to="{ name: 'AdminEmissions' }"
-            >Emissions</router-link
+            >{{$t('ems.title')}}</router-link
           >
         </li>
         <li class="nav-item mt-2">

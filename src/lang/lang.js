@@ -11,7 +11,9 @@ if(!selectedLang) {
 
 export const i18n = createI18n({
     locale: selectedLang,
+    legacy:false,
     fallbackLocale: 'en-US',
+    globalInjection: true,
     messages: {
         "en-US":en,
         "tr":tr,

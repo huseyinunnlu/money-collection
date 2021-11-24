@@ -14,9 +14,19 @@
           <div class="content flex-row-fluid" id="kt_content">
             <!--begin::Row-->
             <div
-              class="row col-10 offset-1 gy-5 g-xl-8 d-flex align-items-center mt-lg-0 mb-10 mb-lg-15"
+              class="
+                row
+                col-10
+                offset-1
+                gy-5
+                g-xl-8
+                d-flex
+                align-items-center
+                mt-lg-0
+                mb-10 mb-lg-15
+              "
             >
-              <ContentHeader :title="'Edit User'" />
+              <ContentHeader :title="title" />
               <div class="card">
                 <div class="card-body">
                   <h2 v-if="isLoading" class="text-center">Loading...</h2>
@@ -52,6 +62,11 @@ export default {
   },
   created() {
     this.getUser();
+  },
+  computed: {
+    title() {
+      return `${this.$t("header.navbar.user")}`
+    },
   },
   methods: {
     getUser() {

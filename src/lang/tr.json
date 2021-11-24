@@ -1,17 +1,90 @@
 {
+    "common": {
+        "createdAt": "Eklenme Tarihi",
+        "column": "Sütun seç",
+        "count": "Sütun Sayısı",
+        "sort": "Sıralama",
+        "desc": "Ekleme tarihi Artan",
+        "asc": "Ekleme tarihi Azalan",
+        "loadMore": "Daha Fazla",
+        "opr":"Özellikler",
+        "active": "Aktif",
+        "status": "Durum",
+        "inactive": "Pasif"
+    },
     "header": {
         "navbar": {
             "index": "Ana Sayfa",
-            "moneyOpr": "Para Özellikleri",
+            "moneyOpr": "Para Ayarları",
             "users": "Kullanıcılar"
         },
         "user": {
+            "user": "Kullanıcı",
             "admin": "Admin",
-            "user": "User",
             "myProfile": "Profilim",
             "accountSettings": "Hesap Ayarları",
             "changePassword": "Şifre Değiştir",
             "signOut": "Çıkış Yap"
         }
-    }
+    },
+    "index": {
+        "lastcollectedmoneys": "Koleksiyonlara son eklenen paralar",
+        "catalog": "Katalog",
+        "marketplace": "Pazar Yeri",
+        "priceAnalysis": "Fiyat Analizi"
+    },
+    "profile": {
+        "index": "Ana Sayfa",
+        "settings": "Ayarlar",
+        "changePassword": "Şifreyi Değiştir",
+        "fullName": "Ad Soyad",
+        "profilePhoto": "Profil Fotoğrafı",
+        "email": "Email",
+        "currentPassword": "Mevcut Şifre",
+        "newPassword": "Yeni Şifre",
+        "reEnterNewPassword": "Yeni Şifreyi Tekrar Gir",
+        "collectionHistory": "Koleksiyon Geçmişi",
+        "message": "%{serie} seri %{ems}.emisyon %{kuphur} koleksiyona eklendi."
+    },
+    "button": {
+        "add": "Ekle",
+        "update": "Güncelle",
+        "edit": "Düzenle",
+        "delete": "Sil",
+        "collectionDetails": "Koleksiyon Detayları",
+        "filter": "Filtre",
+        "reset": "Sıfırla",
+        "details": "Detaylar",
+        "deletePhoto": "Fotoğrafı Sil",
+        "loading": "Loading",
+        "close": "Kapat",
+        "actions": "İşlemler"
+    },
+    "user": {
+        "add": "Yeni Kullanıcı Ekle",
+        "title": "Kullanıcılar",
+        "table": {
+            "column": {
+                "nameSurname": "Ad Soyad",
+                "email": "Email",
+                "role": "Rol",
+                "password": "Şifre"
+            },
+            "filter": {
+                "role": "Rol Seç"
+            }
+        }
+    },
+    "moneyOpr": {
+        "title": "Para Ayarları"
+    },        
+    "ems": {
+        "add": "Yeni Emisyon Ekle",
+        "title": "Emisyonlar",
+        "table": {
+            "column": {
+                "title": "Başlık"
+            }
+        }
+    }        
 }

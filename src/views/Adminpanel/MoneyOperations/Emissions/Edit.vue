@@ -16,7 +16,7 @@
             <div
               class="row col-10 offset-1 gy-5 g-xl-8 d-flex align-items-center mt-lg-0 mb-10 mb-lg-15"
             >
-            <ContentHeader :title="'Edit Emission'" />
+            <ContentHeader :title="'Edit'" />
               <div class="card">
                 <div class="card-body">
                   <h2 v-if="isLoading" class="text-center">Loading...</h2>
@@ -43,6 +43,11 @@ export default {
     Footer,
     EmissionEdit,
     ContentHeader,
+  },
+  computed:{
+    // title(){
+    //   return this.$t('ems.title')
+    // }
   },
   data() {
     return {

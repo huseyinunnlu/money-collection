@@ -11,7 +11,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add New Emission</h5>
+          <h5 class="modal-title" id="exampleModalLabel">{{$t('ems.add')}}</h5>
           <button
             type="button"
             class="close"
@@ -24,13 +24,13 @@
         <div class="modal-body">
           <form class="form-horizontal">
             <div class="form-group row">
-              <label for="title" class="col-sm-2 col-form-label">Title</label>
+              <label for="title" class="col-sm-2 col-form-label">{{$t('ems.table.column.title')}}</label>
               <div class="col-sm-10">
                 <input
                   type="text"
                   class="form-control"
                   id="title"
-                  placeholder="Title"
+                  :placeholder="$t('ems.table.column.title')"
                   v-model="form.title"
                 />
               </div>
@@ -43,7 +43,7 @@
 
             <div class="form-group row">
               <label for="status" class="col-sm-2 col-form-label"
-                >Status</label
+                >{{$t('common.status')}}</label
               >
               <div class="col-sm-10">
                 <select id="status" v-model="form.status" class="form-control">
@@ -61,7 +61,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            Close
+            {{$t('button.close')}}
           </button>
           <button
             type="submit"
@@ -70,10 +70,10 @@
             v-if="!isLoading"
             @click="addEmission"
           >
-            Add Emission
+            {{$t('button.add')}}
           </button>
           <button disabled class="btn btn-primary" v-if="isLoading">
-            Adding...
+            {{$t('button.loading')}}
           </button>
         </div>
       </div>

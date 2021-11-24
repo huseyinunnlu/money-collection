@@ -19,9 +19,9 @@
       <!--end::Badge-->
       <!--begin::Text-->
       <div class="fw-mormal timeline-content text-muted ps-3 d-flex flex-nowrap align-items-center">
-        <router-link :to="{name:'Profile',params:{slug:coll.user.slug}}">{{coll.user.fullName}}</router-link> 
-        <span class="mx-4">{{coll.uniqueSerie}} serili {{coll.money.emission_id.title}} emisyon {{coll.money.kuphur_id.title}} parayı koleksiyonuna ekledi.</span>
-        <router-link :to="{name:'MoneyShow',params:{id:coll.money.id}}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-80">Detay</router-link>
+        <router-link :to="{name:'Profile',params:{slug:coll.user.slug}}">{{coll.user.fullName}}</router-link>
+        <span class="mx-4">{{$t('profile.message',{ems:coll.money.emission_id.title,serie:coll.uniqueSerie,kuphur:coll.money.kuphur_id.title})}}</span>
+        <router-link :to="{name:'MoneyShow',params:{id:coll.money.id}}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-80">{{$t('button.details')}}</router-link>
       </div>
       <!--end::Text-->
     </div>

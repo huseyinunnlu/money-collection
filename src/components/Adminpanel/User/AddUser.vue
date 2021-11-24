@@ -11,21 +11,21 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add New User</h5>
+          <h5 class="modal-title" id="exampleModalLabel">{{ $t('user.add')}}</h5>
           <i data-dismiss="modal" aria-label="Close" class="close fas fa-times" style="cursor:pointer"></i>
         </div>
         <div class="modal-body">
           <form class="form-horizontal">
             <div class="form-group my-4 row">
               <label for="fullName" class="col-sm-2 col-form-label"
-                >Full Name</label
+                >{{ $t('user.table.column.nameSurname')}}</label
               >
               <div class="col-sm-10">
                 <input
                   type="text"
                   class="form-control form-control-solid"
                   id="fullName"
-                  placeholder="Full Name"
+                  :placeholder="$t('user.table.column.nameSurname')"
                   v-model="form.fullName"
                 />
               </div>
@@ -37,13 +37,13 @@
             ></small>
 
             <div class="form-group my-4 row">
-              <label for="email" class="col-sm-2 col-form-label">Email</label>
+              <label for="email" class="col-sm-2 col-form-label">{{ $t('user.table.column.email')}}</label>
               <div class="col-sm-10">
                 <input
                   type="text"
                   class="form-control form-control-solid"
                   id="email"
-                  placeholder="Email"
+                  :placeholder="$t('user.table.column.email')"
                   v-model="form.email"
                 />
               </div>
@@ -56,14 +56,14 @@
 
             <div class="form-group my-4 row">
               <label for="password" class="col-sm-2 col-form-label"
-                >Password</label
+                >{{ $t('user.table.column.password')}}</label
               >
               <div class="col-sm-10">
                 <input
                   type="password"
                   class="form-control form-control-solid"
                   id="password"
-                  placeholder="Password"
+                  :placeholder="$t('user.table.column.nameSurname')"
                   v-model="form.password"
                 />
               </div>
@@ -76,7 +76,7 @@
 
             <div class="form-group my-4 row">
               <label for="accType" class="col-sm-2 col-form-label"
-                >Account Role</label
+                >{{ $t('user.table.column.role')}}</label
               >
               <div class="col-sm-10">
                 <select
@@ -98,7 +98,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            Close
+            {{ $t('button.close')}}
           </button>
           <button
             type="submit"
@@ -107,10 +107,10 @@
             v-if="!isLoading"
             @click="addUser"
           >
-            Add User
+            {{ $t('button.add')}}
           </button>
           <button disabled class="btn btn-primary" v-if="isLoading">
-            Adding...
+            {{ $t('button.loading')}}
           </button>
         </div>
       </div>

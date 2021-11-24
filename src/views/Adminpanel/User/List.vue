@@ -16,7 +16,7 @@
               class="row gy-5 g-xl-8 d-flex align-items-center mt-lg-0 mb-10 mb-lg-15"
             >
               <div class="row gy-5 g-xl-8">
-                <ContentHeader :title="'Users'" />
+                <ContentHeader :title="title" />
                 <UserList />
               </div>
             </div>
@@ -40,5 +40,10 @@ export default {
     UserList,
     ContentHeader,
   },
+  computed:{
+    title(){
+      return this.$t('user.title')
+    }
+  }
 };
 </script>

@@ -15,7 +15,7 @@
                   data-target="#addEmission"
                 >
                   <i class="fas fa-plus"></i>
-                  Add Emission
+                  {{$t('button.add')}}
                 </button>
               </h3>
               <div class="card-tools">
@@ -28,22 +28,22 @@
                     v-model="search"
                   />
                   <select class="form-control" v-model="status">
-                    <option :value="null">Select Status</option>
-                    <option :value="1">Active</option>
-                    <option :value="0">Inactive</option>
+                    <option :value="null">{{$t('common.status')}}</option>
+                    <option :value="1">{{$t('common.active')}}</option>
+                    <option :value="0">{{$t('common.inacive')}}</option>
                   </select>
                   <select
                     class="form-control"
                     v-model="count"
                     style="width:20px;"
                   >
-                    <option :value="null">Select data count</option>
+                    <option :value="null">{{$t('common.count')}}</option>
                     <option :value="'5'">5</option>
                     <option :value="'15'">15</option>
                   </select>
                   <select class="form-control" v-model="sort">
-                    <option :value="'desc'">Creating Date DESC</option>
-                    <option :value="'asc'">Creating Date ASC</option>
+                    <option :value="'desc'">{{$t('common.desc')}}</option>
+                    <option :value="'asc'">{{$t('common.asc')}}</option>
                   </select>
                   <div class="input-group-append">
                     <button

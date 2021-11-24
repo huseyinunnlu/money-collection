@@ -1,17 +1,90 @@
 {
-    "header":{
-        "navbar":{
-            "index":"Index",
-            "moneyOpr":"MoneyOpr.",
-            "users":"Users"
+    "common": {
+        "createdAt": "Added Date",
+        "column": "Select Column",
+        "count": "Column Count",
+        "sort": "Sort",
+        "desc": "Adding date Descending",
+        "asc": "Adding date Ascending",
+        "loadMore": "Load More",
+        "opr": "Opr",
+        "active": "Active",
+        "inactive": "Inactive",
+        "status": "Status"
+    },
+    "header": {
+        "navbar": {
+            "index": "Index",
+            "moneyOpr": "Money Opr.",
+            "users": "Users"
         },
-        "user":{
-            "admin":"Admin",
-            "user":"User",
-            "myProfile":"MyProfile",
-            "accountSettings":"AccountSettings",
-            "changePassword":"ChangePassword",
-            "signOut":"Sign Out"
+        "user": {
+            "user": "User",
+            "admin": "Admin",
+            "myProfile": "My Profile",
+            "accountSettings": "Account Settings",
+            "changePassword": "Change Password",
+            "signOut": "Sign Out"
+        }
+    },
+    "index": {
+        "lastcollectedmoneys": "Last added moneys to collection",
+        "catalog": "Catalog",
+        "marketplace": "Marketplace",
+        "priceAnalysis": "Price Analysis"
+    },
+    "profile": {
+        "index": "Index",
+        "settings": "Settings",
+        "changePassword": "Change Password",
+        "fullName": "Full Name",
+        "profilePhoto": "Profile Photo",
+        "email": "Email",
+        "currentPassword": "Current Password",
+        "newPassword": "New Password",
+        "reEnterNewPassword": "Re-enter New Password",
+        "collectionHistory": "Collection History",
+        "message": "%{serie} serie %{ems}.emission %{kuphur} added to collection."
+    },
+    "button": {
+        "add": "Add",
+        "update": "Update",
+        "edit": "Edit",
+        "delete": "Delete",
+        "collectionDetails": "Collection Details",
+        "filter": "Filter",
+        "reset": "Reset",
+        "details": "Details",
+        "deletePhoto": "Delete Photo",
+        "loading": "Loading",
+        "close": "Close",
+        "actions": "Actions"
+    },
+    "user": {
+        "add": "Add New User",
+        "title": "Users",
+        "table": {
+            "column": {
+                "nameSurname": "Name Surname",
+                "email": "Email",
+                "role": "Role",
+                "password": "Password"
+            },
+            "filter": {
+                "role": "Select Role"
+            }
+        }
+    },
+    "moneyOpr": {
+        "title": "Money Opr."
+    },
+    "ems": {
+        "add": "Add New Emission",
+        "title": "Emissions",
+        "table": {
+            "column": {
+                "title": "Title"
+            }
         }
     }
 }
