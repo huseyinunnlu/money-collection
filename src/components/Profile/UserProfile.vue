@@ -33,10 +33,10 @@
                   >{{_User.fullName}}</a
                 >
                 <span v-if="_User.role == 1" class="badge badge-light-success">
-                  Admin
+                  {{ $t("header.user.admin") }}
                 </span>
                 <span v-else class="badge badge-light-primary">
-                  User
+                  {{ $t("header.user.user") }}
                 </span>
               </div>
               <!--end::Name-->
@@ -66,9 +66,7 @@
                         fill="black"
                       ></path>
                     </svg>
-                  </span>
-                  <!--end::Svg Icon-->{{_User.email}}</a
-                >
+                  </span>{{_User.email}}</a>
               </div>
 
               

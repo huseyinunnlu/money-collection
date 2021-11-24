@@ -1,3 +1,70 @@
 {
-    "message" : "Hello"
+    "header": {
+        "navbar": {
+            "index": "Index",
+            "moneyOpr": "Money Opr.",
+            "users": "Users"
+        },
+        "user": {
+            "user": "User",
+            "admin": "Admin",
+            "myProfile": "My Profile",
+            "accountSettings": "Account Settings",
+            "changePassword": "Change Password",
+            "signOut": "Sign Out"
+        }
+    },
+    "index": {
+        "lastcollectedmoneys": "Last Collected Moneys",
+        "catalog": "Catalog",
+        "marketplace": "Marketplace",
+        "priceAnalysis": "Price Analysis"
+    },
+    "profile": {
+        "index": "Index",
+        "settings": "Settings",
+        "changePassword": "Change Password",
+        "fullName": "Name Surname",
+        "profilePhoto": "Profile Photo",
+        "email": "Email",
+        "currentPassword": "Current Password",
+        "newPassword": "New Password",
+        "reEnterNewPassword": "Re-enter Password",
+        "collectionHistory": "Collection History",
+        "message": "%{serie} serie %{ems} emission %{kuphur} added to collection."
+    },
+    "button": {
+        "add": "Add",
+        "update": "Update",
+        "edit": "Edit",
+        "show": "Show",
+        "delete": "Delete",
+        "collectionDetails":"Collection Details",
+        "filter": "Filter",
+        "reset": "Restet",
+        "details": "Details",
+        "deletePhoto": "Delete Photo",
+        "loading": "Loading",
+        "close": "Close",
+        "actions": "Actions"
+    },
+    "user": {
+        "add": "Add New User",
+        "password": "Password",
+        "role": "User Role",
+        "status": "Status",
+        "createdAt": "Added Time",
+        "opr": "Opr."
+    },
+    "table":{
+        "filter":{
+            "column":"Select Column",
+            "role": "Select User Role",
+            "count": "Select Data Count",
+            "sort": "Sıralama",
+            "desc":"Descending",
+            "asc":"Ascending"
+        },
+        "loadMore":"Load More"
+    }
 }

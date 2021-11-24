@@ -86,7 +86,7 @@
                   class="menu-link active py-3"
                   :to="{ name: 'Index' }"
                 >
-                  <span class="menu-title">Index</span>
+                  <span class="menu-title">{{$t('header.navbar.index')}}</span>
                 </router-link>
               </div>
 
@@ -96,7 +96,7 @@
                   class="menu-link active py-3"
                   :to="{ name: 'AdminMoneyOperations' }"
                 >
-                  <span class="menu-title">Money Opr.</span>
+                  <span class="menu-title">{{$t('header.navbar.moneyOpr')}}</span>
                 </router-link>
               </div>
               <div class="menu-item me-lg-1">
@@ -105,7 +105,7 @@
                   class="menu-link active py-3"
                   :to="{ name: 'AdminpanelUsers' }"
                 >
-                  <span class="menu-title">Users</span>
+                  <span class="menu-title">{{$t('header.navbar.users')}}</span>
                 </router-link>
               </div>
             </div>

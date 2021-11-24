@@ -5,7 +5,7 @@
         <form class="form-horizontal" @submit.prevent="update()">
           <div class="form-group my-4 row">
             <label for="cpassword" class="col-sm-2 col-form-label"
-              >Current Password</label
+              >{{ $t("profile.currentPassword") }}</label
             >
             <div class="col-sm-10">
               <input
@@ -25,7 +25,7 @@
 
           <div class="form-group my-4 row">
             <label for="password" class="col-sm-2 col-form-label"
-              >New Password</label
+              >{{ $t("profile.newPassword") }}</label
             >
             <div class="col-sm-10">
               <input
@@ -45,7 +45,7 @@
 
           <div class="form-group my-4 row">
             <label for="password_confirmation" class="col-sm-2 col-form-label"
-              >Re-Enter New Password</label
+              >{{ $t("profile.reEnterNewPassword") }}</label
             >
             <div class="col-sm-10">
               <input
@@ -75,10 +75,10 @@
                 "
                 v-if="!isLoading"
               >
-                Update
+                {{ $t("button.update") }}
               </button>
               <button type="submit" class="btn btn-primary" v-if="isLoading">
-                Updating
+                {{ $t("button.loading") }}
               </button>
             </div>
           </div>

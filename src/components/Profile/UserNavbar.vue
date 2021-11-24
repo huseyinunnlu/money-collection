@@ -9,7 +9,7 @@
           <router-link
             class="nav-link text-active-primary ms-0 me-10 py-5"
             :to="{ name: 'Profile', params: { slug: slug } }"
-            >Index</router-link
+            >{{ $t("profile.index") }}</router-link
           >
         </li>
         <li class="nav-item mt-2">
@@ -17,7 +17,7 @@
             v-if="_User.slug == slug"
             class="nav-link text-active-primary ms-0 me-10 py-5"
             :to="{ name: 'ProfileSettings' }"
-            >Settings</router-link
+            >{{ $t("profile.settings") }}</router-link
           >
         </li>
         <li class="nav-item mt-2">
@@ -25,7 +25,7 @@
             v-if="_User.slug == slug"
             class="nav-link text-active-primary ms-0 me-10 py-5"
             :to="{ name: 'ChangePassword' }"
-            >ChangePassword</router-link
+            >{{ $t("profile.changePassword") }}</router-link
           >
         </li>
         <!--end::Nav item-->
