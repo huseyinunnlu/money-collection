@@ -1,3 +1,17 @@
 {
-    "message" : "Hello"
+    "header":{
+        "navbar":{
+            "index":"Index",
+            "moneyOpr":"MoneyOpr.",
+            "users":"Users"
+        },
+        "user":{
+            "admin":"Admin",
+            "user":"User",
+            "myProfile":"MyProfile",
+            "accountSettings":"AccountSettings",
+            "changePassword":"ChangePassword",
+            "signOut":"Sign Out"
+        }
+    }
 }

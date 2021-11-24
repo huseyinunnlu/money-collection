@@ -1,3 +1,17 @@
 {
-    "message" : "Merhaba"
+    "header": {
+        "navbar": {
+            "index": "Ana Sayfa",
+            "moneyOpr": "Para Özellikleri",
+            "users": "Kullanıcılar"
+        },
+        "user": {
+            "admin": "Admin",
+            "user": "User",
+            "myProfile": "Profilim",
+            "accountSettings": "Hesap Ayarları",
+            "changePassword": "Şifre Değiştir",
+            "signOut": "Çıkış Yap"
+        }
+    }
 }

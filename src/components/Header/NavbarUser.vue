@@ -56,12 +56,12 @@
               <span
                 v-if="_User.role == 1"
                 class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2"
-                >Admin</span
+                >{{ $t('header.user.admin')}}</span
               >
               <span
                 v-else
                 class="badge badge-light-primary fw-bolder fs-8 px-2 py-1 ms-2"
-                >Admin</span
+                >{{ $t('header.user.user')}}</span
               >
             </div>
           </div>
@@ -77,7 +77,7 @@
         <router-link
           :to="{ name: 'Profile', params: { slug: _User.slug } }"
           class="menu-link px-5"
-          >My Profile</router-link
+          >{{ $t('header.user.myProfile')}}</router-link
         >
       </div>
       <!--end::Menu item-->
@@ -89,12 +89,12 @@
       <!--begin::Menu item-->
       <div class="menu-item px-5 my-1">
         <router-link :to="{ name: 'ProfileSettings' }" class="menu-link px-5"
-          >Account Settings</router-link
+          >{{ $t('header.user.accountSettings')}}</router-link
         >
       </div>
       <div class="menu-item px-5 my-1">
         <router-link :to="{ name: 'ChangePassword' }" class="menu-link px-5"
-          >Change Password</router-link
+          >{{ $t('header.user.changePassword')}}</router-link
         >
       </div>
       <!--end::Menu item-->

@@ -1,6 +1,6 @@
 <template>
   <div class="menu-item px-5">
-    <a @click="logout()" class="menu-link px-5">Sign Out</a>
+    <a @click="logout()" class="menu-link px-5">{{ $t('header.user.signOut')}}</a>
   </div>
 </template>
 <script>
