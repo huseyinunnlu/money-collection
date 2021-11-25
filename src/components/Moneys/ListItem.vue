@@ -10,8 +10,8 @@
     <td>{{ money.tertip_id.title }}</td>
     <td>{{ money.print_place_id.title }}</td>
     <td>
-      <span class="badge badge-success" v-if="money.status == '1'">Active</span>
-      <span class="badge badge-danger" v-else>Inactive</span>
+      <span class="badge badge-success" v-if="money.status == '1'">{{$t('common.active')}}</span>
+      <span class="badge badge-danger" v-else>{{$t('common.inactive')}}</span>
     </td>
     <td class="text-end">
       <div class="dropdown">
@@ -34,14 +34,14 @@
               v-if="_IsAuth && _User.role == 1"
               :to="{ name: 'AdminMoneyEdit', params: { id: money.id } }"
               class="menu-link px-3"
-              ><i class="fas fa-pen mx-2"></i> Edit</router-link
+              ><i class="fas fa-pen mx-2"></i> {{$t('button.edit')}}</router-link
             >
           </div>
           <div class="menu-item px-3">
             <router-link
               :to="{ name: 'MoneyShow', params: { id: money.id } }"
               class="menu-link px-3"
-              ><i class="fas fa-eye mx-2"></i> Details</router-link
+              ><i class="fas fa-eye mx-2"></i> {{$t('button.details')}}</router-link
             >
           </div>
           <div class="menu-item px-3">
@@ -50,14 +50,14 @@
               class="menu-link px-3"
               @click="del(money.id)"
             >
-              <i class="fas fa-trash mx-2"></i> Delete
+              <i class="fas fa-trash mx-2"></i> {{$t('button.delete')}}
             </a>
           </div>
           <div class="menu-item px-3">
             <router-link
               :to="{name:'MyCollection',params:{id:money.id}}"
               class="menu-link px-3"
-            >Collection Details({{money.isCollected}})
+            >{{$t('button.collectionDetails',{count:money.isCollected})}}
             </router-link>
           </div>
         </div>

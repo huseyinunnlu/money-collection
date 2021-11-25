@@ -24,7 +24,7 @@
               "
             >
               <div class="row gy-5 g-xl-8">
-                <ContentHeader :title="'Collection Details'" />
+                <ContentHeader :title="title" />
                 <div class="col-md-12">
                   <List />
                 </div>
@@ -50,5 +50,10 @@ export default {
     ContentHeader,
     List,
   },
+  computed:{
+    title(){
+      return this.$t('collection.title')
+    }
+  }
 };
 </script>

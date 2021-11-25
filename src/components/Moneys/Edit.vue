@@ -1,7 +1,7 @@
 <template>
   <form class="form-horizontal" @submit.prevent="update()">
     <div class="form-group my-4 row">
-      <label class="col-sm-2 col-form-label">Emission</label>
+      <label class="col-sm-2 col-form-label">{{$t('money.table.column.emission')}}</label>
       <div class="col-sm-10">
         <select class="form-select form-select-solid" v-model="form.emissionId">
           <option
@@ -20,7 +20,7 @@
     </div>
 
     <div class="form-group my-4 row">
-      <label class="col-sm-2 col-form-label">SCWPM</label>
+      <label class="col-sm-2 col-form-label">{{$t('money.table.column.scwpm')}}</label>
       <div class="col-sm-10">
         <select class="form-select form-select-solid" v-model="form.scwpmId">
           <option
@@ -39,7 +39,7 @@
     </div>
 
     <div class="form-group my-4 row">
-      <label class="col-sm-2 col-form-label">Kuphür</label>
+      <label class="col-sm-2 col-form-label">{{$t('money.table.column.kuphur')}}</label>
       <div class="col-sm-10">
         <select class="form-select form-select-solid" v-model="form.kuphurId">
           <option
@@ -58,7 +58,7 @@
     </div>
 
     <div class="form-group my-4 row">
-      <label class="col-sm-2 col-form-label">Nominal Value</label>
+      <label class="col-sm-2 col-form-label">{{$t('money.table.column.value')}}</label>
       <div class="col-sm-10">
         <input
           type="text"
@@ -74,7 +74,7 @@
       </div>
     </div>
     <div class="form-group my-4 row">
-      <label class="col-sm-2 col-form-label">Serie</label>
+      <label class="col-sm-2 col-form-label">{{$t('money.table.column.serie')}}</label>
       <div class="col-sm-10">
         <select class="form-select form-select-solid" v-model="form.serieId">
           <option
@@ -93,7 +93,7 @@
     </div>
 
     <div class="form-group my-4 row">
-      <label class="col-sm-2 col-form-label">Çil Value</label>
+      <label class="col-sm-2 col-form-label">{{$t('money.table.column.cil')}}</label>
       <div class="col-sm-10">
         <input
           type="text"
@@ -110,7 +110,7 @@
     </div>
 
     <div class="form-group my-4 row">
-      <label class="col-sm-2 col-form-label">ÇT (XF) Value</label>
+      <label class="col-sm-2 col-form-label">{{$t('money.table.column.ct')}}</label>
       <div class="col-sm-10">
         <input
           type="text"
@@ -127,7 +127,7 @@
     </div>
 
     <div class="form-group my-4 row">
-      <label class="col-sm-2 col-form-label">T(F) Value</label>
+      <label class="col-sm-2 col-form-label">{{$t('money.table.column.t')}}</label>
       <div class="col-sm-10">
         <input
           type="text"
@@ -144,7 +144,7 @@
     </div>
 
     <div class="form-group my-4 row">
-      <label class="col-sm-2 col-form-label">Tertip</label>
+      <label class="col-sm-2 col-form-label">{{$t('money.table.column.tertip')}}</label>
       <div class="col-sm-10">
         <select class="form-select form-select-solid" v-model="form.tertipId">
           <option
@@ -163,7 +163,7 @@
     </div>
 
     <div class="form-group my-4 row">
-      <label class="col-sm-2 col-form-label">Size</label>
+      <label class="col-sm-2 col-form-label">{{$t('money.table.column.size')}}</label>
       <div class="col-sm-10">
         <input class="form-control form-control-solid" type="text" v-model="form.size" />
         <small
@@ -175,7 +175,7 @@
     </div>
 
     <div class="form-group my-4 row">
-      <label class="col-sm-2 col-form-label">Print Place</label>
+      <label class="col-sm-2 col-form-label">{{$t('money.table.column.printPlace')}}</label>
       <div class="col-sm-10">
         <select class="form-select form-select-solid" v-model="form.printPlace">
           <option
@@ -193,7 +193,7 @@
       </div>
     </div>
     <div class="form-group my-4 row">
-      <label class="col-sm-2 col-form-label">Signatures</label>
+      <label class="col-sm-2 col-form-label">{{$t('money.table.column.signatures')}}</label>
       <div class="col-sm-10">
         <select class="form-select form-select-solid" v-model="form.signatures" multiple>
           <option
@@ -212,7 +212,7 @@
     </div>
 
     <div class="form-group my-4 row">
-      <label class="col-sm-2 col-form-label">Tedavul date</label>
+      <label class="col-sm-2 col-form-label">{{$t('money.table.column.date1')}}</label>
       <div class="col-sm-10">
         <input type="date" class="form-control form-control-solid" v-model="form.tedavulDate" />
         <small
@@ -224,7 +224,7 @@
     </div>
 
     <div class="form-group my-4 row">
-      <label class="col-sm-2 col-form-label">Tedavulden Çıkma Tarihi</label>
+      <label class="col-sm-2 col-form-label">{{$t('money.table.column.date2')}}</label>
       <div class="col-sm-10">
         <input type="date" class="form-control form-control-solid" v-model="form.lastDate" />
         <small
@@ -237,7 +237,7 @@
 
     <div class="form-group my-4 row">
       <label class="col-sm-2 col-form-label"
-        >Zorunlu Tedavulden Süresi Sonu</label
+        >{{$t('money.table.column.date3')}}</label
       >
       <div class="col-sm-10">
         <input type="date" class="form-control form-control-solid" v-model="form.zortedDate" />
@@ -250,7 +250,7 @@
     </div>
 
     <div class="form-group my-4 row">
-      <label class="col-sm-2 col-form-label">Timeout</label>
+      <label class="col-sm-2 col-form-label">{{$t('money.table.column.date4')}}</label>
       <div class="col-sm-10">
         <input type="date" class="form-control form-control-solid" v-model="form.timeoutDate" />
         <small
@@ -262,7 +262,7 @@
     </div>
 
     <div class="form-group my-4 row">
-      <label class="col-sm-2 col-form-label">Expiry Date</label>
+      <label class="col-sm-2 col-form-label">{{$t('money.table.column.date5')}}</label>
       <div class="col-sm-10">
         <input type="date" class="form-control form-control-solid" v-model="form.expiryDate" />
         <small
@@ -274,7 +274,7 @@
     </div>
 
     <div class="form-group my-4 row">
-      <label class="col-sm-2 col-form-label">Front Color</label>
+      <label class="col-sm-2 col-form-label">{{$t('money.table.column.frontColor')}}</label>
       <div class="col-sm-10">
         <input type="text" class="form-control form-control-solid" v-model="form.frontColor" />
         <small
@@ -286,7 +286,7 @@
     </div>
 
     <div class="form-group my-4 row">
-      <label class="col-sm-2 col-form-label">Back Color</label>
+      <label class="col-sm-2 col-form-label">{{$t('money.table.column.backColor')}}</label>
       <div class="col-sm-10">
         <input type="text" class="form-control form-control-solid" v-model="form.backColor" />
         <small
@@ -298,7 +298,7 @@
     </div>
 
     <div class="form-group my-4 row">
-      <label class="col-sm-2 col-form-label">Front Image</label>
+      <label class="col-sm-2 col-form-label">{{$t('money.table.column.frontImage')}}</label>
       <div class="col-sm-10">
         <img :src="money.frontImage" v-if="!image.fpPreview" style="width:50px; height:50px;">
         <img :src="image.fpPreview" v-else @click="image.fpPreview = null,image.frontImage = null" style="width:50px; height:50px; cursor:poniter;">
@@ -312,7 +312,7 @@
     </div>
 
     <div class="form-group my-4 row">
-      <label class="col-sm-2 col-form-label">Back Image</label>
+      <label class="col-sm-2 col-form-label">{{$t('money.table.column.backImage')}}</label>
       <div class="col-sm-10">
         <img :src="money.backImage" v-if="!image.bpPreview" style="width:50px; height:50px;">
         <img :src="image.bpPreview" @click="image.bpPreview = null,image.backImage = null" v-else style="width:50px; height:50px; cursor:pointer;">
@@ -327,7 +327,7 @@
     </div>
 
     <div class="form-group my-4 row">
-      <label class="col-sm-2 col-form-label">Link</label>
+      <label class="col-sm-2 col-form-label">{{$t('money.table.column.link')}}</label>
       <div class="col-sm-10">
         <input type="text" class="form-control form-control-solid" v-model="form.link" />
         <small
@@ -339,7 +339,7 @@
     </div>
 
     <div class="form-group my-4 row">
-      <label class="col-sm-2 col-form-label">Back Color</label>
+      <label class="col-sm-2 col-form-label">{{$t('money.table.column.desc')}}</label>
       <div class="col-sm-10">
         <textarea class="form-control form-control-solid" v-model="form.desc"></textarea>
         <small
@@ -351,11 +351,11 @@
     </div>
 
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Status</label>
+      <label class="col-sm-2 col-form-label">{{$t('common.status')}}</label>
       <div class="col-sm-10">
         <select v-model="form.status" class="form-select form-select-solid">
-          <option :value="'0'">Inactive</option>
-          <option :value="'1'">Active</option>
+          <option :value="'0'">{{$t('common.inactive')}}</option>
+          <option :value="'1'">{{$t('common.active')}}</option>
         </select>
         <small
           class="text-danger"
@@ -373,10 +373,10 @@
           class="btn btn-primary btn-sm"
           v-if="!isLoading"
         >
-          Update Money
+          {{$t('button.update')}}
         </button>
         <button disabled class="btn btn-primary btn-sm" v-if="isLoading">
-          Updating...
+          {{$t('button.loading')}}
         </button>
       </div>
     </div>

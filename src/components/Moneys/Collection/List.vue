@@ -19,13 +19,13 @@
               data-toggle="modal"
               data-target="#addCollection"
             >
-              <i class="fas fa-plus"></i>Add Collection
+              <i class="fas fa-plus"></i>{{$t('collection.add')}}
             </button>
             <router-link
               :to="{name:'MoneyShow',params:{id:$route.params.id}}"
               class="btn btn-primary me-4"
             >
-              <i class="fas fa-eye"></i>Para Bilgileri
+              <i class="fas fa-eye"></i>{{$t('button.moneyDetails')}}
             </router-link>
             
           </div>
@@ -60,11 +60,11 @@
               <!--begin::Table row-->
               <tr class="text-dark-600 fw-bold">
                 <th>ID</th>
-                <th>Images</th>
-                <th>Unique Seri</th>
-                <th>Satın Alınan Kişi</th>
-                <th>Collected Date</th>
-                <th>Opr.</th>
+                <th>{{$t('collection.images')}}</th>
+                <th>{{$t('collection.table.column.uniqueSerie')}}</th>
+                <th>{{$t('collection.table.column.purchasedPerson')}}</th>
+                <th>{{$t('collection.table.column.date')}}</th>
+                <th>{{$t('common.opr')}}</th>
               </tr>
               <!--end::Table row-->
             </thead>
@@ -86,7 +86,7 @@
                 class="text-center text-primary my-3"
                 style="cursor: pointer"
                 @click="page++, get()"
-                >Load more</a
+                >{{$t('common.loadMore')}}</a
               >
             </div>
           </table>

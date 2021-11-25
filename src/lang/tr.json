@@ -7,10 +7,11 @@
         "desc": "Ekleme tarihi Artan",
         "asc": "Ekleme tarihi Azalan",
         "loadMore": "Daha Fazla",
-        "opr":"Özellikler",
+        "opr": "Özellikler",
         "active": "Aktif",
         "status": "Durum",
-        "inactive": "Pasif"
+        "inactive": "Pasif",
+        "title": "Başlık"
     },
     "header": {
         "navbar": {
@@ -51,7 +52,8 @@
         "update": "Güncelle",
         "edit": "Düzenle",
         "delete": "Sil",
-        "collectionDetails": "Koleksiyon Detayları",
+        "collectionDetails": "Koleksiyon Detayları(%{count})",
+        "moneyDetails": "Para Detayları",
         "filter": "Filtre",
         "reset": "Sıfırla",
         "details": "Detaylar",
@@ -77,14 +79,82 @@
     },
     "moneyOpr": {
         "title": "Para Ayarları"
-    },        
+    },
     "ems": {
         "add": "Yeni Emisyon Ekle",
-        "title": "Emisyonlar",
+        "title": "Emisyonlar"
+    },
+    "scwpm": {
+        "add": "Yeni SCWPM Ekle",
+        "title": "Scwpm"
+    },
+    "kuphur": {
+        "add": "Yeni Kupür Ekle",
+        "title": "Kuphürler"
+    },
+    "printPlace": {
+        "add": "Yeni Basım Yeri Ekle",
+        "title": "Basım Yerleri"
+    },
+    "tertip": {
+        "add": "Yeni Tertip Ekle",
+        "title": "Tertipler"
+    },
+    "serie": {
+        "add": "Yeni Seri Ekle",
+        "title": "Seriler"
+    },
+    "signature": {
+        "add": "Yeni İmza Ekle",
+        "title": "İmzalar"
+    },
+    "money": {
+        "add": "Yeni Para Ekle",
+        "title": "Paralar",
         "table": {
             "column": {
-                "title": "Başlık"
+                "ems": "Emisyon",
+                "serie": "İlk ve son seri",
+                "scwpm": "SCWPM / Pick #",
+                "kuphur": "Kupür",
+                "tertip": "Tertip",
+                "printPlace": "Bastırıldığı yer",
+                "value": "Nominal Değer",
+                "cil": "ÇİL (UNC)58+",
+                "ct": "ÇT (XF) 30+",
+                "t": "T (F) 15+",
+                "size": "Boyutları",
+                "date1": "Tedavüle çıkarıldığı tarih",
+                "date2": "Tedavülden çekildiği tarih",
+                "date3": "Zorunlu tedavül süresinin sonu",
+                "date4": "Zaman aşımı süresinin sonu",
+                "date5": "Kıymetini tamamen kaybedeceği tarih",
+                "signatures": "Taşıdığı imzalar",
+                "frontColor": "Ön Renk",
+                "backColor": "Arka Rengi",
+                "frontImage": "Ön Fotoğraf",
+                "backImage": "Arka Arka",
+                "desc": "Açıklama",
+                "link": "Detay Linki"
+            },
+            "filter": {
+                "myCollection":"Koleksiyonum"
             }
         }
-    }        
+    },
+    "collection": {
+        "add": "Koleksiyona yeni para ekle",
+        "title": "Koleksiyon Detayları",
+        "images": "Fotoğraflar",
+        "noImage": "Fotoğraf Yok",
+        "table": {
+            "column":{
+                "uniqueSerie": "Seri Numarası",
+                "purchasedPerson": "Satın alınan kişi",
+                "price": "Fiyat(tl)",
+                "date": "Eklenme tarihi"
+            }
+        }
+    }
 }
+    

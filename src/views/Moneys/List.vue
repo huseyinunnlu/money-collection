@@ -16,7 +16,7 @@
               class="row gy-5 g-xl-8 d-flex align-items-center mt-lg-0 mb-10 mb-lg-15"
             >
               <div class="row gy-5 g-xl-8">
-                <ContentHeader :title="'Moneys'" />
+                <ContentHeader :title="title" />
                 <List />
               </div>
             </div>
@@ -40,5 +40,10 @@ export default {
     ContentHeader,
     List,
   },
+  computed:{
+    title(){
+      return this.$t('money.title')
+    }
+  }
 };
 </script>

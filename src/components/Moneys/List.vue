@@ -20,7 +20,7 @@
               data-target="#add"
               v-if="_User.role == 1 && _IsAuth"
             >
-              <i class="fas fa-plus"></i>Add Money
+              <i class="fas fa-plus"></i>{{$t('button.add')}}
             </button>
             <div class="dropdown dropright">
               <button
@@ -52,7 +52,7 @@
               >
                 <!--begin::Header-->
                 <div class="px-7 py-5">
-                  <div class="fs-5 text-dark fw-bolder">Filter Options</div>
+                  <div class="fs-5 text-dark fw-bolder">{{$t('button.filter')}}</div>
                 </div>
                 <!--end::Header-->
                 <!--begin::Separator-->
@@ -118,7 +118,7 @@
                       style="width: 20px"
                       @change="get()"
                     >
-                      <option :value="null">Select data count</option>
+                      <option :value="null">{{$t('common.count')}}</option>
                       <option :value="'5'">5</option>
                       <option :value="'15'">15</option>
                     </select>
@@ -129,8 +129,8 @@
                       v-model="filter.order"
                       @change="get()"
                     >
-                      <option :value="'desc'">Creating Date DESC</option>
-                      <option :value="'asc'">Creating Date ASC</option>
+                      <option :value="'desc'">{{$t('common.desc')}}</option>
+                      <option :value="'asc'">{{$t('common.asc')}}</option>
                     </select>
                   </div>
                   <div class="form-group my-3 row">
@@ -140,8 +140,8 @@
                       v-if="_IsAuth && _User.role == 1"
                       @change="get()"
                     >
-                      <option :value="'1'">Active</option>
-                      <option :value="'0'">Inactive</option>
+                      <option :value="'1'">{{$t('common.active')}}</option>
+                      <option :value="'0'">{{$t('common.inactive')}}</option>
                     </select>
                   </div>
 
@@ -158,7 +158,7 @@
                         type="button"
                         class="btn btn-primary"
                       >
-                        Reset
+                        {{$t('button.reset')}}
                       </button>
                       <div
                         class="
@@ -174,7 +174,7 @@
                           @change="get()"
                         />
                         <label class="form-check-label" for="show">
-                          MyCollection</label
+                          {{$t('money.table.filter.myCollection')}}</label
                         >
                       </div>
                     </div>
@@ -216,16 +216,16 @@
               <!--begin::Table row-->
               <tr class="text-dark-600 fw-bold">
                 <th>ID</th>
-                <th>Emission</th>
-                <th>SCWPM</th>
-                <th>Kuphür</th>
-                <th>Value</th>
-                <th>Serie</th>
-                <th>Çil</th>
-                <th>Tertip</th>
-                <th>PrintPlace</th>
-                <th>Status</th>
-                <th>Opr.</th>
+                <th>{{$t('money.table.column.ems')}}</th>
+                <th>{{$t('money.table.column.scwpm')}}</th>
+                <th>{{$t('money.table.column.kuphur')}}</th>
+                <th>{{$t('money.table.column.value')}}</th>
+                <th>{{$t('money.table.column.serie')}}</th>
+                <th>{{$t('money.table.column.cil')}}</th>
+                <th>{{$t('money.table.column.tertip')}}</th>
+                <th>{{$t('money.table.column.printPlace')}}</th>
+                <th>{{$t('common.status')}}</th>
+                <th>{{$t('common.opr')}}.</th>
               </tr>
               <!--end::Table row-->
             </thead>
@@ -247,7 +247,7 @@
                 class="text-center text-primary my-3"
                 style="cursor: pointer"
                 @click="page++, get()"
-                >Load more</a
+                >{{$t('common.loadMore')}}</a
               >
             </div>
           </table>

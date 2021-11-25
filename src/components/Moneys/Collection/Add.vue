@@ -11,7 +11,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Collection</h5>
+          <h5 class="modal-title" id="exampleModalLabel">{{$t('collection.add')}}</h5>
           <i
             class="fas fa-times close"
             data-dismiss="modal"
@@ -25,7 +25,7 @@
             <div class="form-group my-4 row">
               <div class="images">
                 <div class="images-header d-flex justify-content-between">
-                  <h2 class="text-center">Images</h2>
+                  <h2 class="text-center">{{$t('collection.images')}}</h2>
                   <input type="file" multiple @change="onUpload" />
                 </div>
                 <div class="images-body">
@@ -73,7 +73,7 @@
             </div>
 
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Unique Serie</label>
+              <label class="col-sm-2 col-form-label">{{$t('collection.table.column.uniqueSerie')}}</label>
               <div class="col-sm-10">
                 <input
                   type="text"
@@ -83,7 +83,7 @@
               </div>
             </div>
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Purchased Person</label>
+              <label class="col-sm-2 col-form-label">{{$t('collection.table.column.purchasedPerson')}}</label>
               <div class="col-sm-10">
                 <input
                   type="text"
@@ -93,7 +93,7 @@
               </div>
             </div>
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Purchase Price(Tl)</label>
+              <label class="col-sm-2 col-form-label">{{$t('collection.table.column.price')}}</label>
               <div class="col-sm-10">
                 <input
                   type="number"
@@ -103,7 +103,7 @@
               </div>
             </div>
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Collected Date</label>
+              <label class="col-sm-2 col-form-label">{{$t('collection.table.column.date')}}</label>
               <div class="col-sm-10">
                 <input
                   type="date"
@@ -116,13 +116,13 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            Close
+            {{$t('button.close')}}
           </button>
           <button class="btn btn-primary" @click="add()" v-if="!isLoading">
-            Add Money
+            {{$t('button.add')}}
           </button>
           <button disabled class="btn btn-primary" v-if="isLoading">
-            Adding...
+            {{$t('button.loading')}}
           </button>
         </div>
       </div>

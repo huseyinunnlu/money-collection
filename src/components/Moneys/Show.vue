@@ -9,126 +9,133 @@
       <tbody>
         <tr>
           <td>
-            <strong>Emission</strong>
+            <strong>{{$t('money.table.column.ems')}}</strong>
           </td>
           <td>{{money.emission_id.title}}</td>
         </tr>
         
         <tr>
           <td>
-            <strong>SCWPM</strong>
+            <strong>{{$t('money.table.column.scwpm')}}</strong>
           </td>
           <td>{{money.scwpm_id.title}}</td>
         </tr>
         
         <tr>
           <td>
-            <strong>Kuphür</strong>
+            <strong>{{$t('money.table.column.kuphur')}}</strong>
           </td>
           <td>{{money.kuphur_id.title}}</td>
         </tr>
         
         <tr>
           <td>
-            <strong>Serie</strong>
+            <strong>{{$t('money.table.column.serie')}}</strong>
           </td>
           <td>{{money.serie_id.title}}</td>
         </tr>
 
         <tr>
           <td>
-            <strong>Tertip</strong>
+            <strong>{{$t('money.table.column.tertip')}}</strong>
           </td>
           <td>{{money.tertip_id.title}}</td>
         </tr>
 
         <tr>
           <td>
-            <strong>Print Place</strong>
+            <strong>{{$t('money.table.column.printPlace')}}</strong>
           </td>
           <td>{{money.print_place_id.title}}</td>
         </tr>
         
         <tr>
           <td>
-            <strong>Value</strong>
+            <strong>{{$t('money.table.column.value')}}</strong>
           </td>
           <td>{{money.value}}</td>
         </tr>
         
         <tr>
           <td>
-            <strong>Çil Value</strong>
+            <strong>{{$t('money.table.column.cil')}}</strong>
           </td>
           <td>{{money.cilValue}}</td>
         </tr>
         
         <tr>
           <td>
-            <strong>T Value</strong>
+            <strong>{{$t('money.table.column.ct')}}</strong>
+          </td>
+          <td>{{money.ctValue}}</td>
+        </tr>
+        
+        <tr>
+          <td>
+            <strong>{{$t('money.table.column.t')}}</strong>
           </td>
           <td>{{money.tValue}}</td>
         </tr>
         
         <tr>
           <td>
-            <strong>Size</strong>
+            <strong>{{$t('money.table.column.size')}}</strong>
           </td>
-          <td>{{money.size}}mm</td>
+          <td>{{money.size}}</td>
         </tr>
         
         <tr>
           <td>
-            <strong>Tedavul Date</strong>
+            <strong>{{$t('money.table.column.date1')}}</strong>
           </td>
           <td>{{money.tedavulDate}}</td>
         </tr>
         
         <tr>
           <td>
-            <strong>Tedavulden Çekildiği Tarih</strong>
+            <strong>{{$t('money.table.column.date2')}}</strong>
           </td>
           <td>{{money.lastDate}}</td>
         </tr>
         
         <tr>
           <td>
-            <strong>Zorunlu Tedavul Süresinin Sonu</strong>
+            <strong>{{$t('money.table.column.date3')}}</strong>
           </td>
           <td>{{money.zortedDate}}</td>
         </tr>
         
         <tr>
           <td>
-            <strong>Zaman Aşımı</strong>
+            <strong>{{$t('money.table.column.date4')}}</strong>
           </td>
           <td>{{money.timeoutDate}}</td>
         </tr>
         
         <tr>
           <td>
-            <strong>Kıymetini Kaybedeceği Tarih</strong>
+            <strong>{{$t('money.table.column.date5')}}</strong>
           </td>
           <td>{{money.expiryDate}}</td>
         </tr>
         
         <tr>
           <td>
-            <strong>Front Color</strong>
+            <strong>{{$t('money.table.column.frontColor')}}</strong>
           </td>
           <td>{{money.frontColor}}</td>
         </tr>
         
         <tr>
           <td>
-            <strong>Back Color</strong>
+            <strong>{{$t('money.table.column.backColor')}}</strong>
           </td>
           <td>{{money.backColor}}</td>
         </tr>
         
         <tr>
           <td>
-            <strong>Link</strong>
+            <strong>{{$t('money.table.column.link')}}</strong>
           </td>
           <td>
             <a :href="money.link">Go</a>
@@ -137,7 +144,7 @@
         
         <tr>
           <td>
-            <strong>Description</strong>
+            <strong>{{$t('money.table.column.desc')}}</strong>
           </td>
           <td>{{money.desc}}</td>
         </tr>

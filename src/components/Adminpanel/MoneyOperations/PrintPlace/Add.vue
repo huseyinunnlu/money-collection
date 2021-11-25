@@ -11,7 +11,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add New Print Place</h5>
+          <h5 class="modal-title" id="exampleModalLabel">{{$t('printPlace.add')}}</h5>
           <button
             type="button"
             class="close"
@@ -24,13 +24,13 @@
         <div class="modal-body">
           <form class="form-horizontal">
             <div class="form-group my-4 row">
-              <label for="title" class="col-sm-2 col-form-label">Title</label>
+              <label for="title" class="col-sm-2 col-form-label">{{$t('common.title')}}</label>
               <div class="col-sm-10">
                 <input
                   type="text"
                   class="form-control form-control-solid"
                   id="title"
-                  placeholder="Title"
+                  :placeholder="$t('common.title')"
                   v-model="form.title"
                 />
               </div>
@@ -47,8 +47,8 @@
               >
               <div class="col-sm-10">
                 <select id="status" v-model="form.status" class="form-select form-select-solid">
-                  <option :value="'0'">Inactive</option>
-                  <option :value="'1'">Active</option>
+                  <option :value="'0'">{{$t('common.inactive')}}</option>
+                  <option :value="'1'">{{$t('common.active')}}</option>
                 </select>
               </div>
             </div>
@@ -70,10 +70,10 @@
             v-if="!isLoading"
             @click="add()"
           >
-            Add Print Place
+            {{$t('button.add')}}
           </button>
           <button disabled class="btn btn-primary" v-if="isLoading">
-            Adding...
+            {{$t('button.loading')}}
           </button>
         </div>
       </div>

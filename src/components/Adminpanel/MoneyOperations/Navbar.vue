@@ -23,42 +23,42 @@
           <router-link
             class="nav-link text-active-primary ms-0 me-10 py-5"
             :to="{ name: 'AdminSCWPM' }"
-            >Scwpms</router-link
+            >{{$t('scwpm.title')}}</router-link
           >
         </li>
         <li class="nav-item mt-2">
           <router-link
             class="nav-link text-active-primary ms-0 me-10 py-5"
             :to="{ name: 'AdminKuphur' }"
-            >Kuphur</router-link
+            >{{$t('kuphur.title')}}</router-link
           >
         </li>
         <li class="nav-item mt-2">
           <router-link
             class="nav-link text-active-primary ms-0 me-10 py-5"
             :to="{ name: 'AdminPrintPlace' }"
-            >Print Places</router-link
+            >{{$t('printPlace.title')}}</router-link
           >
         </li>
         <li class="nav-item mt-2">
           <router-link
             class="nav-link text-active-primary ms-0 me-10 py-5"
             :to="{ name: 'AdminTertip' }"
-            >Tertip</router-link
+            >{{$t('tertip.title')}}</router-link
           >
         </li>
         <li class="nav-item mt-2">
           <router-link
             class="nav-link text-active-primary ms-0 me-10 py-5"
             :to="{ name: 'AdminSerie' }"
-            >Series</router-link
+            >{{$t('serie.title')}}</router-link
           >
         </li>
         <li class="nav-item mt-2">
           <router-link
             class="nav-link text-active-primary ms-0 me-10 py-5"
             :to="{ name: 'AdminSignature' }"
-            >Signature</router-link
+            >{{$t('signature.title')}}</router-link
           >
         </li>
         <!--end::Nav item-->

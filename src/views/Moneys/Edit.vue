@@ -14,8 +14,20 @@
           <div class="content flex-row-fluid" id="kt_content">
             <!--begin::Row-->
             <div
-              class="row col-10 offset-1 gy-5 g-xl-8 d-flex align-items-center mt-lg-0 mb-10 mb-lg-15"
+              class="
+                row
+                col-10
+                offset-1
+                gy-5
+                g-xl-8
+                d-flex
+                align-items-center
+                mt-lg-0
+                mb-10 mb-lg-15
+              "
             >
+              <ContentHeader :title="title" />
+
               <div class="card">
                 <div class="card-body">
                   <h2 v-if="isLoading" class="text-center">Loading...</h2>
@@ -34,12 +46,14 @@
 import Navbar from "@/components/Header/Navbar.vue";
 import Footer from "@/components/Header/Footer.vue";
 import Edit from "@/components/Moneys/Edit.vue";
+import ContentHeader from "@/components/ContentHeader.vue";
 
 export default {
   components: {
     Navbar,
     Footer,
     Edit,
+    ContentHeader
   },
   data() {
     return {
@@ -58,6 +72,11 @@ export default {
   },
   created() {
     this.getData();
+  },
+  computed:{
+    title(){
+      return this.$t('button.edit')
+    }
   },
   methods: {
     getData() {

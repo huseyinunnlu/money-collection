@@ -24,13 +24,13 @@
         <div class="modal-body">
           <form class="form-horizontal">
             <div class="form-group row">
-              <label for="title" class="col-sm-2 col-form-label">{{$t('ems.table.column.title')}}</label>
+              <label for="title" class="col-sm-2 col-form-label">{{$t('common.title')}}</label>
               <div class="col-sm-10">
                 <input
                   type="text"
                   class="form-control"
                   id="title"
-                  :placeholder="$t('ems.table.column.title')"
+                  :placeholder="$t('common.title')"
                   v-model="form.title"
                 />
               </div>

@@ -16,7 +16,7 @@
             <div
               class="row col-10 offset-1 gy-5 g-xl-8 d-flex align-items-center mt-lg-0 mb-10 mb-lg-15"
             >
-              <ContentHeader :title="'Edit SCWPM'" />
+              <ContentHeader :title="scwpm" />
 
               <div class="card">
                 <div class="card-body">
@@ -50,6 +50,11 @@ export default {
       scwpm: [],
       isLoading: false,
     };
+  },
+  computed:{
+    title(){
+      return this.$t('button.edit')
+    }
   },
   created() {
     this.get();

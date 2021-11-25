@@ -4,7 +4,7 @@
       <div class="form-group my-4 row">
         <div class="images">
           <div class="images-header d-flex justify-content-between">
-            <h2 class="text-center">Images</h2>
+            <h2 class="text-center">{{$t('collection.images')}}</h2>
             <input type="file" multiple @change="onUpload" />
           </div>
           <div class="images-body">
@@ -47,7 +47,7 @@
       </div>
 
       <div class="form-group my-4 row">
-        <label class="col-sm-2 col-form-label">Unique Serie</label>
+        <label class="col-sm-2 col-form-label">{{$t('collection.table.column.uniqueSerie')}}</label>
         <div class="col-sm-10">
           <input
             type="text"
@@ -57,7 +57,7 @@
         </div>
       </div>
       <div class="form-group my-4 row">
-        <label class="col-sm-2 col-form-label">Purchased Person</label>
+        <label class="col-sm-2 col-form-label">{{$t('collection.table.column.purchasedPerson')}}</label>
         <div class="col-sm-10">
           <input
             type="text"
@@ -67,7 +67,7 @@
         </div>
       </div>
       <div class="form-group my-4 row">
-        <label class="col-sm-2 col-form-label">Purchase Price(Tl)</label>
+        <label class="col-sm-2 col-form-label">{{$t('collection.table.column.price')}}</label>
         <div class="col-sm-10">
           <input
             type="number"
@@ -77,7 +77,7 @@
         </div>
       </div>
       <div class="form-group my-4 row">
-        <label class="col-sm-2 col-form-label">Collected Date</label>
+        <label class="col-sm-2 col-form-label">{{$t('collection.table.column.date')}}</label>
         <div class="col-sm-10">
           <input
             type="date"
@@ -90,10 +90,10 @@
         <label class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
           <button v-if="!isLoading" type="submit" class="btn btn-primary">
-            Update
+            {{$t('button.update')}}
           </button>
           <button v-else type="submit" class="btn btn-primary disabled">
-            Updating...
+            {{$t('button.loading')}}
           </button>
         </div>
       </div>

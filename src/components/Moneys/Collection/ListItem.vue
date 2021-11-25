@@ -9,10 +9,10 @@
         role="button"
         data-toggle="modal"
         :data-target="'#exampleModal' + item.id"
-        >Fotoğraflar({{ item.images.length }})</a
+        >{{$t('collection.images')}}({{ item.images.length }})</a
       >
       <span v-else>
-        Fotoğraf Yok
+        {{$t('collection.noImage')}}
       </span>
     </td>
     <td>{{ item.uniqueSerie }}</td>
@@ -35,7 +35,7 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-          Actions
+          {{$t('button.actions')}}
         </button>
         <div
           class="
@@ -58,7 +58,7 @@
             <router-link
               :to="{ name: 'CollectionEdit', params: { id: item.id } }"
               class="menu-link px-3"
-              ><i class="fas fa-pen mx-2"></i> Edit</router-link
+              ><i class="fas fa-pen mx-2"></i> {{$t('button.edit')}}</router-link
             >
           </div>
           <!-- <div class="menu-item px-3">
@@ -70,7 +70,7 @@
           </div> -->
           <div class="menu-item px-3">
             <a class="menu-link px-3" @click="del(item.id)">
-              <i class="fas fa-trash mx-2"></i> Delete
+              <i class="fas fa-trash mx-2"></i> {{$t('button.delete')}}
             </a>
           </div>
           <!-- <div class="menu-item px-3">

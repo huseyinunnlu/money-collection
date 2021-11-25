@@ -3,8 +3,8 @@
     <td>{{ serie.id }}</td>
     <td>{{ serie.title }}</td>
     <td>
-      <span class="badge badge-success" v-if="serie.status == '1'">Active</span>
-      <span class="badge badge-danger" v-else>Inactive</span>
+      <span class="badge badge-success" v-if="serie.status == '1'">{{$t('common.active')}}</span>
+      <span class="badge badge-danger" v-else>{{$t('common.active')}}</span>
     </td>
     <td>
       <router-link

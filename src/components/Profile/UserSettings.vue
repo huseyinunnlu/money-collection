@@ -6,14 +6,14 @@
           <UserProfilePhoto />
           <div class="form-group my-4 row">
             <label for="fullName" class="col-sm-2 col-form-label"
-              >Full Name</label
+              >{{$t('profile.fullName')}}</label
             >
             <div class="col-sm-10">
               <input
                 type="text"
                 class="form-control form-control-solid"
                 id="fullName"
-                placeholder="Full Name"
+                :placeholder="$t('profile.fullName')"
                 v-model="form.fullName"
               />
               <small
@@ -25,13 +25,13 @@
           </div>
 
           <div class="form-group my-4 row">
-            <label for="email" class="col-sm-2 col-form-label">Email</label>
+            <label for="email" class="col-sm-2 col-form-label">{{$t('profile.email')}}</label>
             <div class="col-sm-10">
               <input
                 type="text"
                 class="form-control form-control-solid"
                 id="email"
-                placeholder="Email"
+                :placeholder="$t('profile.email')"
                 v-model="form.email"
               />
               <small
@@ -50,10 +50,10 @@
                 :disabled="!form.fullName || !form.email"
                 v-if="!isLoading"
               >
-                Update
+                {{$t('button.update')}}
               </button>
               <button type="submit" class="btn btn-primary btn-sm" v-if="isLoading">
-                Updating
+                {{$t('button.loading')}}
               </button>
             </div>
           </div>

@@ -3,7 +3,7 @@
     <label class="col-sm-2 col-form-label">
       Profile Photo<br />
       <a class="text-muted" @click="isUploaded"
-        ><small>(Delete photo)</small></a
+        ><small>({{$t('button.deletePhoto')}})</small></a
       >
     </label>
 

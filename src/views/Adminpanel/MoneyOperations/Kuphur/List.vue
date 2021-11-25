@@ -5,7 +5,7 @@
       <div class="content-wrapper py-4">
         <div class="row">
           <div class="col-10 offset-1">
-            <ContentHeader :title="'Kuphür'" />
+            <ContentHeader :title="title" />
             <div class="card">
               <div class="card-header">
                 <MoneyNavbar />
@@ -35,6 +35,11 @@ export default {
     ContentHeader,
     MoneyNavbar,
     List
+  },
+  computed:{
+    title(){
+      return this.$t('kuphur.title')
+    }
   },
 };
 </script>

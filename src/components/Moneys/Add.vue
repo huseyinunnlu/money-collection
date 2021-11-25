@@ -180,7 +180,7 @@ export default {
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add New Money</h5>
+          <h5 class="modal-title" id="exampleModalLabel">{{$t('money.add')}}</h5>
           <i
             class="fas fa-times close"
             data-dismiss="modal"
@@ -193,7 +193,7 @@ export default {
           <form class="form-horizontal">
 
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">SCWPM</label>
+              <label class="col-sm-2 col-form-label">{{$t('money.table.column.scwpm')}}</label>
               <div class="col-sm-10">
                 <vue-select
                   class="form-control form-control-solid w-100"
@@ -216,7 +216,7 @@ export default {
             </div>
 
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Kuphür</label>
+              <label class="col-sm-2 col-form-label">{{$t('money.table.column.kuphur')}}</label>
               <div class="col-sm-10">
                 <vue-select
                   class="form-control form-control-solid w-100"
@@ -239,7 +239,7 @@ export default {
             </div>
 
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Nominal Value</label>
+              <label class="col-sm-2 col-form-label">{{$t('money.table.column.value')}}</label>
               <div class="col-sm-10">
                 <input
                   type="text"
@@ -255,7 +255,7 @@ export default {
               </div>
             </div>
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Serie</label>
+              <label class="col-sm-2 col-form-label">{{$t('money.table.column.serie')}}</label>
               <div class="col-sm-10">
                 <vue-select
                   class="form-control form-control-solid w-100"
@@ -278,7 +278,7 @@ export default {
             </div>
 
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Çil Value</label>
+              <label class="col-sm-2 col-form-label">{{$t('money.table.column.cil')}}</label>
               <div class="col-sm-10">
                 <input
                   type="text"
@@ -295,7 +295,7 @@ export default {
             </div>
 
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">ÇT (XF) Value</label>
+              <label class="col-sm-2 col-form-label">{{$t('money.table.column.ct')}}</label>
               <div class="col-sm-10">
                 <input
                   type="text"
@@ -312,7 +312,7 @@ export default {
             </div>
 
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">T(F) Value</label>
+              <label class="col-sm-2 col-form-label">{{$t('money.table.column.t')}}</label>
               <div class="col-sm-10">
                 <input
                   type="text"
@@ -329,7 +329,7 @@ export default {
             </div>
 
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Tertip</label>
+              <label class="col-sm-2 col-form-label">{{$t('money.table.column.tertip')}}</label>
               <div class="col-sm-10">
                 <vue-select
                   class="form-control form-control-solid w-100"
@@ -353,7 +353,7 @@ export default {
             </div>
 
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Size</label>
+              <label class="col-sm-2 col-form-label">{{$t('money.table.column.size')}}</label>
               <div class="col-sm-10">
                 <input
                   class="form-control form-control-solid mb-lg-0"
@@ -369,7 +369,7 @@ export default {
             </div>
 
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Print Place</label>
+              <label class="col-sm-2 col-form-label">{{$t('money.table.column.printPlace')}}</label>
               <div class="col-sm-10">
                 <vue-select
                   class="form-control form-control-solid w-100"
@@ -392,7 +392,7 @@ export default {
               </div>
             </div>
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Signatures</label>
+              <label class="col-sm-2 col-form-label">{{$t('money.table.column.signatures')}}</label>
               <div class="col-sm-10">
                 <vue-select
                   class="form-control form-control-solid w-100"
@@ -418,7 +418,7 @@ export default {
             </div>
 
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Tedavul date</label>
+              <label class="col-sm-2 col-form-label">{{$t('money.table.column.date1')}}</label>
               <div class="col-sm-10">
                 <input
                   type="date"
@@ -435,7 +435,7 @@ export default {
 
             <div class="form-group my-4 row">
               <label class="col-sm-2 col-form-label"
-                >Tedavulden Çıkma Tarihi</label
+                >{{$t('money.table.column.date2')}}</label
               >
               <div class="col-sm-10">
                 <input
@@ -453,7 +453,7 @@ export default {
 
             <div class="form-group my-4 row">
               <label class="col-sm-2 col-form-label"
-                >Zorunlu Tedavulden Süresi Sonu</label
+                >{{$t('money.table.column.date3')}}</label
               >
               <div class="col-sm-10">
                 <input
@@ -470,7 +470,7 @@ export default {
             </div>
 
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Timeout</label>
+              <label class="col-sm-2 col-form-label">{{$t('money.table.column.date3')}}</label>
               <div class="col-sm-10">
                 <input
                   type="date"
@@ -486,7 +486,7 @@ export default {
             </div>
 
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Expiry Date</label>
+              <label class="col-sm-2 col-form-label">{{$t('money.table.column.date4')}}</label>
               <div class="col-sm-10">
                 <input
                   type="date"
@@ -502,7 +502,7 @@ export default {
             </div>
 
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Front Color</label>
+              <label class="col-sm-2 col-form-label">{{$t('money.table.column.frontColor')}}</label>
               <div class="col-sm-10">
                 <input
                   type="text"
@@ -518,7 +518,7 @@ export default {
             </div>
 
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Back Color</label>
+              <label class="col-sm-2 col-form-label">{{$t('money.table.column.backColor')}}</label>
               <div class="col-sm-10">
                 <input
                   type="text"
@@ -534,7 +534,7 @@ export default {
             </div>
 
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Front Image</label>
+              <label class="col-sm-2 col-form-label">{{$t('money.table.column.backImage')}}</label>
               <div class="col-sm-10">
                 <input
                   type="file"
@@ -550,7 +550,7 @@ export default {
             </div>
 
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Back Image</label>
+              <label class="col-sm-2 col-form-label">{{$t('money.table.column.backImage')}}</label>
               <div class="col-sm-10">
                 <input
                   type="file"
@@ -566,7 +566,7 @@ export default {
             </div>
 
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Link</label>
+              <label class="col-sm-2 col-form-label">{{$t('money.table.column.link')}}</label>
               <div class="col-sm-10">
                 <input
                   type="text"
@@ -582,7 +582,7 @@ export default {
             </div>
 
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Description</label>
+              <label class="col-sm-2 col-form-label">{{$t('money.table.column.desc')}}</label>
               <div class="col-sm-10">
                 <textarea
                   class="form-control form-control-solid mb-lg-0"
@@ -597,15 +597,15 @@ export default {
             </div>
 
             <div class="form-group my-4 row">
-              <label class="col-sm-2 col-form-label">Status</label>
+              <label class="col-sm-2 col-form-label">{{$t('common.status')}}</label>
               <div class="col-sm-10">
                 <select
                   v-model="form.status"
                   class="form-select form-select-solid mb-lg-0"
                 >
-                  <option :value="null">-Select-</option>
-                  <option :value="'0'">Inactive</option>
-                  <option :value="'1'">Active</option>
+                  <option :value="null">{{$t('common.status')}}</option>
+                  <option :value="'0'">{{$t('common.inactive')}}</option>
+                  <option :value="'1'">{{$t('common.active')}}</option>
                 </select>
                 <small
                   class="text-danger"
@@ -626,10 +626,10 @@ export default {
             @click="add()"
             v-if="!isLoading"
           >
-            Add Money
+            {{$t('button.add')}}
           </button>
           <button disabled class="btn btn-primary" v-if="isLoading">
-            Adding...
+            {{$t('button.loading')}}
           </button>
         </div>
       </div>

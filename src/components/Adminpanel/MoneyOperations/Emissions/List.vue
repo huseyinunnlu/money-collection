@@ -30,7 +30,7 @@
                   <select class="form-control" v-model="status">
                     <option :value="null">{{$t('common.status')}}</option>
                     <option :value="1">{{$t('common.active')}}</option>
-                    <option :value="0">{{$t('common.inacive')}}</option>
+                    <option :value="0">{{$t('common.inactive')}}</option>
                   </select>
                   <select
                     class="form-control"
@@ -63,9 +63,9 @@
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Title</th>
-                    <th>Status</th>
-                    <th>Opr.</th>
+                    <th>{{$t('common.title')}}</th>
+                    <th>{{$t('common.status')}}</th>
+                    <th>{{$t('common.opr')}}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -84,7 +84,7 @@
                   class="text-center text-primary my-3"
                   style="cursor:pointer;"
                   @click="page++,get()"
-                  >Load more</a
+                  >{{$t('common.loadMore')}}</a
                 >
               </div>
             </div>

@@ -10,7 +10,8 @@
         "opr": "Opr",
         "active": "Active",
         "inactive": "Inactive",
-        "status": "Status"
+        "status": "Status",
+        "title": "Title"
     },
     "header": {
         "navbar": {
@@ -51,7 +52,8 @@
         "update": "Update",
         "edit": "Edit",
         "delete": "Delete",
-        "collectionDetails": "Collection Details",
+        "collectionDetails": "Collection Details(%{count})",
+        "moneyDetails": "Money Details",
         "filter": "Filter",
         "reset": "Reset",
         "details": "Details",
@@ -75,15 +77,83 @@
             }
         }
     },
+    
     "moneyOpr": {
         "title": "Money Opr."
     },
     "ems": {
         "add": "Add New Emission",
-        "title": "Emissions",
+        "title": "Emissions"
+    },
+    "scwpm": {
+        "add": "Add New SCWPM",
+        "title": "Scwpm"
+    },
+    "kuphur": {
+        "add": "Add New Kupür",
+        "title": "Kuphurs"
+    },
+    "printPlace": {
+        "add": "Add New Print Place",
+        "title": "Print Places"
+    },
+    "tertip": {
+        "add": "Add New Tertip",
+        "title": "Tertips"
+    },
+    "serie": {
+        "add": "Add New Serie",
+        "title": "Series"
+    },
+    "signature": {
+        "add": "Add New Signatures",
+        "title": "Signatures"
+    },
+    "money": {
+        "add": "Add New Money",
+        "title": "Moneys",
         "table": {
             "column": {
-                "title": "Title"
+                "ems": "Emission",
+                "serie": "First and Last Serie",
+                "scwpm": "SCWPM / Pick #",
+                "kuphur": "Kupür",
+                "tertip": "Tertip",
+                "printPlace": "Printed Place",
+                "value": "Nominal Value",
+                "cil": "ÇİL (UNC)58+",
+                "ct": "ÇT (XF) 30+",
+                "t": "T (F) 15+",
+                "size": "Date of issue",
+                "date1": "Date of withdrawall",
+                "date2": "Tedavülden çekildiği tarih",
+                "date3": "End of compulsory circulation period",
+                "date4": "End of timeout period                ",
+                "date5": "The date when it will lose its value completely",
+                "signatures": "Signatures",
+                "frontColor": "Front Color",
+                "backColor": "Back Color",
+                "frontImage": "Front Image",
+                "backImage": "Back Image",
+                "desc": "Description",
+                "link": "Details link"
+            },
+            "filter": {
+                "myCollection":"My Collection"
+            }
+        }
+    },
+    "collection": {
+        "add": "Add new money to collection",
+        "title": "Collection details",
+        "images": "Photos",
+        "noImage": "No Image",
+        "table": {
+            "column":{
+                "uniqueSerie": "Unique Serie",
+                "purchasedPerson": "Purchased Person",
+                "price": "Price(tl)",
+                "date": "Date"
             }
         }
     }

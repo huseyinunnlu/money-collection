@@ -11,7 +11,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add New Kuphür</h5>
+          <h5 class="modal-title" id="exampleModalLabel">{{$t('kuphur.add')}}</h5>
           <button
             type="button"
             class="close"
@@ -24,13 +24,13 @@
         <div class="modal-body">
           <form class="form-horizontal">
             <div class="form-group my-4 row">
-              <label for="title" class="col-sm-2 col-form-label">Title</label>
+              <label for="title" class="col-sm-2 col-form-label">{{$t('common.title')}}</label>
               <div class="col-sm-10">
                 <input
                   type="text"
                   class="form-control form-control-solid"
                   id="title"
-                  placeholder="Title"
+                  :placeholder="$t('common.title')"
                   v-model="form.title"
                 />
               </div>
@@ -43,12 +43,12 @@
 
             <div class="form-group row">
               <label for="status" class="col-sm-2 col-form-label"
-                >Status</label
+                >{{$t('common.status')}}</label
               >
               <div class="col-sm-10">
                 <select id="status" v-model="form.status" class="form-select form-select-solid">
-                  <option :value="'0'">Inactive</option>
-                  <option :value="'1'">Active</option>
+                  <option :value="'0'">{{$t('common.inactive')}}</option>
+                  <option :value="'1'">{{$t('common.active')}}</option>
                 </select>
               </div>
             </div>
@@ -61,7 +61,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            Close
+            {{$t('button.close')}}
           </button>
           <button
             type="submit"
@@ -70,10 +70,10 @@
             v-if="!isLoading"
             @click="add"
           >
-            Add Küphür
+            {{$t('button.add')}}
           </button>
           <button disabled class="btn btn-primary" v-if="isLoading">
-            Adding...
+            {{$t('button.loading')}}
           </button>
         </div>
       </div>

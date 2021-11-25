@@ -16,7 +16,7 @@
             <div
               class="row col-10 offset-1 gy-5 g-xl-8 d-flex align-items-center mt-lg-0 mb-10 mb-lg-15"
             >
-              <ContentHeader :title="'Edit Signature'" />
+              <ContentHeader :title="title" />
               <div class="card">
                 <div class="card-body">
                   <h2 v-if="isLoading" class="text-center">Loading...</h2>
@@ -43,6 +43,11 @@ export default {
     Footer,
     Edit,
     ContentHeader,
+  },
+  computed:{
+    title(){
+      return this.$t('button.edit')
+    }
   },
   data() {
     return {

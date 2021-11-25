@@ -31,6 +31,7 @@ class CollectionController extends Controller
             "price" => $request->price,
             "date" => $request->date,
         ]);
+        $data->images = [];
         if ($data && $request->hasFile('images')) {
             $images = [];
             foreach ($request->images as $image) {
